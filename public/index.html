@@ -4,44 +4,32 @@
   <meta charset="UTF-8" />
   <title>ذهين</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      margin: 0;
-      background: #111;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      font-family: system-ui, -apple-system;
-    }
-    .card {
-      background: #1c1c1c;
-      padding: 40px;
-      border-radius: 16px;
-      text-align: center;
-      max-width: 420px;
-      width: 100%;
-      box-shadow: 0 10px 40px rgba(0,0,0,.5);
-    }
-    h1 { margin-bottom: 12px; }
-    p { opacity: .8; margin-bottom: 24px; }
-    button {
-      padding: 14px 24px;
-      border-radius: 12px;
-      border: none;
-      background: #00c896;
-      font-size: 18px;
-      cursor: pointer;
-      width: 100%;
-    }
-  </style>
+  <link rel="stylesheet" href="./style.css" />
 </head>
+
 <body>
-  <div class="card">
-    <h1>لعبة ذهين</h1>
-    <p>لعبة تحدي جماعية ذكية</p>
-    <button>ابدأ اللعب</button>
-  </div>
+
+  <!-- شاشة البداية -->
+  <section id="screen-home" class="screen active">
+    <div class="card">
+      <h1>لعبة ذهين</h1>
+      <p>لعبة تحدي جماعية ذكية</p>
+      <button id="startBtn">ابدأ اللعب</button>
+    </div>
+  </section>
+
+  <!-- شاشة اختيار الفئات -->
+  <section id="screen-categories" class="screen">
+    <div class="card wide">
+      <h2>اختر الفئات</h2>
+      <p>اختر من 3 إلى 6 فئات</p>
+
+      <div id="categories" class="categories"></div>
+
+      <button id="continueBtn" disabled>يلا نكمل</button>
+    </div>
+  </section>
+
+  <script src="./app.js" defer></script>
 </body>
 </html>
