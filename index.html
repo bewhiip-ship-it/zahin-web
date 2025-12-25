@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ذهين</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="app">
+
+    <!-- شاشة البداية -->
+    <section class="screen active" id="screen-home">
+      <div class="card">
+        <h1>لعبة ذهين</h1>
+        <p>لعبة تحدّي جماعية ذكية</p>
+        <button class="btn" id="btnStart">ابدأ اللعب</button>
+      </div>
+    </section>
+
+    <!-- شاشة اختيار الفئات -->
+    <section class="screen" id="screen-categories">
+      <div class="container">
+        <header class="topbar">
+          <h2>اختر الفئات</h2>
+          <div class="pill" id="selectedCount">0 / 6</div>
+        </header>
+
+        <p class="hint">اختر من 3 إلى 6 فئات عشان نبدأ.</p>
+
+        <div class="chips" id="selectedChips"></div>
+
+        <div class="grid" id="categoriesGrid"></div>
+
+        <div class="actions">
+          <button class="btn ghost" id="btnBackHome">رجوع</button>
+          <button class="btn" id="btnGoSetup" disabled>يلا نكمل</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ملاحظة: الشاشات الجاية بنضيفها بعدها -->
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
