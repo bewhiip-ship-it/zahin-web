@@ -22,11 +22,35 @@
   <section id="screen-categories" class="screen">
     <div class="card wide">
       <h2>اختر الفئات</h2>
-      <p>اختر من 3 إلى 6 فئات</p>
+      <p class="muted">اختر من 3 إلى 6 فئات</p>
+
+      <div id="selectedInfo" class="pill">0 / 6</div>
 
       <div id="categories" class="categories"></div>
 
-      <button id="continueBtn" disabled>يلا نكمل</button>
+      <div class="row">
+        <button id="backToHomeBtn" class="ghost">رجوع</button>
+        <button id="continueBtn" disabled>يلا نكمل</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- شاشة أسماء الفرق -->
+  <section id="screen-teams" class="screen">
+    <div class="card wide">
+      <h2>أسماء الفرق</h2>
+      <p class="muted">اكتب أسماء الفريقين (اختياري)</p>
+
+      <label class="label">الفريق الأول</label>
+      <input id="team1Input" class="input" placeholder="الفريق الأول" />
+
+      <label class="label">الفريق الثاني</label>
+      <input id="team2Input" class="input" placeholder="الفريق الثاني" />
+
+      <div class="row">
+        <button id="backToCategoriesBtn" class="ghost">رجوع</button>
+        <button id="startHostBtn">ابدأ القيم</button>
+      </div>
     </div>
   </section>
 
