@@ -13,7 +13,7 @@
   <section id="screen-home" class="screen active">
     <div class="card">
       <h1>لعبة ذهين</h1>
-      <p>لعبة تحدي جماعية ذكية</p>
+      <p class="muted">لعبة تحدي جماعية ذكية</p>
       <button id="startBtn">ابدأ اللعب</button>
     </div>
   </section>
@@ -53,6 +53,75 @@
       </div>
     </div>
   </section>
+
+  <!-- شاشة لوحة الأسئلة -->
+  <section id="screen-board" class="screen">
+    <div class="boardWrap">
+
+      <header class="scorebar">
+        <div class="teamBlock left">
+          <div class="teamName" id="team2NameTop">الفريق الثاني</div>
+          <div class="teamScoreRow">
+            <button class="scoreBtn" id="team2Minus">-</button>
+            <div class="teamScore" id="team2ScoreTop">0</div>
+            <button class="scoreBtn" id="team2Plus">+</button>
+          </div>
+        </div>
+
+        <div class="brandCenter">ذهين</div>
+
+        <div class="teamBlock right">
+          <div class="teamName" id="team1NameTop">الفريق الأول</div>
+          <div class="teamScoreRow">
+            <button class="scoreBtn" id="team1Minus">-</button>
+            <div class="teamScore" id="team1ScoreTop">0</div>
+            <button class="scoreBtn" id="team1Plus">+</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="board" id="boardGrid"></div>
+
+      <div class="boardActions">
+        <button class="ghost" id="resetGameBtn">لعبة جديدة</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- نافذة السؤال -->
+  <div id="questionModal" class="modal hidden">
+    <div class="modalCard">
+      <div class="modalTop">
+        <div class="qMeta" id="qMeta">—</div>
+        <div class="timer" id="timer">00:00</div>
+      </div>
+
+      <div class="imgBox">
+        <div class="imgPlaceholder" id="imgPlaceholder">صورة تجريبية</div>
+      </div>
+
+      <div class="qText" id="qText">—</div>
+
+      <button class="btn mid" id="revealBtn">إظهار الإجابة</button>
+
+      <div id="answerArea" class="answerArea hidden">
+        <div class="answerText" id="answerText">—</div>
+
+        <div class="pickRow">
+          <button class="mini" id="pickTeam1">الفريق 1</button>
+          <button class="mini ghost" id="pickNoOne">بدون نقاط</button>
+          <button class="mini" id="pickTeam2">الفريق 2</button>
+        </div>
+
+        <div class="hintSmall">بعد اختيار الفريق/بدون نقاط: السؤال ينتهي وما يرجع يظهر.</div>
+      </div>
+
+      <div class="modalActions">
+        <button class="ghost" id="closeModalBtn">رجوع للوحة</button>
+        <button class="ghost" id="undoOpenBtn">تم اختيار السؤال بالخطأ</button>
+      </div>
+    </div>
+  </div>
 
   <script src="./app.js" defer></script>
 </body>
