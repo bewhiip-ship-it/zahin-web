@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     setTimeout(() => {
       if (splash) splash.classList.add("hidden");
       if (app) app.classList.remove("hidden");
-    }, 2500);
+    }, 3000); // ✅ المدة 3 ثواني
   
     // Screens
     const sAuth = document.getElementById("screen-auth");
@@ -228,16 +228,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (!categoriesGrid) return;
   
       categoriesGrid.innerHTML = "";
-      // Grid style handled in CSS mostly, just reset content
       
       const list = CATEGORIES || [];
   
       list.forEach(cat => {
         const card = document.createElement("button");
         card.type = "button";
-        card.className = "category-card"; // new class concept logic inline below
-  
-        // Inline styles for the card look
+        
         const imgPath = cat.image || "images/placeholder.png";
         card.style.backgroundImage = `url("${imgPath}")`;
         card.style.backgroundSize = "cover";
@@ -250,7 +247,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         card.style.padding = "0";
         card.style.overflow = "hidden";
   
-        // Overlay for text visibility
         const overlay = document.createElement("div");
         overlay.style.position = "absolute";
         overlay.style.inset = "0";
@@ -353,7 +349,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       boardGrid.innerHTML = "";
       const list = CATEGORIES || [];
       
-      // --- FIX: Dynamic Grid Columns ---
       const cols = state.selectedCategoryIds.length;
       boardGrid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
   
@@ -380,13 +375,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   
           if (state.finalized[qid]) {
               cell.classList.add("used");
-              // cell.textContent = "✔"; // optional visual
           }
           if (allDone) cell.classList.add("disabled");
   
           cell.addEventListener("click", () => {
             if (state.finalized[qid]) return;
-            // if (allDone) return; // Allow checking questions even if col finished? No let's stick to standard.
             openQuestion(cid, pts, idx);
           });
   
@@ -438,7 +431,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   
       const qFromBank = getQuestionBySlot(categoryId, idx);
       if (!qFromBank || qFromBank.points !== points) {
-        console.error("Mismatch", qFromBank);
         alert(`خطأ في البيانات: لا يوجد سؤال للفئة ${categoryId} نقاط ${points}`);
         return;
       }
@@ -487,7 +479,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       state.currentRevealed = true;
       if (answerText) answerText.textContent = q.answer;
   
-      // Logic for Block lifeline
       if (state.turnFlags?.block) {
         if (state.currentTurnTeam === 1 && pickTeam2) pickTeam2.style.display = "none";
         if (state.currentTurnTeam === 2 && pickTeam1) pickTeam1.style.display = "none";
@@ -503,7 +494,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (!q) return;
   
       let pts = q.points;
-      // Double points logic
       if (state.turnFlags?.double && winnerTeamOrNull === state.currentTurnTeam) pts *= 2;
   
       if (winnerTeamOrNull === 1) state.team1Score += pts;
@@ -627,7 +617,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       };
   
-      // Never repeat per account
       const fin = loadFinalizedSet(state.userId);
       fin.forEach(qid => { state.finalized[qid] = true; });
   
@@ -777,7 +766,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
   
-    // Init: load QBank
     QBANK = await loadQBank();
     if (QBANK && QBANK.categories && QBANK.questions) {
       CATEGORIES = QBANK.categories;
@@ -787,7 +775,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       QLOOKUP = null;
     }
   
-    // Default screen
     const user = getUser();
     if (!user) show(sAuth);
     else {

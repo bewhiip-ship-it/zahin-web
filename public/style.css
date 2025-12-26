@@ -1,5 +1,5 @@
 :root{
-  --bg:#f4f4f9;
+  --bg:#eae6dc;  /* ✅ تم تغيير لون الخلفية هنا */
   --card:#ffffff;
   --primary: #2c3e50;
   --accent: #3498db;
@@ -112,6 +112,6 @@ body{margin:0; background:var(--bg); color:var(--text); direction: rtl;}
 }
 
 .splash {
-  position: fixed; inset: 0; background: #fff; z-index: 2000;
+  position: fixed; inset: 0; background: var(--bg); z-index: 2000; /* ✅ الخلفية نفس لون الصفحة */
   display: flex; justify-content: center; align-items: center;
 }
