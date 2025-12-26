@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const splash = document.getElementById("splash");
   const app = document.getElementById("app");
   setTimeout(() => {
-    splash.classList.add("hidden");
-    app.classList.remove("hidden");
+    if (splash) splash.classList.add("hidden");
+    if (app) app.classList.remove("hidden");
   }, 3000);
 
   // Screens
@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const sWinner = document.getElementById("screen-winner");
 
   const show = (screen) => {
-    [sAuth, sHome, sCats, sTeams, sBoard, sWinner].forEach(x => x.classList.remove("active"));
-    screen.classList.add("active");
+    [sAuth, sHome, sCats, sTeams, sBoard, sWinner].forEach(x => x && x.classList.remove("active"));
+    if (screen) screen.classList.add("active");
   };
 
   // UI: Auth
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const team2Plus = document.getElementById("team2Plus");
   const team2Minus = document.getElementById("team2Minus");
 
-  // Lifelines
+  // Lifelines (قد تكون غير موجودة بالـ HTML عندك — لازم ما نكسر)
   const t1Double = document.getElementById("t1Double");
   const t1Block = document.getElementById("t1Block");
   const t1Call = document.getElementById("t1Call");
@@ -90,8 +90,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const undoOpenBtn = document.getElementById("undoOpenBtn");
   const reportBtn = document.getElementById("reportBtn");
 
-  const openModal = () => modal.classList.remove("hidden");
-  const closeModal = () => modal.classList.add("hidden");
+  const openModal = () => modal && modal.classList.remove("hidden");
+  const closeModal = () => modal && modal.classList.add("hidden");
 
   // Constants
   const MIN_CATS = 3;
@@ -104,16 +104,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const KEY_SELECTED = "zahin_selected_categories_v1";
   const KEY_REPORTS = "zahin_reports_v1";
   const KEY_QBANK_CACHE = "zahin_qbank_cache_v1";
-
-  // Categories fallback
-  const FALLBACK_CATEGORIES = [
-    { id: "science", name: "العلوم والاختراعات", image: "images/science.png" },
-    { id: "arabic_lit", name: "اللغة العربية والأدب", image: "images/arabic_lit.png" },
-    { id: "sports", name: "الرياضة والتاريخ الرياضي", image: "images/sports.png" },
-    { id: "history_geo", name: "التاريخ والجغرافيا", image: "images/history_geo.png" },
-    { id: "nature", name: "الحيوان والنبات", image: "images/nature.png" },
-    { id: "titles", name: "الألقاب والشخصيات", image: "images/titles.png" }
-  ];
 
   // Runtime
   let selected = new Set();
@@ -136,6 +126,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   const startTimer = () => {
+    if (!timerEl) return;
     tStart = Date.now();
     timerEl.textContent = "00:00";
     if (tInterval) clearInterval(tInterval);
@@ -228,38 +219,35 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // UI rendering
   const updateSelectedInfo = () => {
-    selectedInfo.textContent = `${selected.size} / ${MAX_CATS}`;
-    toTeamsBtn.disabled = selected.size < MIN_CATS || selected.size > MAX_CATS;
+    if (selectedInfo) selectedInfo.textContent = `${selected.size} / ${MAX_CATS}`;
+    if (toTeamsBtn) toTeamsBtn.disabled = selected.size < MIN_CATS || selected.size > MAX_CATS;
   };
 
-  // ✅✅✅ تعديل هنا: كروت الفئات صورة فقط + 3 جنب بعض
+  // ✅ كروت الفئات صورة فقط + 3 جنب بعض
   const renderCategories = () => {
-    categoriesGrid.innerHTML = "";
+    if (!categoriesGrid) return;
 
-    // grid: 3 columns
+    categoriesGrid.innerHTML = "";
     categoriesGrid.style.display = "grid";
     categoriesGrid.style.gridTemplateColumns = "repeat(3, 1fr)";
     categoriesGrid.style.gap = "12px";
     categoriesGrid.style.alignItems = "stretch";
 
-    const list = CATEGORIES.length ? CATEGORIES : FALLBACK_CATEGORIES;
+    const list = CATEGORIES || [];
 
     list.forEach(cat => {
       const card = document.createElement("button");
       card.type = "button";
-      card.className = "catCard" + (selected.has(cat.id) ? " selected" : "");
 
-      // صورة فقط
       const imgPath = cat.image || "images/placeholder.png";
       card.style.backgroundImage = `url("${imgPath}")`;
       card.style.backgroundSize = "cover";
       card.style.backgroundPosition = "center";
       card.style.backgroundRepeat = "no-repeat";
 
-      // شكل الكرت
       card.style.height = "120px";
       card.style.borderRadius = "14px";
-      card.style.border = "2px solid rgba(0,0,0,0.12)";
+      card.style.border = selected.has(cat.id) ? "3px solid rgba(0,0,0,0.55)" : "2px solid rgba(0,0,0,0.12)";
       card.style.boxShadow = "0 6px 16px rgba(0,0,0,0.08)";
       card.style.cursor = "pointer";
       card.style.position = "relative";
@@ -267,21 +255,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       card.style.padding = "0";
       card.style.overflow = "hidden";
 
-      // عنوان مخفي (للوصول/التلميح)
-      card.title = cat.name;
+      card.title = cat.name || cat.id;
 
-      // تحديد واضح
-      if (selected.has(cat.id)) {
-        card.style.border = "3px solid rgba(0,0,0,0.55)";
-        card.style.transform = "scale(0.99)";
-      }
-
-      // طبقة خفيفة لتوضيح تحديد (اختياري)
       const overlay = document.createElement("div");
       overlay.style.position = "absolute";
       overlay.style.inset = "0";
       overlay.style.background = selected.has(cat.id) ? "rgba(0,0,0,0.12)" : "rgba(0,0,0,0.00)";
-      overlay.style.transition = "all 120ms ease";
       card.appendChild(overlay);
 
       card.addEventListener("click", () => {
@@ -291,7 +270,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           if (selected.size >= MAX_CATS) return;
           selected.add(cat.id);
         }
-        renderCategories(); // نعيد رسمها عشان يبان التحديد
+        renderCategories();
         updateSelectedInfo();
       });
 
@@ -302,45 +281,53 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   const setLifeBtn = (btn, used) => {
+    if (!btn) return; // ✅ حماية
     btn.classList.toggle("used", !!used);
     btn.disabled = !!used;
   };
 
   const renderScorebar = () => {
-    team1NameTop.textContent = state.team1Name;
-    team2NameTop.textContent = state.team2Name;
-    team1ScoreTop.textContent = state.team1Score;
-    team2ScoreTop.textContent = state.team2Score;
+    if (!state) return;
 
-    pickTeam1.textContent = state.team1Name;
-    pickTeam2.textContent = state.team2Name;
+    if (team1NameTop) team1NameTop.textContent = state.team1Name;
+    if (team2NameTop) team2NameTop.textContent = state.team2Name;
+    if (team1ScoreTop) team1ScoreTop.textContent = state.team1Score;
+    if (team2ScoreTop) team2ScoreTop.textContent = state.team2Score;
 
-    setLifeBtn(t1Double, state.lifelines.t1.doubleUsed);
-    setLifeBtn(t1Block, state.lifelines.t1.blockUsed);
-    setLifeBtn(t1Call, state.lifelines.t1.callUsed);
+    if (pickTeam1) pickTeam1.textContent = state.team1Name;
+    if (pickTeam2) pickTeam2.textContent = state.team2Name;
 
-    setLifeBtn(t2Double, state.lifelines.t2.doubleUsed);
-    setLifeBtn(t2Block, state.lifelines.t2.blockUsed);
-    setLifeBtn(t2Call, state.lifelines.t2.callUsed);
+    setLifeBtn(t1Double, state.lifelines?.t1?.doubleUsed);
+    setLifeBtn(t1Block, state.lifelines?.t1?.blockUsed);
+    setLifeBtn(t1Call, state.lifelines?.t1?.callUsed);
+
+    setLifeBtn(t2Double, state.lifelines?.t2?.doubleUsed);
+    setLifeBtn(t2Block, state.lifelines?.t2?.blockUsed);
+    setLifeBtn(t2Call, state.lifelines?.t2?.callUsed);
   };
 
   const updateTurnUI = () => {
+    if (!state) return;
+    if (!turnPill || !turnNote) return;
+
     if (!state.currentTurnTeam) {
       turnPill.textContent = "الدور: —";
       turnNote.textContent = "—";
       return;
     }
+
     const teamName = state.currentTurnTeam === 1 ? state.team1Name : state.team2Name;
     turnPill.textContent = `الدور: ${teamName}`;
 
     const flags = [];
-    if (state.turnFlags.double) flags.push("⭐ دبل");
-    if (state.turnFlags.block) flags.push("⛔ منع");
-    if (state.turnFlags.call) flags.push("📞 اتصال");
+    if (state.turnFlags?.double) flags.push("⭐ دبل");
+    if (state.turnFlags?.block) flags.push("⛔ منع");
+    if (state.turnFlags?.call) flags.push("📞 اتصال");
     turnNote.textContent = flags.length ? `مفعّل: ${flags.join(" • ")}` : "—";
   };
 
   const bumpScore = (team, delta) => {
+    if (!state) return;
     if (team === 1) state.team1Score += delta;
     if (team === 2) state.team2Score += delta;
     renderScorebar();
@@ -348,14 +335,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   const isGameFinished = () => {
+    if (!state) return false;
     return state.selectedCategoryIds.every(cid =>
       POINTS.every((p, i) => state.finalized[`${cid}_${p}_${i}`] === true)
     );
   };
 
   const renderBoard = () => {
+    if (!boardGrid || !state) return;
+
     boardGrid.innerHTML = "";
-    const list = CATEGORIES.length ? CATEGORIES : FALLBACK_CATEGORIES;
+    const list = CATEGORIES || [];
 
     state.selectedCategoryIds.forEach(cid => {
       const cat = list.find(c => c.id === cid);
@@ -397,31 +387,34 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   const goWinner = () => {
+    if (!state) return;
+
     const s1 = state.team1Score;
     const s2 = state.team2Score;
 
-    wTeam1.textContent = state.team1Name;
-    wTeam2.textContent = state.team2Name;
-    wScore1.textContent = s1;
-    wScore2.textContent = s2;
+    if (wTeam1) wTeam1.textContent = state.team1Name;
+    if (wTeam2) wTeam2.textContent = state.team2Name;
+    if (wScore1) wScore1.textContent = s1;
+    if (wScore2) wScore2.textContent = s2;
 
-    if (s1 > s2) {
-      winnerTitle.textContent = `الفائز: ${state.team1Name} 🎉`;
-      winnerDetails.textContent = "مبروك! انتهت كل الأسئلة.";
-    } else if (s2 > s1) {
-      winnerTitle.textContent = `الفائز: ${state.team2Name} 🎉`;
-      winnerDetails.textContent = "مبروك! انتهت كل الأسئلة.";
-    } else {
-      winnerTitle.textContent = "تعادل 🤝";
-      winnerDetails.textContent = "كسر التعادل نضيفه بالخطوة الجاية.";
+    if (winnerTitle && winnerDetails) {
+      if (s1 > s2) {
+        winnerTitle.textContent = `الفائز: ${state.team1Name} 🎉`;
+        winnerDetails.textContent = "مبروك! انتهت كل الأسئلة.";
+      } else if (s2 > s1) {
+        winnerTitle.textContent = `الفائز: ${state.team2Name} 🎉`;
+        winnerDetails.textContent = "مبروك! انتهت كل الأسئلة.";
+      } else {
+        winnerTitle.textContent = "تعادل 🤝";
+        winnerDetails.textContent = "كسر التعادل نضيفه بالخطوة الجاية.";
+      }
     }
 
     show(sWinner);
   };
 
   // Question modal logic
-  const currentQuestion = () => (state.currentQuestionId ? state.questions[state.currentQuestionId] : null);
-
+  const currentQuestion = () => (state?.currentQuestionId ? state.questions[state.currentQuestionId] : null);
   const randomTurnTeam = () => (Math.random() < 0.5 ? 1 : 2);
 
   const openQuestion = (categoryId, points, idx) => {
@@ -436,10 +429,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    const list = CATEGORIES.length ? CATEGORIES : FALLBACK_CATEGORIES;
-    const catName = (list.find(c => c.id === categoryId)?.name) || categoryId;
-
+    const catName = (CATEGORIES.find(c => c.id === categoryId)?.name) || categoryId;
     const qid = `${categoryId}_${points}_${idx}`;
+
     const q = {
       id: qid,
       categoryId,
@@ -456,14 +448,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     state.currentTurnTeam = randomTurnTeam();
     state.turnFlags = { double: false, block: false, call: false };
 
-    qMeta.textContent = `${catName} • ${points} نقطة`;
-    qText.textContent = q.question;
+    if (qMeta) qMeta.textContent = `${catName} • ${points} نقطة`;
+    if (qText) qText.textContent = q.question;
 
-    answerArea.classList.add("hidden");
-    revealBtn.style.display = "block";
-    pickTeam1.style.display = "";
-    pickTeam2.style.display = "";
-    pickNoOne.style.display = "";
+    if (answerArea) answerArea.classList.add("hidden");
+    if (revealBtn) revealBtn.style.display = "block";
+
+    if (pickTeam1) pickTeam1.style.display = "";
+    if (pickTeam2) pickTeam2.style.display = "";
+    if (pickNoOne) pickNoOne.style.display = "";
 
     updateTurnUI();
     renderScorebar();
@@ -478,15 +471,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!q) return;
 
     state.currentRevealed = true;
-    answerText.textContent = q.answer;
+    if (answerText) answerText.textContent = q.answer;
 
-    if (state.turnFlags.block) {
-      if (state.currentTurnTeam === 1) pickTeam2.style.display = "none";
-      else pickTeam1.style.display = "none";
+    if (state.turnFlags?.block) {
+      if (state.currentTurnTeam === 1 && pickTeam2) pickTeam2.style.display = "none";
+      if (state.currentTurnTeam === 2 && pickTeam1) pickTeam1.style.display = "none";
     }
 
-    answerArea.classList.remove("hidden");
-    revealBtn.style.display = "none";
+    if (answerArea) answerArea.classList.remove("hidden");
+    if (revealBtn) revealBtn.style.display = "none";
     saveState();
   };
 
@@ -495,7 +488,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!q) return;
 
     let pts = q.points;
-    if (state.turnFlags.double && winnerTeamOrNull === state.currentTurnTeam) pts *= 2;
+    if (state.turnFlags?.double && winnerTeamOrNull === state.currentTurnTeam) pts *= 2;
 
     if (winnerTeamOrNull === 1) state.team1Score += pts;
     if (winnerTeamOrNull === 2) state.team2Score += pts;
@@ -519,6 +512,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   const undoOpen = () => {
+    if (!state) return;
     state.currentQuestionId = null;
     state.currentRevealed = false;
     state.currentTurnTeam = null;
@@ -552,20 +546,24 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Lifelines
   const canUse = (team, key) => {
-    const lf = team === 1 ? state.lifelines.t1 : state.lifelines.t2;
+    const lf = team === 1 ? state.lifelines?.t1 : state.lifelines?.t2;
+    if (!lf) return false;
     if (key === "double") return !lf.doubleUsed;
     if (key === "block") return !lf.blockUsed;
     if (key === "call") return !lf.callUsed;
     return false;
   };
+
   const markUsed = (team, key) => {
-    const lf = team === 1 ? state.lifelines.t1 : state.lifelines.t2;
+    const lf = team === 1 ? state.lifelines?.t1 : state.lifelines?.t2;
+    if (!lf) return;
     if (key === "double") lf.doubleUsed = true;
     if (key === "block") lf.blockUsed = true;
     if (key === "call") lf.callUsed = true;
   };
+
   const applyLifeline = (team, key) => {
-    if (!state.currentQuestionId) {
+    if (!state?.currentQuestionId) {
       alert("اختر سؤال أولاً.");
       return;
     }
@@ -613,6 +611,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     };
 
+    // Never repeat per account
     const fin = loadFinalizedSet(state.userId);
     fin.forEach(qid => { state.finalized[qid] = true; });
 
@@ -643,25 +642,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (state.currentQuestionId) {
       const q = state.questions[state.currentQuestionId];
       if (q) {
-        qMeta.textContent = `${q.categoryName} • ${q.points} نقطة`;
-        qText.textContent = q.question;
+        if (qMeta) qMeta.textContent = `${q.categoryName} • ${q.points} نقطة`;
+        if (qText) qText.textContent = q.question;
 
         if (state.currentRevealed) {
-          answerText.textContent = q.answer;
-          answerArea.classList.remove("hidden");
-          revealBtn.style.display = "none";
+          if (answerText) answerText.textContent = q.answer;
+          if (answerArea) answerArea.classList.remove("hidden");
+          if (revealBtn) revealBtn.style.display = "none";
         } else {
-          answerArea.classList.add("hidden");
-          revealBtn.style.display = "block";
+          if (answerArea) answerArea.classList.add("hidden");
+          if (revealBtn) revealBtn.style.display = "block";
         }
 
-        pickTeam1.style.display = "";
-        pickTeam2.style.display = "";
-        pickNoOne.style.display = "";
+        if (pickTeam1) pickTeam1.style.display = "";
+        if (pickTeam2) pickTeam2.style.display = "";
+        if (pickNoOne) pickNoOne.style.display = "";
 
-        if (state.turnFlags.block) {
-          if (state.currentTurnTeam === 1) pickTeam2.style.display = "none";
-          if (state.currentTurnTeam === 2) pickTeam1.style.display = "none";
+        if (state.turnFlags?.block) {
+          if (state.currentTurnTeam === 1 && pickTeam2) pickTeam2.style.display = "none";
+          if (state.currentTurnTeam === 2 && pickTeam1) pickTeam1.style.display = "none";
         }
 
         openModal();
@@ -673,78 +672,92 @@ document.addEventListener("DOMContentLoaded", async () => {
     return true;
   };
 
-  // Events
-  loginBtn.addEventListener("click", () => {
-    const name = (usernameInput.value || "").trim();
-    if (!name) return alert("اكتب اسم المستخدم.");
-    setUser(name);
-    show(sHome);
-  });
+  // Events (كلها محمية إذا العنصر موجود)
+  if (loginBtn) {
+    loginBtn.addEventListener("click", () => {
+      const name = (usernameInput?.value || "").trim();
+      if (!name) return alert("اكتب اسم المستخدم.");
+      setUser(name);
+      show(sHome);
+    });
+  }
 
-  logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem(KEY_USER);
-    localStorage.removeItem(KEY_SELECTED);
-    clearState();
-    selected = new Set();
-    show(sAuth);
-  });
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem(KEY_USER);
+      localStorage.removeItem(KEY_SELECTED);
+      clearState();
+      selected = new Set();
+      show(sAuth);
+    });
+  }
 
-  goCatsBtn.addEventListener("click", () => {
-    renderCategories();
-    show(sCats);
-  });
+  if (goCatsBtn) {
+    goCatsBtn.addEventListener("click", () => {
+      renderCategories();
+      show(sCats);
+    });
+  }
 
-  backHomeBtn.addEventListener("click", () => show(sHome));
+  if (backHomeBtn) backHomeBtn.addEventListener("click", () => show(sHome));
 
-  toTeamsBtn.addEventListener("click", () => {
-    localStorage.setItem(KEY_SELECTED, JSON.stringify([...selected]));
-    show(sTeams);
-  });
+  if (toTeamsBtn) {
+    toTeamsBtn.addEventListener("click", () => {
+      localStorage.setItem(KEY_SELECTED, JSON.stringify([...selected]));
+      show(sTeams);
+    });
+  }
 
-  backCatsBtn.addEventListener("click", () => show(sCats));
+  if (backCatsBtn) backCatsBtn.addEventListener("click", () => show(sCats));
 
-  startGameBtn.addEventListener("click", () => {
-    const chosen = JSON.parse(localStorage.getItem(KEY_SELECTED) || "[]");
-    if (chosen.length < MIN_CATS) return alert("اختر 3 فئات على الأقل.");
-    const t1 = (team1Input.value || "").trim() || "الفريق الأول";
-    const t2 = (team2Input.value || "").trim() || "الفريق الثاني";
-    startNewGame(chosen, t1, t2);
-  });
+  if (startGameBtn) {
+    startGameBtn.addEventListener("click", () => {
+      const chosen = JSON.parse(localStorage.getItem(KEY_SELECTED) || "[]");
+      if (chosen.length < MIN_CATS) return alert("اختر 3 فئات على الأقل.");
+      const t1 = (team1Input?.value || "").trim() || "الفريق الأول";
+      const t2 = (team2Input?.value || "").trim() || "الفريق الثاني";
+      startNewGame(chosen, t1, t2);
+    });
+  }
 
-  team1Plus.addEventListener("click", () => bumpScore(1, 100));
-  team1Minus.addEventListener("click", () => bumpScore(1, -100));
-  team2Plus.addEventListener("click", () => bumpScore(2, 100));
-  team2Minus.addEventListener("click", () => bumpScore(2, -100));
+  if (team1Plus) team1Plus.addEventListener("click", () => bumpScore(1, 100));
+  if (team1Minus) team1Minus.addEventListener("click", () => bumpScore(1, -100));
+  if (team2Plus) team2Plus.addEventListener("click", () => bumpScore(2, 100));
+  if (team2Minus) team2Minus.addEventListener("click", () => bumpScore(2, -100));
 
-  t1Double.addEventListener("click", () => applyLifeline(1, "double"));
-  t1Block.addEventListener("click", () => applyLifeline(1, "block"));
-  t1Call.addEventListener("click", () => applyLifeline(1, "call"));
-  t2Double.addEventListener("click", () => applyLifeline(2, "double"));
-  t2Block.addEventListener("click", () => applyLifeline(2, "block"));
-  t2Call.addEventListener("click", () => applyLifeline(2, "call"));
+  if (t1Double) t1Double.addEventListener("click", () => applyLifeline(1, "double"));
+  if (t1Block) t1Block.addEventListener("click", () => applyLifeline(1, "block"));
+  if (t1Call) t1Call.addEventListener("click", () => applyLifeline(1, "call"));
+  if (t2Double) t2Double.addEventListener("click", () => applyLifeline(2, "double"));
+  if (t2Block) t2Block.addEventListener("click", () => applyLifeline(2, "block"));
+  if (t2Call) t2Call.addEventListener("click", () => applyLifeline(2, "call"));
 
-  revealBtn.addEventListener("click", revealAnswer);
-  pickTeam1.addEventListener("click", () => finalizeQuestion(1));
-  pickTeam2.addEventListener("click", () => finalizeQuestion(2));
-  pickNoOne.addEventListener("click", () => finalizeQuestion(null));
+  if (revealBtn) revealBtn.addEventListener("click", revealAnswer);
+  if (pickTeam1) pickTeam1.addEventListener("click", () => finalizeQuestion(1));
+  if (pickTeam2) pickTeam2.addEventListener("click", () => finalizeQuestion(2));
+  if (pickNoOne) pickNoOne.addEventListener("click", () => finalizeQuestion(null));
 
-  closeModalBtn.addEventListener("click", () => { closeModal(); stopTimer(); saveState(); });
-  undoOpenBtn.addEventListener("click", undoOpen);
-  reportBtn.addEventListener("click", reportQuestion);
+  if (closeModalBtn) closeModalBtn.addEventListener("click", () => { closeModal(); stopTimer(); saveState(); });
+  if (undoOpenBtn) undoOpenBtn.addEventListener("click", undoOpen);
+  if (reportBtn) reportBtn.addEventListener("click", reportQuestion);
 
-  newGameBtn.addEventListener("click", () => {
-    if (!confirm("تبغى تبدأ لعبة جديدة؟")) return;
-    clearState();
-    selected = new Set();
-    show(sHome);
-  });
+  if (newGameBtn) {
+    newGameBtn.addEventListener("click", () => {
+      if (!confirm("تبغى تبدأ لعبة جديدة؟")) return;
+      clearState();
+      selected = new Set();
+      show(sHome);
+    });
+  }
 
-  backBoardBtn.addEventListener("click", () => show(sBoard));
-  newGameFromWinnerBtn.addEventListener("click", () => {
-    clearState();
-    selected = new Set();
-    show(sHome);
-  });
+  if (backBoardBtn) backBoardBtn.addEventListener("click", () => show(sBoard));
+  if (newGameFromWinnerBtn) {
+    newGameFromWinnerBtn.addEventListener("click", () => {
+      clearState();
+      selected = new Set();
+      show(sHome);
+    });
+  }
 
   // Init: load QBank
   QBANK = await loadQBank();
@@ -752,7 +765,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     CATEGORIES = QBANK.categories;
     QLOOKUP = buildLookup(QBANK);
   } else {
-    CATEGORIES = FALLBACK_CATEGORIES;
+    CATEGORIES = [];
     QLOOKUP = null;
   }
 
