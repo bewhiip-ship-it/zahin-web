@@ -1,0 +1,274 @@
+[
+  {
+    "id": "isl-200-001",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما أول سورة نزلت في مكة المكرمة؟",
+    "answer": "سورة العلق."
+  },
+  {
+    "id": "isl-200-002",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما أعظم سورة في القرآن الكريم؟",
+    "answer": "سورة الفاتحة."
+  },
+  {
+    "id": "isl-200-003",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما هو الحج الأصغر؟",
+    "answer": "العمرة."
+  },
+  {
+    "id": "isl-200-004",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "كم عدد أبواب النار؟",
+    "answer": "سبعة أبواب."
+  },
+  {
+    "id": "isl-200-005",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "كم عدد الرسل الذين ذُكروا في القرآن الكريم؟",
+    "answer": "25 رسولًا."
+  },
+  {
+    "id": "isl-200-006",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما أول مسجد بُني في الإسلام؟",
+    "answer": "مسجد قباء."
+  },
+  {
+    "id": "isl-200-007",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما ثاني مسجد بُني في الإسلام؟",
+    "answer": "المسجد النبوي."
+  },
+  {
+    "id": "isl-200-008",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "في أي سنة حجّ النبي ﷺ حجة الوداع؟",
+    "answer": "السنة العاشرة للهجرة."
+  },
+  {
+    "id": "isl-200-009",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم والدة مريم عليها السلام؟",
+    "answer": "حنّة."
+  },
+  {
+    "id": "isl-200-010",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "كم عدد غزوات النبي ﷺ؟",
+    "answer": "27 غزوة."
+  },
+  {
+    "id": "isl-200-011",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "أين توفّي بلال بن رباح رضي الله عنه؟",
+    "answer": "في دمشق."
+  },
+  {
+    "id": "isl-200-012",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما السورتان المسمّاتان بالزهراوين؟ (اذكر اثنين)",
+    "answer": "سورة البقرة وسورة آل عمران."
+  },
+  {
+    "id": "isl-200-013",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "من هو أسد الله؟",
+    "answer": "حمزة بن عبد المطلب رضي الله عنه."
+  },
+  {
+    "id": "isl-200-014",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "من الصحابي الذي اهتزّ لموته عرش الرحمن؟",
+    "answer": "سعد بن معاذ رضي الله عنه."
+  },
+  {
+    "id": "isl-200-015",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما المقصود بمرّ النَّعم؟",
+    "answer": "الإبل المائة."
+  },
+  {
+    "id": "isl-200-016",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما هي صلاة البردين؟",
+    "answer": "صلاة الفجر وصلاة العصر."
+  },
+  {
+    "id": "isl-200-017",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم خازن الجنة؟",
+    "answer": "رضوان."
+  },
+  {
+    "id": "isl-200-018",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم خازن النار؟",
+    "answer": "مالك."
+  },
+  {
+    "id": "isl-200-019",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم زوجة فرعون التي آمنت بالله؟",
+    "answer": "آسية."
+  },
+  {
+    "id": "isl-200-020",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "من هو النبي الذي آمن به جميع قومه؟",
+    "answer": "يونس عليه السلام."
+  },
+  {
+    "id": "isl-200-021",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما آخر سورة نزلت كاملة؟",
+    "answer": "سورة المدثر."
+  },
+  {
+    "id": "isl-200-022",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما آخر سورة نزلت على الرسول ﷺ؟",
+    "answer": "سورة النصر."
+  },
+  {
+    "id": "isl-200-023",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم سيف رسول الله ﷺ؟",
+    "answer": "ذو الفقار."
+  },
+  {
+    "id": "isl-200-024",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "من هو الصحابي مُستجاب الدعوة؟",
+    "answer": "سعد بن أبي وقاص رضي الله عنه."
+  },
+  {
+    "id": "isl-200-025",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "من الذي كانت تستحي منه ملائكة السماء؟",
+    "answer": "عثمان بن عفان رضي الله عنه."
+  },
+  {
+    "id": "isl-200-026",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "من الصحابي الذي كانت الملائكة تُسلّم عليه؟",
+    "answer": "عِمران بن حُصين رضي الله عنه."
+  },
+  {
+    "id": "isl-200-027",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "أين ماتت أمّ الرسول ﷺ؟",
+    "answer": "في الأبواء بين مكة والمدينة."
+  },
+  {
+    "id": "isl-200-028",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما المسجد الذي استُشهد فيه عليّ رضي الله عنه؟",
+    "answer": "مسجد الكوفة."
+  },
+  {
+    "id": "isl-200-029",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما السورة التي لا تحتوي على حرف الميم؟",
+    "answer": "سورة الكوثر."
+  },
+  {
+    "id": "isl-200-030",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "كم عدد السور التي افتُتحت بثلاثة أحرف؟",
+    "answer": "13 سورة."
+  },
+  {
+    "id": "isl-200-031",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "كم عدد المواضع التي أقسم الله بنفسه فيها في القرآن؟",
+    "answer": "سبعة مواضع."
+  },
+  {
+    "id": "isl-200-032",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم الصحابي المُكنّى بأبي هريرة؟",
+    "answer": "عبد الرحمن بن صخر رضي الله عنه."
+  },
+  {
+    "id": "isl-200-033",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم ناقة النبي ﷺ؟",
+    "answer": "العَضباء (وتُسمّى أيضًا الجدعاء)."
+  },
+  {
+    "id": "isl-200-034",
+    "category": "islamiyat",
+    "points": 200,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم الدابة التي ركبها النبي ﷺ في الإسراء؟",
+    "answer": "البُراق."
+  }
+]

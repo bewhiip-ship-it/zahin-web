@@ -1,0 +1,266 @@
+[
+  {
+    "id": "isl-400-001",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "من واضع المعجم المفهرس لألفاظ القرآن الكريم؟",
+    "answer": "محمد فؤاد عبد الباقي."
+  },
+  {
+    "id": "isl-400-002",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "أين اجتمع كفار قريش ليلة الهجرة للتشاور؟",
+    "answer": "في دار الندوة بمكة."
+  },
+  {
+    "id": "isl-400-003",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما أول عملة استُخدمت في الإسلام؟",
+    "answer": "الدينار الذهبي."
+  },
+  {
+    "id": "isl-400-004",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما المقصود بالرباط؟",
+    "answer": "انتظار الصلاة بعد الصلاة."
+  },
+  {
+    "id": "isl-400-005",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما أرض الصدق؟",
+    "answer": "أرض الحبشة."
+  },
+  {
+    "id": "isl-400-006",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "في أي يوم خُلق آدم عليه السلام؟",
+    "answer": "يوم الجمعة."
+  },
+  {
+    "id": "isl-400-007",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "متى يُغلق باب التوبة؟",
+    "answer": "عند بلوغ الروح الحلقوم أو طلوع الشمس من مغربها."
+  },
+  {
+    "id": "isl-400-008",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "من هم أهل القرآن؟",
+    "answer": "أهل القرآن هم أهل الله وخاصته."
+  },
+  {
+    "id": "isl-400-009",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما معنى كلمة «العسكران»؟ (اذكر اثنين)",
+    "answer": "عرفة ومنى."
+  },
+  {
+    "id": "isl-400-010",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "كم عدّة المرأة المتوفّى عنها زوجها؟",
+    "answer": "أربعة أشهر وعشرة أيام."
+  },
+  {
+    "id": "isl-400-011",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "كم عدّة المرأة المطلّقة؟",
+    "answer": "ثلاثة قروء."
+  },
+  {
+    "id": "isl-400-012",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "متى شُرع الأذان في الإسلام؟",
+    "answer": "في السنة الأولى للهجرة."
+  },
+  {
+    "id": "isl-400-013",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "متى كانت غزوة بدر الكبرى؟",
+    "answer": "في السنة الثانية للهجرة."
+  },
+  {
+    "id": "isl-400-014",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "متى فُرض صيام شهر رمضان؟",
+    "answer": "في السنة الثانية للهجرة."
+  },
+  {
+    "id": "isl-400-015",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "متى كانت صلح الحديبية؟",
+    "answer": "في السنة السادسة للهجرة."
+  },
+  {
+    "id": "isl-400-016",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "متى كانت غزوة خيبر؟",
+    "answer": "في السنة السابعة للهجرة."
+  },
+  {
+    "id": "isl-400-017",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "متى كانت عمرة القضاء؟",
+    "answer": "في السنة السابعة للهجرة."
+  },
+  {
+    "id": "isl-400-018",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "من الذي رأى رؤيا الأذان؟",
+    "answer": "عبد الله بن زيد رضي الله عنه."
+  },
+  {
+    "id": "isl-400-019",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما الركعتان اللتان هما خيرٌ من الدنيا وما فيها؟",
+    "answer": "ركعتا الفجر."
+  },
+  {
+    "id": "isl-400-020",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما شروط الحديث الصحيح؟",
+    "answer": "اتصال السند، عدالة الرواة، ضبط الرواة، السلامة من الشذوذ، السلامة من العلل."
+  },
+  {
+    "id": "isl-400-021",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما السبع الموبقات؟ (اذكر اثنتين)",
+    "answer": "الشرك بالله، السحر."
+  },
+  {
+    "id": "isl-400-022",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما أشهر الحج؟ (اذكر اثنين)",
+    "answer": "شوال وذو القعدة."
+  },
+  {
+    "id": "isl-400-023",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "من هم مؤذّنو عهد النبي ﷺ؟ (اذكر اثنين)",
+    "answer": "بلال بن رباح، وابن أم مكتوم."
+  },
+  {
+    "id": "isl-400-024",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما هو الالتزام عند الكعبة؟",
+    "answer": "ما بين الحجر الأسود وباب الكعبة."
+  },
+  {
+    "id": "isl-400-025",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما هو الحِطيم؟",
+    "answer": "الجزء المحاط بجدار قصير شمال الكعبة."
+  },
+  {
+    "id": "isl-400-026",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما اليوم الموعود وما اليوم المشهود؟",
+    "answer": "اليوم الموعود هو يوم القيامة، واليوم المشهود هو يوم عرفة."
+  },
+  {
+    "id": "isl-400-027",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما المقصود بالإسراء والمعراج؟",
+    "answer": "الإسراء انتقال النبي ﷺ من المسجد الحرام إلى المسجد الأقصى، والمعراج صعوده إلى السماوات."
+  },
+  {
+    "id": "isl-400-028",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "كم مرة ذُكر اسم إبليس في القرآن الكريم؟",
+    "answer": "ذُكر 11 مرة."
+  },
+  {
+    "id": "isl-400-029",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما الأشهر الحُرم؟ (اذكر اثنين)",
+    "answer": "ذو القعدة وذو الحجة."
+  },
+  {
+    "id": "isl-400-030",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "من الذي قتل مسيلمة الكذاب؟ (اذكر شخصًا واحدًا)",
+    "answer": "وحشي بن حرب رضي الله عنه."
+  },
+  {
+    "id": "isl-400-031",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم الشجرة التي وردت في قصة الإسراء والمعراج؟",
+    "answer": "سدرة المنتهى."
+  },
+  {
+    "id": "isl-400-032",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "ما معنى مصطلح «الثقلين»؟",
+    "answer": "الإنس والجن."
+  },
+  {
+    "id": "isl-400-033",
+    "category": "islamiyat",
+    "points": 400,
+    "image": "images/islamiyat.png",
+    "question": "من لُقّب برأس الكفر؟",
+    "answer": "أبو جهل بن هشام."
+  }
+]

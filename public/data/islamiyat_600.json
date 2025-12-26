@@ -1,0 +1,266 @@
+[
+  {
+    "id": "isl-600-001",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "في أي عام حُطّمت الأصنام في الكعبة المشرفة؟",
+    "answer": "عام فتح مكة."
+  },
+  {
+    "id": "isl-600-002",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما أفضل شهر في السنة الهجرية؟",
+    "answer": "شهر رمضان."
+  },
+  {
+    "id": "isl-600-003",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما المقصود بفتح الفتوح في تاريخ الإسلام؟",
+    "answer": "معركة نهاوند."
+  },
+  {
+    "id": "isl-600-004",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم امرأة العزيز التي راودت يوسف عليه السلام؟",
+    "answer": "زليخا."
+  },
+  {
+    "id": "isl-600-005",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما دار البوار؟",
+    "answer": "جهنم."
+  },
+  {
+    "id": "isl-600-006",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم الحشرة التي أمر النبي ﷺ بقتلها؟",
+    "answer": "الوزغ."
+  },
+  {
+    "id": "isl-600-007",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما كفارة البُصاق في المسجد؟",
+    "answer": "دفنه."
+  },
+  {
+    "id": "isl-600-008",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم أحد أفراس النبي ﷺ؟",
+    "answer": "السكب."
+  },
+  {
+    "id": "isl-600-009",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما قرابة لوط لإبراهيم عليهما السلام؟",
+    "answer": "ابن أخيه."
+  },
+  {
+    "id": "isl-600-010",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "في أي عهد أُنشئ الأسطول البحري الإسلامي؟",
+    "answer": "في عهد عثمان بن عفان رضي الله عنه."
+  },
+  {
+    "id": "isl-600-011",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "كم دامت خلافة أبي بكر الصديق رضي الله عنه؟",
+    "answer": "سنتان."
+  },
+  {
+    "id": "isl-600-012",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "كم دامت خلافة عمر بن الخطاب رضي الله عنه؟",
+    "answer": "عشر سنوات."
+  },
+  {
+    "id": "isl-600-013",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "كم دامت خلافة عثمان بن عفان رضي الله عنه؟",
+    "answer": "اثنتا عشرة سنة."
+  },
+  {
+    "id": "isl-600-014",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "كم دامت خلافة علي بن أبي طالب رضي الله عنه؟",
+    "answer": "ست سنوات."
+  },
+  {
+    "id": "isl-600-015",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "من أول من ضبط الحروف في القرآن الكريم؟",
+    "answer": "أبو الأسود الدؤلي."
+  },
+  {
+    "id": "isl-600-016",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "من هم أهل البيت؟",
+    "answer": "أسرة النبي محمد ﷺ."
+  },
+  {
+    "id": "isl-600-017",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "من لُقّب بذي النورين؟",
+    "answer": "عثمان بن عفان رضي الله عنه."
+  },
+  {
+    "id": "isl-600-018",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما السورة التي يوجد فيها بسملتان؟",
+    "answer": "سورة النمل."
+  },
+  {
+    "id": "isl-600-019",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "بماذا تُختتم المصاحف؟",
+    "answer": "بسورة الناس."
+  },
+  {
+    "id": "isl-600-020",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم سورة قريش أيضًا؟",
+    "answer": "سورة الإيلاف."
+  },
+  {
+    "id": "isl-600-021",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم سورة النصر أيضًا؟",
+    "answer": "سورة التوديع."
+  },
+  {
+    "id": "isl-600-022",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "من هم المغضوب عليهم؟",
+    "answer": "اليهود."
+  },
+  {
+    "id": "isl-600-023",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "من هم الضالّون؟",
+    "answer": "النصارى."
+  },
+  {
+    "id": "isl-600-024",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما السورة التي بكى النجاشي عند سماعها؟",
+    "answer": "سورة مريم."
+  },
+  {
+    "id": "isl-600-025",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "كم عدد أولي العزم من الرسل؟",
+    "answer": "خمسة رسل."
+  },
+  {
+    "id": "isl-600-026",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "من أكثر الأنبياء ذكرًا في القرآن الكريم؟",
+    "answer": "موسى عليه السلام."
+  },
+  {
+    "id": "isl-600-027",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما اسم أبي ذر الغفاري رضي الله عنه؟",
+    "answer": "جندب بن جنادة."
+  },
+  {
+    "id": "isl-600-028",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "متى لُقّب أبو بكر رضي الله عنه بالصديق؟",
+    "answer": "بعد حادثة الإسراء والمعراج."
+  },
+  {
+    "id": "isl-600-029",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "من هو حبر الأمة؟",
+    "answer": "عبد الله بن عباس رضي الله عنه."
+  },
+  {
+    "id": "isl-600-030",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "بمن توسل عمر بن الخطاب رضي الله عنه للاستسقاء؟",
+    "answer": "بالعباس بن عبد المطلب رضي الله عنه."
+  },
+  {
+    "id": "isl-600-031",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما قول الرسل المتكرر في القرآن الكريم؟",
+    "answer": "يا قوم اعبدوا الله ما لكم من إله غيره."
+  },
+  {
+    "id": "isl-600-032",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "من الأنبياء العرب؟ (اذكر اثنين)",
+    "answer": "هود وصالح عليهما السلام."
+  },
+  {
+    "id": "isl-600-033",
+    "category": "islamiyat",
+    "points": 600,
+    "image": "images/islamiyat.png",
+    "question": "ما السور التي بدأت بـ \"الحمد\"؟ (اذكر اثنتين)",
+    "answer": "سورة الفاتحة وسورة الأنعام."
+  }
+]
