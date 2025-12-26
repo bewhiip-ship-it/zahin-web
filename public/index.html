@@ -2,205 +2,32 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ذهين</title>
-  <link rel="stylesheet" href="./style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Splash: 3 seconds -->
-  <div id="splash" class="splash">
-    <img src="./splash.png" alt="Zahin Splash" />
+  <!-- Splash Screen -->
+  <div id="splash">
+    <img src="images/islamiyat.png" alt="Zahin Logo" />
   </div>
 
-  <div id="app" class="app hidden">
+  <!-- App -->
+  <div id="app" class="hidden">
 
-    <!-- AUTH -->
-    <section id="screen-auth" class="screen active">
-      <div class="card">
-        <div class="title">تسجيل الدخول</div>
-        <div class="muted">اكتب اسم المستخدم (محليًا حالياً)</div>
-
-        <input id="usernameInput" class="input" placeholder="اسم المستخدم" />
-        <button id="loginBtn" class="btn primary">دخول</button>
-
-        <div class="hint">اللغة افتراضيًا عربي. خيار اللغة نضيفه لاحقًا.</div>
-      </div>
-    </section>
-
-    <!-- HOME -->
-    <section id="screen-home" class="screen">
-      <div class="card">
+    <div id="screen-board" class="screen active">
+      <div class="topbar">
+        <div class="team">الفريق الأول: <span id="team1ScoreTop">0</span></div>
         <div class="title">ذهين</div>
-        <div class="muted">اختر الفئات (3 إلى 6) ثم ابدأ.</div>
-
-        <button id="goCatsBtn" class="btn primary">اختيار الفئات</button>
-        <button id="logoutBtn" class="btn">تسجيل خروج</button>
-      </div>
-    </section>
-
-    <!-- CATEGORIES -->
-    <section id="screen-categories" class="screen">
-      <div class="topRow">
-        <div class="titleSmall">اختيار الفئات</div>
-        <div class="row">
-          <div class="pill">المحدد: <span id="selectedInfo">0 / 6</span></div>
-          <button id="backHomeBtn" class="btn small">رجوع</button>
-        </div>
+        <div class="team">الفريق الثاني: <span id="team2ScoreTop">0</span></div>
       </div>
 
-      <div id="categoriesGrid" class="catsGrid"></div>
-
-      <div class="bottomRow">
-        <button id="toTeamsBtn" class="btn primary" disabled>التالي</button>
-      </div>
-    </section>
-
-    <!-- TEAMS -->
-    <section id="screen-teams" class="screen">
-      <div class="card wide">
-        <div class="title">أسماء الفرق</div>
-        <div class="muted">اكتب أسماء الفريقين ثم ابدأ اللعبة.</div>
-
-        <div class="twoCols">
-          <div>
-            <div class="label">الفريق 1</div>
-            <input id="team1Input" class="input" placeholder="الفريق الأول" />
-          </div>
-          <div>
-            <div class="label">الفريق 2</div>
-            <input id="team2Input" class="input" placeholder="الفريق الثاني" />
-          </div>
-        </div>
-
-        <div class="row end">
-          <button id="backCatsBtn" class="btn">رجوع للفئات</button>
-          <button id="startGameBtn" class="btn primary">ابدأ اللعبة</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- BOARD -->
-    <section id="screen-board" class="screen boardScreen">
-
-      <div class="scoreBar">
-        <div class="scoreSide left">
-          <div class="teamName" id="team2NameTop">الفريق 2</div>
-          <div class="scoreNum" id="team2ScoreTop">0</div>
-          <div class="scoreBtns">
-            <button id="team2Plus" class="btn tiny">+100</button>
-            <button id="team2Minus" class="btn tiny">-100</button>
-          </div>
-        </div>
-
-        <div class="centerTitle">ذهين</div>
-
-        <div class="scoreSide right">
-          <div class="teamName" id="team1NameTop">الفريق 1</div>
-          <div class="scoreNum" id="team1ScoreTop">0</div>
-          <div class="scoreBtns">
-            <button id="team1Plus" class="btn tiny">+100</button>
-            <button id="team1Minus" class="btn tiny">-100</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="lifelinesBar">
-        <div class="lifelineGroup">
-          <div class="smallLabel">ميزات الفريق 2</div>
-          <div class="iconsRow">
-            <button id="t2Double" class="iconBtn" title="دبل">⭐</button>
-            <button id="t2Block" class="iconBtn" title="منع">⛔</button>
-            <button id="t2Call" class="iconBtn" title="اتصال">📞</button>
-          </div>
-        </div>
-
-        <div class="turnBox">
-          <div id="turnPill" class="pill">الدور: —</div>
-          <div id="turnNote" class="muted">—</div>
-        </div>
-
-        <div class="lifelineGroup">
-          <div class="smallLabel">ميزات الفريق 1</div>
-          <div class="iconsRow">
-            <button id="t1Double" class="iconBtn" title="دبل">⭐</button>
-            <button id="t1Block" class="iconBtn" title="منع">⛔</button>
-            <button id="t1Call" class="iconBtn" title="اتصال">📞</button>
-          </div>
-        </div>
-      </div>
-
-      <div id="boardGrid" class="boardGrid"></div>
-
-      <div class="bottomRow">
-        <button id="newGameBtn" class="btn">بدء لعبة جديدة</button>
-      </div>
-    </section>
-
-    <!-- WINNER -->
-    <section id="screen-winner" class="screen">
-      <div class="card wide">
-        <div id="winnerTitle" class="title">انتهت اللعبة</div>
-        <div id="winnerDetails" class="muted">—</div>
-
-        <div class="twoCols">
-          <div class="stat">
-            <div id="wTeam1" class="label">الفريق 1</div>
-            <div id="wScore1" class="bigNum">0</div>
-          </div>
-          <div class="stat">
-            <div id="wTeam2" class="label">الفريق 2</div>
-            <div id="wScore2" class="bigNum">0</div>
-          </div>
-        </div>
-
-        <div class="row end">
-          <button id="backBoardBtn" class="btn">رجوع للوحة</button>
-          <button id="newGameFromWinnerBtn" class="btn primary">لعبة جديدة</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- QUESTION MODAL -->
-    <div id="questionModal" class="modal hidden">
-      <div class="modalCard">
-        <div class="modalTop">
-          <div id="qMeta" class="pill">—</div>
-          <div class="row">
-            <div id="timer" class="timer">00:00</div>
-            <button id="reportBtn" class="iconBtn" title="إبلاغ">📩</button>
-          </div>
-        </div>
-
-        <div class="imgBox">
-          <div class="imgPlaceholder">صورة السؤال (Placeholder)</div>
-        </div>
-
-        <div id="qText" class="qText">—</div>
-
-        <div class="row center">
-          <button id="revealBtn" class="btn primary">إظهار الإجابة</button>
-        </div>
-
-        <div id="answerArea" class="answerArea hidden">
-          <div id="answerText" class="answerText">—</div>
-
-          <div class="pickRow">
-            <button id="pickTeam1" class="btn small">الفريق 1</button>
-            <button id="pickNoOne" class="btn small">لا أحد</button>
-            <button id="pickTeam2" class="btn small">الفريق 2</button>
-          </div>
-        </div>
-
-        <div class="row space">
-          <button id="undoOpenBtn" class="btn">تم اختيار السؤال بالخطأ</button>
-          <button id="closeModalBtn" class="btn">إغلاق</button>
-        </div>
-      </div>
+      <div id="boardGrid" class="board"></div>
     </div>
 
   </div>
 
-  <script src="./app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
