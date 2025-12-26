@@ -26,7 +26,7 @@
 
         <div id="form-login" class="auth-form">
           <label>اسم المستخدم</label>
-          <input type="text" id="loginUser" class="input" placeholder="اكتب اسمك...">
+          <input type="text" id="loginUser" class="input" placeholder="اسمك أو admin...">
           
           <label>كلمة المرور</label>
           <input type="password" id="loginPass" class="input" placeholder="••••••••">
@@ -74,6 +74,67 @@
       </div>
     </div>
 
+    <div id="screen-admin" class="screen">
+      <div class="topbar">
+        <div class="title">لوحة الإدارة 🛠️</div>
+        <button id="adminLogoutBtn" class="mini-btn" style="width: auto; padding: 0 10px;">خروج</button>
+      </div>
+
+      <div class="admin-panel">
+        
+        <div class="admin-card">
+          <h3>1. إضافة فئة جديدة</h3>
+          <input type="text" id="newCatName" class="input" placeholder="اسم الفئة (مثال: تاريخ)">
+          <input type="text" id="newCatId" class="input" placeholder="ID الفئة (انجليزي: history)">
+          <input type="text" id="newCatImg" class="input" placeholder="مسار الصورة (images/cat.png)">
+          <button id="btnAddCat" class="btn secondary">حفظ الفئة</button>
+        </div>
+
+        <div class="admin-card">
+          <h3>2. إضافة سؤال جديد</h3>
+          <label>اختر الفئة</label>
+          <select id="selCatForQ" class="input"></select>
+          
+          <div class="row">
+            <div style="flex:1">
+               <label>النقاط</label>
+               <select id="selPoints" class="input">
+                 <option value="200">200</option>
+                 <option value="400">400</option>
+                 <option value="600">600</option>
+               </select>
+            </div>
+            <div style="flex:1">
+               <label>رقم الخانة</label>
+               <select id="selSlot" class="input">
+                 <option value="0">سؤال 1 (200)</option>
+                 <option value="1">سؤال 2 (200)</option>
+                 <option value="2">سؤال 3 (400)</option>
+                 <option value="3">سؤال 4 (400)</option>
+                 <option value="4">سؤال 5 (600)</option>
+                 <option value="5">سؤال 6 (600)</option>
+               </select>
+            </div>
+          </div>
+
+          <label>نص السؤال</label>
+          <textarea id="newQText" class="input" rows="2" placeholder="اكتب السؤال هنا..."></textarea>
+
+          <label>الإجابة الصحيحة</label>
+          <input type="text" id="newQAnswer" class="input" placeholder="الإجابة...">
+
+          <button id="btnAddQ" class="btn secondary">حفظ السؤال</button>
+        </div>
+
+        <div class="admin-card" style="background:#e8f8f5; border-color:#27ae60;">
+          <h3>3. نشر التغييرات</h3>
+          <p class="hint">حمل الملف الجديد واستبدل ملف questions.json القديم به ليظهر للجميع.</p>
+          <button id="btnExportJson" class="btn" style="background:#27ae60;">تحميل ملف البيانات (JSON)</button>
+        </div>
+
+      </div>
+    </div>
+
     <div id="screen-home" class="screen">
       <div class="topbar">
         <div class="title">الرئيسية</div>
@@ -93,7 +154,9 @@
         <button id="backHomeBtn" class="mini-btn">←</button>
       </div>
       <p class="hint" style="text-align: center; margin: 10px 0;">اختر من 3 إلى 6 فئات</p>
+      
       <div id="categoriesGrid" class="cats-grid"></div>
+      
       <div style="margin-top: 20px; text-align: center;">
         <span id="selectedInfo" class="pill">0 / 6</span>
       </div>
@@ -108,8 +171,10 @@
       <div style="margin-top: 20px;">
         <label>الفريق الأول</label>
         <input type="text" id="team1Input" class="input" placeholder="مثال: الصقور">
+        
         <label>الفريق الثاني</label>
         <input type="text" id="team2Input" class="input" placeholder="مثال: النمور">
+        
         <button id="startGameBtn" class="btn">انطلاق المباراة 🚀</button>
       </div>
     </div>
@@ -129,10 +194,12 @@
             <button id="t1Call" title="اتصال بصديق">📞</button>
           </div>
         </div>
+
         <div class="turn-info">
           <div id="turnPill" class="pill">الدور: —</div>
           <div id="turnNote" style="font-size: 10px; margin-top: 4px;">—</div>
         </div>
+
         <div class="team-box">
           <div class="t-name" id="team2NameTop">الفريق 2</div>
           <div class="t-score" id="team2ScoreTop">0</div>
@@ -147,9 +214,11 @@
           </div>
         </div>
       </div>
+
       <div class="actions-bar">
         <button id="newGameBtn" class="mini-btn" style="width:auto; padding:0 8px;">إنهاء</button>
       </div>
+
       <div id="boardGrid" class="board"></div>
     </div>
 
@@ -180,10 +249,14 @@
         <span id="timer" class="timer">00:00</span>
         <button id="closeModalBtn" class="mini-btn">✕</button>
       </div>
+
       <h2 id="qText" class="q-text">نص السؤال يظهر هنا...</h2>
+
       <div id="revealBtn" class="btn reveal">كشف الإجابة</div>
+
       <div id="answerArea" class="hidden answer">
         <div class="answer-text" id="answerText">الإجابة هنا</div>
+        
         <p class="hint">من أجاب بشكل صحيح؟</p>
         <div class="pick-row">
           <button id="pickTeam1" class="pick-btn">فريق 1</button>
@@ -191,6 +264,7 @@
         </div>
         <button id="pickNoOne" class="pick-btn neutral" style="width:100%; margin-top:10px;">لا أحد</button>
       </div>
+
       <div class="row" style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
         <button id="undoOpenBtn" class="mini-btn" style="width: auto; padding: 0 10px; font-size: 12px;">تراجع (لم يفتح)</button>
         <button id="reportBtn" class="mini-btn" style="width: auto; padding: 0 10px; font-size: 12px; background: #fee; color: red;">إبلاغ</button>

@@ -62,6 +62,11 @@ body{margin:0; background:var(--bg); color:var(--text); direction: rtl;}
 .btn.secondary { background: #7f8c8d; }
 .btn.reveal { background: #e67e22; font-size: 18px; }
 
+/* Admin Panel Styles */
+.admin-panel { display: grid; gap: 20px; }
+.admin-card { background: #fff; padding: 20px; border-radius: 12px; border: 1px solid var(--border); }
+.admin-card h3 { margin-top: 0; color: var(--primary); border-bottom: 1px solid #eee; padding-bottom: 10px; }
+
 /* Common UI */
 .topbar{
   display:flex; justify-content:space-between; align-items:center;
@@ -134,3 +139,4 @@ body{margin:0; background:var(--bg); color:var(--text); direction: rtl;}
 .pick-btn { flex: 1; padding: 12px; border: 2px solid var(--border); background: #fff; font-weight: bold; border-radius: 8px; cursor: pointer; }
 .pick-btn:hover { background: #f9f9f9; border-color: var(--primary); }
 .winner-line{display:flex; justify-content:space-between; font-weight:800; padding:8px 0;}
+.row{ display:flex; gap:10px; align-items: center; }
