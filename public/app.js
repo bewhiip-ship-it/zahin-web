@@ -1,4 +1,12 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  // Splash 3 seconds
+  const splash = document.getElementById("splash");
+  const app = document.getElementById("app");
+  setTimeout(() => {
+    splash.classList.add("hidden");
+    app.classList.remove("hidden");
+  }, 3000);
+
   // Screens
   const sAuth = document.getElementById("screen-auth");
   const sHome = document.getElementById("screen-home");
@@ -7,31 +15,36 @@ document.addEventListener("DOMContentLoaded", () => {
   const sBoard = document.getElementById("screen-board");
   const sWinner = document.getElementById("screen-winner");
 
-  // Auth
+  const show = (screen) => {
+    [sAuth, sHome, sCats, sTeams, sBoard, sWinner].forEach(x => x.classList.remove("active"));
+    screen.classList.add("active");
+  };
+
+  // UI: Auth
   const usernameInput = document.getElementById("usernameInput");
   const loginBtn = document.getElementById("loginBtn");
   const logoutBtn = document.getElementById("logoutBtn");
-  const KEY_USER = "zahin_user_v1";
 
-  // Home/Cats/Teams buttons
-  const startBtn = document.getElementById("startBtn");
-  const backToHomeBtn = document.getElementById("backToHomeBtn");
-  const continueBtn = document.getElementById("continueBtn");
-  const backToCategoriesBtn = document.getElementById("backToCategoriesBtn");
-  const startHostBtn = document.getElementById("startHostBtn");
-  const resetGameBtn = document.getElementById("resetGameBtn");
+  // UI: Home
+  const goCatsBtn = document.getElementById("goCatsBtn");
 
-  // Cats UI
-  const categoriesDiv = document.getElementById("categories");
+  // UI: Categories
+  const categoriesGrid = document.getElementById("categoriesGrid");
   const selectedInfo = document.getElementById("selectedInfo");
-  const MIN_CATS = 3;
-  const MAX_CATS = 6;
+  const backHomeBtn = document.getElementById("backHomeBtn");
+  const toTeamsBtn = document.getElementById("toTeamsBtn");
 
-  // Teams
+  // UI: Teams
   const team1Input = document.getElementById("team1Input");
   const team2Input = document.getElementById("team2Input");
+  const backCatsBtn = document.getElementById("backCatsBtn");
+  const startGameBtn = document.getElementById("startGameBtn");
 
-  // Scorebar
+  // UI: Board
+  const boardGrid = document.getElementById("boardGrid");
+  const newGameBtn = document.getElementById("newGameBtn");
+
+  // Score UI
   const team1NameTop = document.getElementById("team1NameTop");
   const team2NameTop = document.getElementById("team2NameTop");
   const team1ScoreTop = document.getElementById("team1ScoreTop");
@@ -41,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const team2Plus = document.getElementById("team2Plus");
   const team2Minus = document.getElementById("team2Minus");
 
-  // Lifelines buttons
+  // Lifelines
   const t1Double = document.getElementById("t1Double");
   const t1Block = document.getElementById("t1Block");
   const t1Call = document.getElementById("t1Call");
@@ -49,21 +62,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const t2Block = document.getElementById("t2Block");
   const t2Call = document.getElementById("t2Call");
 
-  // Board
-  const boardGrid = document.getElementById("boardGrid");
-  const POINTS = [200, 200, 400, 400, 600, 600];
+  const turnPill = document.getElementById("turnPill");
+  const turnNote = document.getElementById("turnNote");
 
-  // Winner
+  // Winner UI
   const winnerTitle = document.getElementById("winnerTitle");
   const winnerDetails = document.getElementById("winnerDetails");
   const wTeam1 = document.getElementById("wTeam1");
   const wTeam2 = document.getElementById("wTeam2");
   const wScore1 = document.getElementById("wScore1");
   const wScore2 = document.getElementById("wScore2");
-  const backToBoardBtn = document.getElementById("backToBoardBtn");
+  const backBoardBtn = document.getElementById("backBoardBtn");
   const newGameFromWinnerBtn = document.getElementById("newGameFromWinnerBtn");
 
-  // Modal
+  // Modal UI
   const modal = document.getElementById("questionModal");
   const qMeta = document.getElementById("qMeta");
   const timerEl = document.getElementById("timer");
@@ -76,27 +88,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const pickNoOne = document.getElementById("pickNoOne");
   const closeModalBtn = document.getElementById("closeModalBtn");
   const undoOpenBtn = document.getElementById("undoOpenBtn");
-
-  // Turn UI
-  const turnPill = document.getElementById("turnPill");
-  const turnNote = document.getElementById("turnNote");
-
-  // Report
   const reportBtn = document.getElementById("reportBtn");
-  const KEY_REPORTS = "zahin_reports_v1";
 
-  // Storage keys
-  const KEY_STATE = "zahin_state_v2";
+  const openModal = () => modal.classList.remove("hidden");
+  const closeModal = () => modal.classList.add("hidden");
+
+  // Constants
+  const MIN_CATS = 3;
+  const MAX_CATS = 6;
+  const POINTS = [200, 200, 400, 400, 600, 600];
+
+  // Storage Keys
+  const KEY_USER = "zahin_user_v1";
+  const KEY_STATE = "zahin_state_v3";
+  const KEY_SELECTED = "zahin_selected_categories_v1";
+  const KEY_REPORTS = "zahin_reports_v1";
   const KEY_QBANK_CACHE = "zahin_qbank_cache_v1";
 
-  // Local state
-  let selected = new Set();
-  let state = loadState() || null;
-
-  // QBank runtime
-  let QBANK = null; // {version,categories,questions}
-  let QLOOKUP = null; // Map: categoryId -> slot(0..5) -> question
-  let CATEGORIES = []; // from bank
+  // Categories fallback
   const FALLBACK_CATEGORIES = [
     { id: "islam", name: "إسلاميات" },
     { id: "prophets", name: "قصص الأنبياء" },
@@ -110,136 +119,128 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: "geo", name: "جغرافيا" }
   ];
 
+  // Runtime
+  let selected = new Set();
+  let state = null;
+
+  // QBank
+  let QBANK = null;
+  let CATEGORIES = [];
+  let QLOOKUP = null;
+
   // Timer
   let tStart = 0;
   let tInterval = null;
 
-  // ===== Helpers =====
-  function show(screen) {
-    [sAuth, sHome, sCats, sTeams, sBoard, sWinner].forEach(x => x.classList.remove("active"));
-    screen.classList.add("active");
-  }
-
-  function saveState() {
-    localStorage.setItem(KEY_STATE, JSON.stringify(state));
-  }
-
-  function loadState() {
-    try { return JSON.parse(localStorage.getItem(KEY_STATE) || "null"); }
-    catch { return null; }
-  }
-
-  function clearState() {
-    localStorage.removeItem(KEY_STATE);
-    state = null;
-  }
-
-  function getUser() {
-    try { return JSON.parse(localStorage.getItem(KEY_USER) || "null"); }
-    catch { return null; }
-  }
-
-  function setUser(username) {
-    const u = { id: "u_" + username.toLowerCase().replace(/\s+/g, "_"), username };
-    localStorage.setItem(KEY_USER, JSON.stringify(u));
-    return u;
-  }
-
-  function logout() {
-    localStorage.removeItem(KEY_USER);
-    clearState();
-    selected = new Set();
-    show(sAuth);
-  }
-
-  function finalizedKeyForUser(userId) {
-    return `zahin_finalized_ids_${userId}`;
-  }
-
-  function loadFinalizedSet(userId) {
-    try {
-      const raw = localStorage.getItem(finalizedKeyForUser(userId));
-      const arr = raw ? JSON.parse(raw) : [];
-      return new Set(arr);
-    } catch {
-      return new Set();
-    }
-  }
-
-  function addFinalized(userId, qid) {
-    const set = loadFinalizedSet(userId);
-    set.add(qid);
-    localStorage.setItem(finalizedKeyForUser(userId), JSON.stringify([...set]));
-  }
-
-  function formatMMSS(ms) {
+  const formatMMSS = (ms) => {
     const s = Math.floor(ms / 1000);
     const m = Math.floor(s / 60);
     const r = s % 60;
     return String(m).padStart(2, "0") + ":" + String(r).padStart(2, "0");
-  }
+  };
 
-  function openModal() { modal.classList.remove("hidden"); }
-  function closeModal() { modal.classList.add("hidden"); }
-
-  function startTimer() {
+  const startTimer = () => {
     tStart = Date.now();
     timerEl.textContent = "00:00";
     if (tInterval) clearInterval(tInterval);
     tInterval = setInterval(() => {
       timerEl.textContent = formatMMSS(Date.now() - tStart);
     }, 250);
-  }
+  };
 
-  function stopTimer() {
+  const stopTimer = () => {
     if (tInterval) clearInterval(tInterval);
     tInterval = null;
-  }
+  };
 
-  function bumpScore(team, delta) {
-    if (!state) return;
-    if (team === 1) state.team1Score += delta;
-    if (team === 2) state.team2Score += delta;
-    renderScorebar();
-    saveState();
-  }
+  // User helpers
+  const getUser = () => {
+    try { return JSON.parse(localStorage.getItem(KEY_USER) || "null"); }
+    catch { return null; }
+  };
 
-  function setLifeBtn(btn, used) {
-    if (!btn) return;
-    if (used) btn.classList.add("used");
-    else btn.classList.remove("used");
-    btn.disabled = !!used;
-  }
+  const setUser = (username) => {
+    const u = { id: "u_" + username.toLowerCase().replace(/\s+/g, "_"), username };
+    localStorage.setItem(KEY_USER, JSON.stringify(u));
+    return u;
+  };
 
-  function renderScorebar() {
-    if (!state) return;
+  // State helpers
+  const saveState = () => localStorage.setItem(KEY_STATE, JSON.stringify(state));
+  const loadState = () => {
+    try { return JSON.parse(localStorage.getItem(KEY_STATE) || "null"); }
+    catch { return null; }
+  };
+  const clearState = () => {
+    localStorage.removeItem(KEY_STATE);
+    state = null;
+  };
 
-    team1NameTop.textContent = state.team1Name;
-    team2NameTop.textContent = state.team2Name;
-    team1ScoreTop.textContent = state.team1Score;
-    team2ScoreTop.textContent = state.team2Score;
+  const finalizedKey = (uid) => `zahin_finalized_ids_${uid}`;
+  const loadFinalizedSet = (uid) => {
+    try {
+      const raw = localStorage.getItem(finalizedKey(uid));
+      const arr = raw ? JSON.parse(raw) : [];
+      return new Set(arr);
+    } catch { return new Set(); }
+  };
+  const addFinalized = (uid, qid) => {
+    const set = loadFinalizedSet(uid);
+    set.add(qid);
+    localStorage.setItem(finalizedKey(uid), JSON.stringify([...set]));
+  };
 
-    pickTeam1.textContent = state.team1Name;
-    pickTeam2.textContent = state.team2Name;
+  // Reports
+  const loadReports = () => {
+    try { return JSON.parse(localStorage.getItem(KEY_REPORTS) || "[]"); }
+    catch { return []; }
+  };
+  const saveReports = (list) => localStorage.setItem(KEY_REPORTS, JSON.stringify(list));
 
-    // lifelines UI
-    setLifeBtn(t1Double, state.lifelines.t1.doubleUsed);
-    setLifeBtn(t1Block, state.lifelines.t1.blockUsed);
-    setLifeBtn(t1Call, state.lifelines.t1.callUsed);
+  // QBank loading
+  const buildLookup = (bank) => {
+    const map = new Map();
+    bank.questions.forEach(q => {
+      if (!map.has(q.categoryId)) map.set(q.categoryId, new Map());
+      map.get(q.categoryId).set(q.slot, q);
+    });
+    return map;
+  };
 
-    setLifeBtn(t2Double, state.lifelines.t2.doubleUsed);
-    setLifeBtn(t2Block, state.lifelines.t2.blockUsed);
-    setLifeBtn(t2Call, state.lifelines.t2.callUsed);
-  }
+  const loadQBank = async () => {
+    try {
+      const res = await fetch("./questions.json", { cache: "no-store" });
+      if (!res.ok) throw new Error("fetch failed");
+      const bank = await res.json();
+      localStorage.setItem(KEY_QBANK_CACHE, JSON.stringify(bank));
+      return bank;
+    } catch {
+      try {
+        const cached = localStorage.getItem(KEY_QBANK_CACHE);
+        if (cached) return JSON.parse(cached);
+      } catch {}
+      return null;
+    }
+  };
 
-  function updateSelectedInfo() {
+  const getQuestionBySlot = (categoryId, slot) => {
+    if (!QLOOKUP) return null;
+    const catMap = QLOOKUP.get(categoryId);
+    if (!catMap) return null;
+    return catMap.get(slot) || null;
+  };
+
+  // UI rendering
+  const updateSelectedInfo = () => {
     selectedInfo.textContent = `${selected.size} / ${MAX_CATS}`;
-    continueBtn.disabled = selected.size < MIN_CATS || selected.size > MAX_CATS;
-  }
+    toTeamsBtn.disabled = selected.size < MIN_CATS || selected.size > MAX_CATS;
+  };
 
-  function renderCategories() {
-    categoriesDiv.innerHTML = "";
-    (CATEGORIES.length ? CATEGORIES : FALLBACK_CATEGORIES).forEach(cat => {
+  const renderCategories = () => {
+    categoriesGrid.innerHTML = "";
+    const list = CATEGORIES.length ? CATEGORIES : FALLBACK_CATEGORIES;
+
+    list.forEach(cat => {
       const div = document.createElement("div");
       div.className = "category" + (selected.has(cat.id) ? " selected" : "");
       div.textContent = cat.name;
@@ -256,55 +257,70 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSelectedInfo();
       });
 
-      categoriesDiv.appendChild(div);
+      categoriesGrid.appendChild(div);
     });
+
     updateSelectedInfo();
-  }
+  };
 
-  // ===== QBank =====
-  function buildLookup(bank) {
-    const map = new Map(); // categoryId -> Map(slot -> question)
-    bank.questions.forEach(q => {
-      if (!map.has(q.categoryId)) map.set(q.categoryId, new Map());
-      map.get(q.categoryId).set(q.slot, q);
-    });
-    return map;
-  }
+  const setLifeBtn = (btn, used) => {
+    btn.classList.toggle("used", !!used);
+    btn.disabled = !!used;
+  };
 
-  async function loadQBank() {
-    // 1) Try fetch from file
-    try {
-      const res = await fetch("./questions.json", { cache: "no-store" });
-      if (!res.ok) throw new Error("fetch failed");
-      const bank = await res.json();
-      // Save cache
-      localStorage.setItem(KEY_QBANK_CACHE, JSON.stringify(bank));
-      return bank;
-    } catch (_) {
-      // 2) Fallback to cache
-      try {
-        const cached = localStorage.getItem(KEY_QBANK_CACHE);
-        if (cached) return JSON.parse(cached);
-      } catch (_) {}
-      // 3) No bank
-      return null;
+  const renderScorebar = () => {
+    team1NameTop.textContent = state.team1Name;
+    team2NameTop.textContent = state.team2Name;
+    team1ScoreTop.textContent = state.team1Score;
+    team2ScoreTop.textContent = state.team2Score;
+
+    pickTeam1.textContent = state.team1Name;
+    pickTeam2.textContent = state.team2Name;
+
+    setLifeBtn(t1Double, state.lifelines.t1.doubleUsed);
+    setLifeBtn(t1Block, state.lifelines.t1.blockUsed);
+    setLifeBtn(t1Call, state.lifelines.t1.callUsed);
+
+    setLifeBtn(t2Double, state.lifelines.t2.doubleUsed);
+    setLifeBtn(t2Block, state.lifelines.t2.blockUsed);
+    setLifeBtn(t2Call, state.lifelines.t2.callUsed);
+  };
+
+  const updateTurnUI = () => {
+    if (!state.currentTurnTeam) {
+      turnPill.textContent = "الدور: —";
+      turnNote.textContent = "—";
+      return;
     }
-  }
+    const teamName = state.currentTurnTeam === 1 ? state.team1Name : state.team2Name;
+    turnPill.textContent = `الدور: ${teamName}`;
 
-  function getQuestionBySlot(categoryId, slot) {
-    if (!QLOOKUP) return null;
-    const catMap = QLOOKUP.get(categoryId);
-    if (!catMap) return null;
-    return catMap.get(slot) || null;
-  }
+    const flags = [];
+    if (state.turnFlags.double) flags.push("⭐ دبل");
+    if (state.turnFlags.block) flags.push("⛔ منع");
+    if (state.turnFlags.call) flags.push("📞 اتصال");
+    turnNote.textContent = flags.length ? `مفعّل: ${flags.join(" • ")}` : "—";
+  };
 
-  // ===== Board =====
-  function renderBoard() {
-    if (!state) return;
+  const bumpScore = (team, delta) => {
+    if (team === 1) state.team1Score += delta;
+    if (team === 2) state.team2Score += delta;
+    renderScorebar();
+    saveState();
+  };
+
+  const isGameFinished = () => {
+    return state.selectedCategoryIds.every(cid =>
+      POINTS.every((p, i) => state.finalized[`${cid}_${p}_${i}`] === true)
+    );
+  };
+
+  const renderBoard = () => {
     boardGrid.innerHTML = "";
+    const list = CATEGORIES.length ? CATEGORIES : FALLBACK_CATEGORIES;
 
     state.selectedCategoryIds.forEach(cid => {
-      const cat = (CATEGORIES.length ? CATEGORIES : FALLBACK_CATEGORIES).find(c => c.id === cid);
+      const cat = list.find(c => c.id === cid);
 
       const col = document.createElement("div");
       col.className = "colCard";
@@ -312,7 +328,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const header = document.createElement("div");
       header.className = "colHeader";
       header.textContent = cat ? cat.name : cid;
-      col.appendChild(header);
 
       const cells = document.createElement("div");
       cells.className = "cells";
@@ -337,171 +352,77 @@ document.addEventListener("DOMContentLoaded", () => {
         cells.appendChild(cell);
       });
 
+      col.appendChild(header);
       col.appendChild(cells);
       boardGrid.appendChild(col);
     });
-  }
+  };
 
-  function isGameFinished() {
-    if (!state) return false;
-    return state.selectedCategoryIds.every(cid =>
-      POINTS.every((p, i) => state.finalized[`${cid}_${p}_${i}`] === true)
-    );
-  }
-
-  function renderWinner() {
-    if (!state) return;
-
-    const t1 = state.team1Name;
-    const t2 = state.team2Name;
+  const goWinner = () => {
     const s1 = state.team1Score;
     const s2 = state.team2Score;
 
-    wTeam1.textContent = t1;
-    wTeam2.textContent = t2;
+    wTeam1.textContent = state.team1Name;
+    wTeam2.textContent = state.team2Name;
     wScore1.textContent = s1;
     wScore2.textContent = s2;
 
     if (s1 > s2) {
-      winnerTitle.textContent = `الفائز: ${t1} 🎉`;
+      winnerTitle.textContent = `الفائز: ${state.team1Name} 🎉`;
       winnerDetails.textContent = "مبروك! انتهت كل الأسئلة.";
     } else if (s2 > s1) {
-      winnerTitle.textContent = `الفائز: ${t2} 🎉`;
+      winnerTitle.textContent = `الفائز: ${state.team2Name} 🎉`;
       winnerDetails.textContent = "مبروك! انتهت كل الأسئلة.";
     } else {
       winnerTitle.textContent = "تعادل 🤝";
-      winnerDetails.textContent = "انتهت كل الأسئلة. (كسر التعادل نضيفه بالمرحلة الجاية)";
+      winnerDetails.textContent = "كسر التعادل نضيفه بالخطوة الجاية.";
     }
-  }
 
-  function goWinner() {
-    renderWinner();
     show(sWinner);
-  }
+  };
 
-  // ===== Turn + Lifelines =====
-  function currentQuestion() {
-    if (!state || !state.currentQuestionId) return null;
-    return state.questions[state.currentQuestionId] || null;
-  }
+  // Question modal logic
+  const currentQuestion = () => (state.currentQuestionId ? state.questions[state.currentQuestionId] : null);
 
-  function randomTurnTeam() {
-    return Math.random() < 0.5 ? 1 : 2;
-  }
+  const randomTurnTeam = () => (Math.random() < 0.5 ? 1 : 2);
 
-  function updateTurnUI() {
-    if (!state || !state.currentTurnTeam) {
-      turnPill.textContent = "الدور: —";
-      turnNote.textContent = "—";
-      return;
-    }
-
-    const teamName = state.currentTurnTeam === 1 ? state.team1Name : state.team2Name;
-    turnPill.textContent = `الدور: ${teamName}`;
-
-    const flags = [];
-    if (state.turnFlags.double) flags.push("⭐ دبل");
-    if (state.turnFlags.block) flags.push("⛔ منع");
-    if (state.turnFlags.call) flags.push("📞 اتصال");
-    turnNote.textContent = flags.length ? `مفعّل: ${flags.join(" • ")}` : "—";
-  }
-
-  function canUseLifeline(team, key) {
-    const lf = team === 1 ? state.lifelines.t1 : state.lifelines.t2;
-    if (key === "double") return !lf.doubleUsed;
-    if (key === "block") return !lf.blockUsed;
-    if (key === "call") return !lf.callUsed;
-    return false;
-  }
-
-  function markUsed(team, key) {
-    const lf = team === 1 ? state.lifelines.t1 : state.lifelines.t2;
-    if (key === "double") lf.doubleUsed = true;
-    if (key === "block") lf.blockUsed = true;
-    if (key === "call") lf.callUsed = true;
-  }
-
-  function applyLifeline(team, key) {
-    if (!state || !state.currentQuestionId) {
-      alert("اختر سؤال أولاً.");
-      return;
-    }
-
-    // دبل فقط للفريق اللي عليه الدور
-    if (key === "double" && team !== state.currentTurnTeam) {
-      alert("⭐ دبل النقاط فقط للفريق اللي عليه الدور.");
-      return;
-    }
-
-    if (!canUseLifeline(team, key)) return;
-
-    if (key === "double") {
-      state.turnFlags.double = true;
-      markUsed(team, "double");
-      alert("تم تفعيل ⭐ دبل النقاط لهذا السؤال.");
-    }
-
-    if (key === "block") {
-      state.turnFlags.block = true;
-      markUsed(team, "block");
-      alert("تم تفعيل ⛔ منع إجابة الفريق الثاني لهذا السؤال.");
-    }
-
-    if (key === "call") {
-      state.turnFlags.call = true;
-      markUsed(team, "call");
-      alert("📞 اتصال بصديق (بدون تغيير في السؤال).");
-    }
-
-    renderScorebar();
-    updateTurnUI();
-    saveState();
-  }
-
-  // ===== Question Modal =====
-  function openQuestion(categoryId, points, idx) {
-    // Ensure bank loaded
+  const openQuestion = (categoryId, points, idx) => {
     if (!QLOOKUP) {
-      alert("بنك الأسئلة غير جاهز. حدّث الصفحة وحاول مرة ثانية.");
+      alert("بنك الأسئلة غير جاهز. تأكد من questions.json");
       return;
     }
 
-    // slot = idx (0..5) (متطابق مع تصميم 6 أسئلة)
-    const slot = idx;
-    const qFromBank = getQuestionBySlot(categoryId, slot);
-
-    // Validate points match
+    const qFromBank = getQuestionBySlot(categoryId, idx);
     if (!qFromBank || qFromBank.points !== points) {
-      alert("ما لقيت سؤال مطابق لهذه الخانة. تأكد من questions.json (slot/points).");
+      alert("سؤال غير مطابق للخانة. راجع questions.json (slot/points).");
       return;
     }
 
-    // Build runtime question object with stable ID scheme used by board
+    const list = CATEGORIES.length ? CATEGORIES : FALLBACK_CATEGORIES;
+    const catName = (list.find(c => c.id === categoryId)?.name) || categoryId;
+
+    const qid = `${categoryId}_${points}_${idx}`;
     const q = {
-      id: `${categoryId}_${points}_${idx}`,
-      categoryId: qFromBank.categoryId,
-      categoryName: (CATEGORIES.find(c => c.id === categoryId)?.name) || qFromBank.categoryId,
-      points: qFromBank.points,
+      id: qid,
+      categoryId,
+      categoryName: catName,
+      points,
       question: qFromBank.question,
-      answer: qFromBank.answer,
-      image: qFromBank.image || "placeholder"
+      answer: qFromBank.answer
     };
 
-    state.currentQuestionId = q.id;
-    state.questions[q.id] = q;
+    state.currentQuestionId = qid;
+    state.questions[qid] = q;
     state.currentRevealed = false;
 
-    // دور عشوائي + reset flags لهذا السؤال
     state.currentTurnTeam = randomTurnTeam();
     state.turnFlags = { double: false, block: false, call: false };
 
-    qMeta.textContent = `${q.categoryName} • ${q.points} نقطة`;
+    qMeta.textContent = `${catName} • ${points} نقطة`;
     qText.textContent = q.question;
 
     answerArea.classList.add("hidden");
     revealBtn.style.display = "block";
-
-    // رجّع أزرار الاختيار كما كانت
     pickTeam1.style.display = "";
     pickTeam2.style.display = "";
     pickNoOne.style.display = "";
@@ -512,47 +433,39 @@ document.addEventListener("DOMContentLoaded", () => {
     openModal();
     startTimer();
     saveState();
-  }
+  };
 
-  function revealAnswer() {
+  const revealAnswer = () => {
     const q = currentQuestion();
     if (!q) return;
 
     state.currentRevealed = true;
     answerText.textContent = q.answer;
 
-    // المنع: يخفي الفريق الآخر (غير فريق الدور) بعد الإظهار
+    // block: hide the other team when revealed
     if (state.turnFlags.block) {
-      if (state.currentTurnTeam === 1) {
-        pickTeam2.style.display = "none";
-      } else {
-        pickTeam1.style.display = "none";
-      }
+      if (state.currentTurnTeam === 1) pickTeam2.style.display = "none";
+      else pickTeam1.style.display = "none";
     }
 
     answerArea.classList.remove("hidden");
     revealBtn.style.display = "none";
     saveState();
-  }
+  };
 
-  function finalizeQuestion(winnerTeamOrNull) {
+  const finalizeQuestion = (winnerTeamOrNull) => {
     const q = currentQuestion();
     if (!q) return;
 
-    // النقاط: دبل فقط لو الفائز هو نفس فريق الدور
     let pts = q.points;
-    if (state.turnFlags.double && winnerTeamOrNull === state.currentTurnTeam) {
-      pts = pts * 2;
-    }
+    if (state.turnFlags.double && winnerTeamOrNull === state.currentTurnTeam) pts *= 2;
 
     if (winnerTeamOrNull === 1) state.team1Score += pts;
     if (winnerTeamOrNull === 2) state.team2Score += pts;
 
-    // mark finalized per game + per user non-repeat
     state.finalized[q.id] = true;
     addFinalized(state.userId, q.id);
 
-    // clear current
     state.currentQuestionId = null;
     state.currentRevealed = false;
     state.currentTurnTeam = null;
@@ -566,10 +479,9 @@ document.addEventListener("DOMContentLoaded", () => {
     stopTimer();
 
     if (isGameFinished()) goWinner();
-  }
+  };
 
-  function undoOpenQuestion() {
-    // اختيار بالخطأ: يرجع بدون إنهاء
+  const undoOpen = () => {
     state.currentQuestionId = null;
     state.currentRevealed = false;
     state.currentTurnTeam = null;
@@ -577,30 +489,13 @@ document.addEventListener("DOMContentLoaded", () => {
     saveState();
     closeModal();
     stopTimer();
-  }
+  };
 
-  // Close without finalize => يبقى السؤال غير منتهي (يقدر يرجع له)
-  function closeWithoutFinalize() {
-    saveState();
-    closeModal();
-    stopTimer();
-  }
-
-  // ===== Reports =====
-  function loadReports() {
-    try { return JSON.parse(localStorage.getItem(KEY_REPORTS) || "[]"); }
-    catch { return []; }
-  }
-
-  function saveReports(list) {
-    localStorage.setItem(KEY_REPORTS, JSON.stringify(list));
-  }
-
-  function reportQuestion() {
+  const reportQuestion = () => {
     const q = currentQuestion();
     if (!q) return;
 
-    const reason = prompt("اكتب سبب البلاغ (اختياري):") || "";
+    const reason = prompt("سبب البلاغ (اختياري):") || "";
     const list = loadReports();
 
     list.push({
@@ -616,81 +511,105 @@ document.addEventListener("DOMContentLoaded", () => {
 
     saveReports(list);
     alert("تم إرسال البلاغ ✅ (محلياً حالياً)");
-  }
+  };
 
-  // ===== Game Start / Restore =====
-  function startNewGame(selectedCatIds, team1Name, team2Name) {
+  // Lifelines
+  const canUse = (team, key) => {
+    const lf = team === 1 ? state.lifelines.t1 : state.lifelines.t2;
+    if (key === "double") return !lf.doubleUsed;
+    if (key === "block") return !lf.blockUsed;
+    if (key === "call") return !lf.callUsed;
+    return false;
+  };
+  const markUsed = (team, key) => {
+    const lf = team === 1 ? state.lifelines.t1 : state.lifelines.t2;
+    if (key === "double") lf.doubleUsed = true;
+    if (key === "block") lf.blockUsed = true;
+    if (key === "call") lf.callUsed = true;
+  };
+  const applyLifeline = (team, key) => {
+    if (!state.currentQuestionId) {
+      alert("اختر سؤال أولاً.");
+      return;
+    }
+
+    if (key === "double" && team !== state.currentTurnTeam) {
+      alert("⭐ الدبل فقط للفريق اللي عليه الدور.");
+      return;
+    }
+
+    if (!canUse(team, key)) return;
+
+    if (key === "double") state.turnFlags.double = true;
+    if (key === "block") state.turnFlags.block = true;
+    if (key === "call") state.turnFlags.call = true;
+
+    markUsed(team, key);
+    renderScorebar();
+    updateTurnUI();
+    saveState();
+  };
+
+  // Start / Restore game
+  const startNewGame = (selectedCatIds, t1, t2) => {
     const user = getUser();
     if (!user) { show(sAuth); return; }
 
     state = {
-      version: 2,
+      version: 3,
       userId: user.id,
       username: user.username,
-
       selectedCategoryIds: selectedCatIds,
-      team1Name,
-      team2Name,
+      team1Name: t1,
+      team2Name: t2,
       team1Score: 0,
       team2Score: 0,
-
-      // per-game finalized map
       finalized: {},
-
-      // questions cache (opened questions)
       questions: {},
-
-      // current
       currentQuestionId: null,
       currentRevealed: false,
-
-      // turn
       currentTurnTeam: null,
       turnFlags: { double: false, block: false, call: false },
-
-      // lifelines once per team
       lifelines: {
         t1: { doubleUsed: false, blockUsed: false, callUsed: false },
         t2: { doubleUsed: false, blockUsed: false, callUsed: false }
       }
     };
 
-    // respect per-user nonrepeat by importing finalized set
-    const finalizedSet = loadFinalizedSet(state.userId);
-    finalizedSet.forEach(qid => { state.finalized[qid] = true; });
+    // Never repeat per account
+    const fin = loadFinalizedSet(state.userId);
+    fin.forEach(qid => { state.finalized[qid] = true; });
 
     saveState();
     renderScorebar();
     renderBoard();
+    updateTurnUI();
     show(sBoard);
 
     if (isGameFinished()) goWinner();
-  }
+  };
 
-  function restoreIfAny() {
+  const restoreIfAny = () => {
     const user = getUser();
     if (!user) return false;
 
-    // لو state موجود لكن المستخدم تغير
-    if (state && state.userId !== user.id) {
-      clearState();
-      state = null;
-      return false;
-    }
+    const loaded = loadState();
+    if (!loaded) return false;
+    if (loaded.userId !== user.id) return false;
 
-    if (!state) return false;
+    state = loaded;
 
     renderScorebar();
     renderBoard();
+    updateTurnUI();
     show(sBoard);
 
-    // restore current question modal if exists
+    // if there was an open question, reopen modal
     if (state.currentQuestionId) {
       const q = state.questions[state.currentQuestionId];
       if (q) {
         qMeta.textContent = `${q.categoryName} • ${q.points} نقطة`;
         qText.textContent = q.question;
-        updateTurnUI();
 
         if (state.currentRevealed) {
           answerText.textContent = q.answer;
@@ -701,10 +620,11 @@ document.addEventListener("DOMContentLoaded", () => {
           revealBtn.style.display = "block";
         }
 
-        // restore pick buttons visibility
         pickTeam1.style.display = "";
         pickTeam2.style.display = "";
-        if (state.turnFlags && state.turnFlags.block) {
+        pickNoOne.style.display = "";
+
+        if (state.turnFlags.block) {
           if (state.currentTurnTeam === 1) pickTeam2.style.display = "none";
           if (state.currentTurnTeam === 2) pickTeam1.style.display = "none";
         }
@@ -716,51 +636,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (isGameFinished()) goWinner();
     return true;
-  }
+  };
 
-  // ===== Events =====
-
-  // Auth
+  // Events
   loginBtn.addEventListener("click", () => {
     const name = (usernameInput.value || "").trim();
-    if (!name) { alert("اكتب اسم المستخدم."); return; }
+    if (!name) return alert("اكتب اسم المستخدم.");
     setUser(name);
     show(sHome);
   });
 
-  logoutBtn.addEventListener("click", logout);
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem(KEY_USER);
+    localStorage.removeItem(KEY_SELECTED);
+    clearState();
+    selected = new Set();
+    show(sAuth);
+  });
 
-  // Home -> Cats
-  startBtn.addEventListener("click", () => {
+  goCatsBtn.addEventListener("click", () => {
     renderCategories();
     show(sCats);
   });
 
-  backToHomeBtn.addEventListener("click", () => show(sHome));
+  backHomeBtn.addEventListener("click", () => show(sHome));
 
-  continueBtn.addEventListener("click", () => {
-    const chosen = [...selected];
-    localStorage.setItem("zahin_selected_categories", JSON.stringify(chosen));
+  toTeamsBtn.addEventListener("click", () => {
+    localStorage.setItem(KEY_SELECTED, JSON.stringify([...selected]));
     show(sTeams);
   });
 
-  backToCategoriesBtn.addEventListener("click", () => show(sCats));
+  backCatsBtn.addEventListener("click", () => show(sCats));
 
-  startHostBtn.addEventListener("click", () => {
-    const team1 = (team1Input.value || "").trim() || "الفريق الأول";
-    const team2 = (team2Input.value || "").trim() || "الفريق الثاني";
-    const chosen = JSON.parse(localStorage.getItem("zahin_selected_categories") || "[]");
-    if (chosen.length < MIN_CATS) { alert("اختر 3 فئات على الأقل."); return; }
-    startNewGame(chosen, team1, team2);
+  startGameBtn.addEventListener("click", () => {
+    const chosen = JSON.parse(localStorage.getItem(KEY_SELECTED) || "[]");
+    if (chosen.length < MIN_CATS) return alert("اختر 3 فئات على الأقل.");
+    const t1 = (team1Input.value || "").trim() || "الفريق الأول";
+    const t2 = (team2Input.value || "").trim() || "الفريق الثاني";
+    startNewGame(chosen, t1, t2);
   });
 
-  // Score +/- (100)
   team1Plus.addEventListener("click", () => bumpScore(1, 100));
   team1Minus.addEventListener("click", () => bumpScore(1, -100));
   team2Plus.addEventListener("click", () => bumpScore(2, 100));
   team2Minus.addEventListener("click", () => bumpScore(2, -100));
 
-  // Lifelines (once per team)
   t1Double.addEventListener("click", () => applyLifeline(1, "double"));
   t1Block.addEventListener("click", () => applyLifeline(1, "block"));
   t1Call.addEventListener("click", () => applyLifeline(1, "call"));
@@ -768,51 +688,44 @@ document.addEventListener("DOMContentLoaded", () => {
   t2Block.addEventListener("click", () => applyLifeline(2, "block"));
   t2Call.addEventListener("click", () => applyLifeline(2, "call"));
 
-  // Modal
   revealBtn.addEventListener("click", revealAnswer);
   pickTeam1.addEventListener("click", () => finalizeQuestion(1));
   pickTeam2.addEventListener("click", () => finalizeQuestion(2));
   pickNoOne.addEventListener("click", () => finalizeQuestion(null));
-  closeModalBtn.addEventListener("click", closeWithoutFinalize);
-  undoOpenBtn.addEventListener("click", undoOpenQuestion);
 
-  // Report
+  closeModalBtn.addEventListener("click", () => { closeModal(); stopTimer(); saveState(); });
+  undoOpenBtn.addEventListener("click", undoOpen);
   reportBtn.addEventListener("click", reportQuestion);
 
-  // Reset
-  resetGameBtn.addEventListener("click", () => {
+  newGameBtn.addEventListener("click", () => {
     if (!confirm("تبغى تبدأ لعبة جديدة؟")) return;
     clearState();
     selected = new Set();
     show(sHome);
   });
 
-  // Winner actions
-  backToBoardBtn.addEventListener("click", () => show(sBoard));
+  backBoardBtn.addEventListener("click", () => show(sBoard));
   newGameFromWinnerBtn.addEventListener("click", () => {
     clearState();
     selected = new Set();
     show(sHome);
   });
 
-  // ===== Init (تحميل بنك الأسئلة أول) =====
-  (async function init() {
-    QBANK = await loadQBank();
-    if (QBANK && QBANK.categories && QBANK.questions) {
-      CATEGORIES = QBANK.categories;
-      QLOOKUP = buildLookup(QBANK);
-    } else {
-      // بدون بنك: نخلي الفئات الافتراضية ونمنع فتح الأسئلة
-      CATEGORIES = FALLBACK_CATEGORIES;
-      QLOOKUP = null;
-    }
+  // Init: load QBank
+  QBANK = await loadQBank();
+  if (QBANK && QBANK.categories && QBANK.questions) {
+    CATEGORIES = QBANK.categories;
+    QLOOKUP = buildLookup(QBANK);
+  } else {
+    CATEGORIES = FALLBACK_CATEGORIES;
+    QLOOKUP = null;
+  }
 
-    const user = getUser();
-    if (!user) {
-      show(sAuth);
-    } else {
-      // try restore
-      if (!restoreIfAny()) show(sHome);
-    }
-  })();
+  // Default screen
+  const user = getUser();
+  if (!user) show(sAuth);
+  else {
+    const restored = restoreIfAny();
+    if (!restored) show(sHome);
+  }
 });
