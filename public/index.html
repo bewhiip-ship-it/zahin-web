@@ -1,29 +1,139 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ذهين</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
 
-  <!-- Splash Screen -->
-  <div id="splash">
-    <img src="images/islamiyat.png" alt="Zahin Logo" />
+<body>
+  <!-- Splash -->
+  <div id="splash" class="splash">
+    <img src="images/splash.png" alt="Zahin Splash" />
   </div>
 
   <!-- App -->
-  <div id="app" class="hidden">
+  <div id="app" class="app hidden">
 
-    <div id="screen-board" class="screen active">
-      <div class="topbar">
-        <div class="team">الفريق الأول: <span id="team1ScoreTop">0</span></div>
-        <div class="title">ذهين</div>
-        <div class="team">الفريق الثاني: <span id="team2ScoreTop">0</span></div>
+    <!-- Topbar (يظهر فقط أثناء اللعب) -->
+    <div id="topbar" class="topbar hidden">
+      <div class="team team-left">
+        <div id="team2NameTop" class="team-name">الفريق الثاني</div>
+        <div class="team-score">
+          <button id="team2Minus" class="mini-btn">-</button>
+          <span id="team2ScoreTop">0</span>
+          <button id="team2Plus" class="mini-btn">+</button>
+        </div>
       </div>
 
+      <div class="title">ذهين</div>
+
+      <div class="team team-right">
+        <div id="team1NameTop" class="team-name">الفريق الأول</div>
+        <div class="team-score">
+          <button id="team1Minus" class="mini-btn">-</button>
+          <span id="team1ScoreTop">0</span>
+          <button id="team1Plus" class="mini-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen: Auth -->
+    <section id="screen-auth" class="screen active">
+      <h1 class="h1">تسجيل الدخول</h1>
+      <input id="usernameInput" class="input" placeholder="اسم المستخدم" />
+      <button id="loginBtn" class="btn">دخول</button>
+    </section>
+
+    <!-- Screen: Categories -->
+    <section id="screen-categories" class="screen">
+      <div class="row">
+        <div class="hint">اختر ٣ إلى ٦ فئات</div>
+        <div id="selectedInfo" class="pill">0 / 6</div>
+      </div>
+
+      <div id="categoriesGrid" class="cats-grid"></div>
+
+      <div class="row row-actions">
+        <button id="logoutBtn" class="btn secondary">تسجيل خروج</button>
+        <button id="toTeamsBtn" class="btn" disabled>بدء اللعبة</button>
+      </div>
+    </section>
+
+    <!-- Screen: Teams -->
+    <section id="screen-teams" class="screen">
+      <h2 class="h2">أسماء الفرق</h2>
+      <input id="team1Input" class="input" placeholder="اسم الفريق الأول" />
+      <input id="team2Input" class="input" placeholder="اسم الفريق الثاني" />
+
+      <div class="row row-actions">
+        <button id="backCatsBtn" class="btn secondary">رجوع</button>
+        <button id="startGameBtn" class="btn">ابدأ اللعب</button>
+      </div>
+    </section>
+
+    <!-- Screen: Board -->
+    <section id="screen-board" class="screen">
       <div id="boardGrid" class="board"></div>
+
+      <div class="row row-actions">
+        <button id="newGameBtn" class="btn secondary">لعبة جديدة</button>
+      </div>
+    </section>
+
+    <!-- Screen: Winner -->
+    <section id="screen-winner" class="screen">
+      <h2 id="winnerTitle" class="h2">الفائز</h2>
+      <div id="winnerDetails" class="hint"></div>
+
+      <div class="winner-card">
+        <div class="winner-line">
+          <span id="wTeam1">الفريق الأول</span>
+          <span id="wScore1">0</span>
+        </div>
+        <div class="winner-line">
+          <span id="wTeam2">الفريق الثاني</span>
+          <span id="wScore2">0</span>
+        </div>
+      </div>
+
+      <div class="row row-actions">
+        <button id="newGameFromWinnerBtn" class="btn">ابدأ من جديد</button>
+      </div>
+    </section>
+
+    <!-- Question Modal -->
+    <div id="questionModal" class="modal hidden">
+      <div class="modal-card">
+        <div class="modal-top">
+          <div id="qMeta" class="pill">—</div>
+          <div id="timer" class="timer">00:00</div>
+        </div>
+
+        <div class="q-image-wrap">
+          <img id="qImage" class="q-image" alt="question image" />
+          <button id="reportBtn" class="icon-btn" title="بلاغ">⚑</button>
+        </div>
+
+        <div id="qText" class="q-text">—</div>
+
+        <button id="revealBtn" class="btn reveal">إظهار الإجابة</button>
+
+        <div id="answerArea" class="answer hidden">
+          <div id="answerText" class="answer-text">—</div>
+          <div class="pick-row">
+            <button id="pickTeam1" class="pick-btn">الفريق الأول</button>
+            <button id="pickNoOne" class="pick-btn neutral">لا أحد</button>
+            <button id="pickTeam2" class="pick-btn">الفريق الثاني</button>
+          </div>
+        </div>
+
+        <div class="row row-actions">
+          <button id="undoOpenBtn" class="btn secondary">تم اختيار السؤال بالخطأ</button>
+          <button id="closeModalBtn" class="btn secondary">إغلاق</button>
+        </div>
+      </div>
     </div>
 
   </div>
