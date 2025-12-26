@@ -3,80 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مسابقة ثقافية - زاهين</title>
+  <title>مسابقة زاهين الثقافية</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <div id="splash" class="splash">
     <div style="text-align: center;">
-      <img src="images/splash.png" class="splash-logo floating" alt="شاشة الترحيب">
+      <img src="images/splash.png" class="splash-logo floating" alt="شاشة الترحيب" onerror="this.src='https://placehold.co/200x200?text=Zahin'">
     </div>
   </div>
 
   <div id="app" class="hidden">
 
-    <div id="screen-auth" class="screen">
+    <div id="screen-auth" class="screen active">
       <div class="auth-container">
-        
         <div class="auth-header">
-          <img src="images/splash.png" alt="شعار اللعبة" class="auth-logo">
+          <img src="images/splash.png" class="auth-logo" onerror="this.src='https://placehold.co/100x100?text=Z'">
           <h3>بوابة المتنافسين</h3>
         </div>
 
         <div id="form-login" class="auth-form">
-          <label>اسم المستخدم</label>
-          <input type="text" id="loginUser" class="input" placeholder="اسمك أو admin...">
-          
-          <label>كلمة المرور</label>
-          <input type="password" id="loginPass" class="input" placeholder="••••••••">
-          
-          <div class="auth-links-row">
-            <span id="btnShowForgot" class="link-text">نسيت كلمة المرور؟</span>
-          </div>
-
+          <input type="text" id="loginUser" class="input" placeholder="اسم المستخدم (admin للأدمن)...">
+          <input type="password" id="loginPass" class="input" placeholder="كلمة المرور...">
           <button id="btnLoginAction" class="btn">دخول</button>
-          
-          <div class="auth-footer">
-            ليس لديك حساب؟ <span id="btnShowRegister" class="link-text bold">انشاء حساب جديد</span>
-          </div>
         </div>
-
-        <div id="form-register" class="auth-form hidden">
-          <h4>انشاء حساب جديد</h4>
-          <label>اسم المستخدم (جديد)</label>
-          <input type="text" id="regUser" class="input" placeholder="اسمك المميز...">
-          
-          <label>كلمة المرور</label>
-          <input type="password" id="regPass" class="input" placeholder="كلمة مرور قوية">
-          
-          <button id="btnRegisterAction" class="btn secondary">تسجيل حساب</button>
-          
-          <div class="auth-footer">
-            لديك حساب بالفعل؟ <span id="btnBackToLogin1" class="link-text bold">تسجيل الدخول</span>
-          </div>
-        </div>
-
-        <div id="form-forgot" class="auth-form hidden">
-          <h4>استعادة الحساب</h4>
-          <p class="hint">أدخل اسم المستخدم لاستعادة كلمة المرور</p>
-          
-          <label>اسم المستخدم</label>
-          <input type="text" id="forgotUser" class="input" placeholder="اسمك...">
-          
-          <button id="btnForgotAction" class="btn secondary">استعادة</button>
-          
-          <div class="auth-footer">
-            <span id="btnBackToLogin2" class="link-text bold">عودة لتسجيل الدخول</span>
-          </div>
-        </div>
-
       </div>
     </div>
 
     <div id="screen-admin" class="screen">
       <div class="topbar">
-        <div class="title">لوحة الإدارة 🛠️</div>
+        <div class="title">لوحة التحكم (Firebase) ☁️</div>
         <button id="adminLogoutBtn" class="mini-btn" style="width: auto; padding: 0 10px;">خروج</button>
       </div>
 
@@ -84,10 +41,13 @@
         
         <div class="admin-card">
           <h3>1. إضافة فئة جديدة</h3>
-          <input type="text" id="newCatName" class="input" placeholder="اسم الفئة (مثال: تاريخ)">
-          <input type="text" id="newCatId" class="input" placeholder="ID الفئة (انجليزي: history)">
-          <input type="text" id="newCatImg" class="input" placeholder="مسار الصورة (images/cat.png)">
-          <button id="btnAddCat" class="btn secondary">حفظ الفئة</button>
+          <input type="text" id="newCatName" class="input" placeholder="اسم الفئة (مثال: علوم)">
+          <input type="text" id="newCatId" class="input" placeholder="ID الفئة (انجليزي: science)">
+          
+          <label style="font-size:13px; font-weight:bold;">صورة الفئة:</label>
+          <input type="file" id="newCatFile" class="input" accept="image/*">
+          
+          <button id="btnAddCat" class="btn secondary">رفع وحفظ الفئة 📤</button>
         </div>
 
         <div class="admin-card">
@@ -105,33 +65,26 @@
                </select>
             </div>
             <div style="flex:1">
-               <label>رقم الخانة</label>
+               <label>الخانة</label>
                <select id="selSlot" class="input">
-                 <option value="0">سؤال 1 (200)</option>
-                 <option value="1">سؤال 2 (200)</option>
-                 <option value="2">سؤال 3 (400)</option>
-                 <option value="3">سؤال 4 (400)</option>
-                 <option value="4">سؤال 5 (600)</option>
-                 <option value="5">سؤال 6 (600)</option>
+                 <option value="0">سؤال 1</option>
+                 <option value="1">سؤال 2</option>
+                 <option value="2">سؤال 3</option>
+                 <option value="3">سؤال 4</option>
+                 <option value="4">سؤال 5</option>
+                 <option value="5">سؤال 6</option>
                </select>
             </div>
           </div>
 
-          <label>نص السؤال</label>
-          <textarea id="newQText" class="input" rows="2" placeholder="اكتب السؤال هنا..."></textarea>
+          <textarea id="newQText" class="input" rows="2" placeholder="نص السؤال..."></textarea>
+          <input type="text" id="newQAnswer" class="input" placeholder="الإجابة..."></textarea>
+          
+          <label style="font-size:13px; font-weight:bold;">صورة للسؤال (اختياري):</label>
+          <input type="file" id="newQFile" class="input" accept="image/*">
 
-          <label>الإجابة الصحيحة</label>
-          <input type="text" id="newQAnswer" class="input" placeholder="الإجابة...">
-
-          <button id="btnAddQ" class="btn secondary">حفظ السؤال</button>
+          <button id="btnAddQ" class="btn secondary">رفع وحفظ السؤال 📤</button>
         </div>
-
-        <div class="admin-card" style="background:#e8f8f5; border-color:#27ae60;">
-          <h3>3. نشر التغييرات</h3>
-          <p class="hint">حمل الملف الجديد واستبدل ملف questions.json القديم به ليظهر للجميع.</p>
-          <button id="btnExportJson" class="btn" style="background:#27ae60;">تحميل ملف البيانات (JSON)</button>
-        </div>
-
       </div>
     </div>
 
@@ -141,102 +94,46 @@
         <button id="logoutBtn" class="mini-btn" style="width: auto; padding: 0 10px;">خروج</button>
       </div>
       <div style="text-align: center; margin-top: 40px;">
-        <img src="images/splash.png" style="width: 100px; margin-bottom: 20px;" alt="logo">
+        <img src="images/splash.png" style="width: 100px; margin-bottom: 20px;" onerror="this.src='https://placehold.co/100x100?text=Logo'">
         <h1>المسابقة الثقافية</h1>
-        <p class="hint">تحدى أصدقاءك واختبر معلوماتك</p>
         <button id="goCatsBtn" class="btn">بدء لعبة جديدة</button>
       </div>
     </div>
 
     <div id="screen-categories" class="screen">
-      <div class="topbar">
-        <div class="title">اختر الفئات</div>
-        <button id="backHomeBtn" class="mini-btn">←</button>
-      </div>
-      <p class="hint" style="text-align: center; margin: 10px 0;">اختر من 3 إلى 6 فئات</p>
-      
+      <div class="topbar"><div class="title">اختر الفئات</div><button id="backHomeBtn" class="mini-btn">←</button></div>
       <div id="categoriesGrid" class="cats-grid"></div>
-      
-      <div style="margin-top: 20px; text-align: center;">
-        <span id="selectedInfo" class="pill">0 / 6</span>
-      </div>
+      <div style="margin-top: 20px; text-align: center;"><span id="selectedInfo" class="pill">0 / 6</span></div>
       <button id="toTeamsBtn" class="btn" disabled>التالي: الفرق</button>
     </div>
 
     <div id="screen-teams" class="screen">
-      <div class="topbar">
-        <div class="title">أسماء الفرق</div>
-        <button id="backCatsBtn" class="mini-btn">←</button>
-      </div>
+      <div class="topbar"><div class="title">أسماء الفرق</div><button id="backCatsBtn" class="mini-btn">←</button></div>
       <div style="margin-top: 20px;">
-        <label>الفريق الأول</label>
-        <input type="text" id="team1Input" class="input" placeholder="مثال: الصقور">
-        
-        <label>الفريق الثاني</label>
-        <input type="text" id="team2Input" class="input" placeholder="مثال: النمور">
-        
+        <label>الفريق الأول</label><input type="text" id="team1Input" class="input" placeholder="الفريق 1">
+        <label>الفريق الثاني</label><input type="text" id="team2Input" class="input" placeholder="الفريق 2">
         <button id="startGameBtn" class="btn">انطلاق المباراة 🚀</button>
       </div>
     </div>
 
     <div id="screen-board" class="screen">
       <div class="score-board">
-        <div class="team-box">
-          <div class="t-name" id="team1NameTop">الفريق 1</div>
-          <div class="t-score" id="team1ScoreTop">0</div>
-          <div class="controls">
-            <button id="team1Plus" class="mini-btn">+</button>
-            <button id="team1Minus" class="mini-btn">-</button>
-          </div>
-          <div class="lifelines">
-            <button id="t1Double" title="دبل (x2)">⭐</button>
-            <button id="t1Block" title="منع الخصم">⛔</button>
-            <button id="t1Call" title="اتصال بصديق">📞</button>
-          </div>
-        </div>
-
-        <div class="turn-info">
-          <div id="turnPill" class="pill">الدور: —</div>
-          <div id="turnNote" style="font-size: 10px; margin-top: 4px;">—</div>
-        </div>
-
-        <div class="team-box">
-          <div class="t-name" id="team2NameTop">الفريق 2</div>
-          <div class="t-score" id="team2ScoreTop">0</div>
-          <div class="controls">
-            <button id="team2Plus" class="mini-btn">+</button>
-            <button id="team2Minus" class="mini-btn">-</button>
-          </div>
-          <div class="lifelines">
-            <button id="t2Double" title="دبل (x2)">⭐</button>
-            <button id="t2Block" title="منع الخصم">⛔</button>
-            <button id="t2Call" title="اتصال بصديق">📞</button>
-          </div>
-        </div>
+        <div class="team-box"><div class="t-name" id="team1NameTop"></div><div class="t-score" id="team1ScoreTop">0</div>
+        <div class="controls"><button id="team1Plus" class="mini-btn">+</button><button id="team1Minus" class="mini-btn">-</button></div>
+        <div class="lifelines"><button id="t1Double">⭐</button><button id="t1Block">⛔</button><button id="t1Call">📞</button></div></div>
+        <div class="turn-info"><div id="turnPill" class="pill"></div><div id="turnNote" style="font-size:10px;"></div></div>
+        <div class="team-box"><div class="t-name" id="team2NameTop"></div><div class="t-score" id="team2ScoreTop">0</div>
+        <div class="controls"><button id="team2Plus" class="mini-btn">+</button><button id="team2Minus" class="mini-btn">-</button></div>
+        <div class="lifelines"><button id="t2Double">⭐</button><button id="t2Block">⛔</button><button id="t2Call">📞</button></div></div>
       </div>
-
-      <div class="actions-bar">
-        <button id="newGameBtn" class="mini-btn" style="width:auto; padding:0 8px;">إنهاء</button>
-      </div>
-
+      <div class="actions-bar"><button id="newGameBtn" class="mini-btn" style="width:auto;">إنهاء</button></div>
       <div id="boardGrid" class="board"></div>
     </div>
 
     <div id="screen-winner" class="screen">
-      <div class="winner-card" style="text-align: center;">
-        <h1 id="winnerTitle">الفائز</h1>
-        <p id="winnerDetails">التفاصيل</p>
-        <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-        <div class="winner-line">
-          <span id="wTeam1">فريق 1</span>
-          <span id="wScore1">0</span>
-        </div>
-        <div class="winner-line">
-          <span id="wTeam2">فريق 2</span>
-          <span id="wScore2">0</span>
-        </div>
-      </div>
-      <button id="backBoardBtn" class="btn secondary">مراجعة البورد</button>
+      <div class="winner-card" style="text-align:center;"><h1 id="winnerTitle"></h1>
+      <div class="winner-line"><span id="wTeam1"></span><span id="wScore1"></span></div>
+      <div class="winner-line"><span id="wTeam2"></span><span id="wScore2"></span></div></div>
       <button id="newGameFromWinnerBtn" class="btn">لعبة جديدة</button>
     </div>
 
@@ -244,34 +141,23 @@
 
   <div id="questionModal" class="hidden modal">
     <div class="modal-card">
-      <div class="modal-top">
-        <span id="qMeta" class="pill">فئة • 200</span>
-        <span id="timer" class="timer">00:00</span>
-        <button id="closeModalBtn" class="mini-btn">✕</button>
+      <div class="modal-top"><span id="qMeta" class="pill"></span><span id="timer" class="timer"></span><button id="closeModalBtn" class="mini-btn">✕</button></div>
+      
+      <div id="qImageArea" style="text-align:center; margin-bottom:10px; display:none;">
+          <img id="qImageDisplay" style="max-height:200px; max-width:100%; border-radius:10px;">
       </div>
 
-      <h2 id="qText" class="q-text">نص السؤال يظهر هنا...</h2>
-
+      <h2 id="qText" class="q-text"></h2>
       <div id="revealBtn" class="btn reveal">كشف الإجابة</div>
-
       <div id="answerArea" class="hidden answer">
-        <div class="answer-text" id="answerText">الإجابة هنا</div>
-        
-        <p class="hint">من أجاب بشكل صحيح؟</p>
-        <div class="pick-row">
-          <button id="pickTeam1" class="pick-btn">فريق 1</button>
-          <button id="pickTeam2" class="pick-btn">فريق 2</button>
-        </div>
+        <div class="answer-text" id="answerText"></div>
+        <div class="pick-row"><button id="pickTeam1" class="pick-btn">1</button><button id="pickTeam2" class="pick-btn">2</button></div>
         <button id="pickNoOne" class="pick-btn neutral" style="width:100%; margin-top:10px;">لا أحد</button>
       </div>
-
-      <div class="row" style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
-        <button id="undoOpenBtn" class="mini-btn" style="width: auto; padding: 0 10px; font-size: 12px;">تراجع (لم يفتح)</button>
-        <button id="reportBtn" class="mini-btn" style="width: auto; padding: 0 10px; font-size: 12px; background: #fee; color: red;">إبلاغ</button>
-      </div>
+      <div class="row" style="margin-top:15px;"><button id="undoOpenBtn" class="mini-btn" style="width:auto;">تراجع</button></div>
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
