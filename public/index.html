@@ -9,12 +9,24 @@
 
 <body>
 
+  <!-- شاشة دخول (حساب محلي بسيط) -->
+  <section id="screen-auth" class="screen active">
+    <div class="card">
+      <h1>ذهين</h1>
+      <p class="muted">اكتب اسم المستخدم عشان نحفظ تقدّمك وما تتكرر الأسئلة.</p>
+      <input id="usernameInput" class="input" placeholder="اسم المستخدم" />
+      <button id="loginBtn">دخول</button>
+      <p class="muted small">ملاحظة: هذا تسجيل محلي مؤقت (بدون Firebase حالياً).</p>
+    </div>
+  </section>
+
   <!-- شاشة البداية -->
-  <section id="screen-home" class="screen active">
+  <section id="screen-home" class="screen">
     <div class="card">
       <h1>لعبة ذهين</h1>
       <p class="muted">لعبة تحدي جماعية ذكية</p>
       <button id="startBtn">ابدأ اللعب</button>
+      <button id="logoutBtn" class="ghost">تسجيل خروج</button>
     </div>
   </section>
 
@@ -25,7 +37,6 @@
       <p class="muted">اختر من 3 إلى 6 فئات</p>
 
       <div id="selectedInfo" class="pill">0 / 6</div>
-
       <div id="categories" class="categories"></div>
 
       <div class="row">
@@ -66,6 +77,11 @@
             <div class="teamScore" id="team2ScoreTop">0</div>
             <button class="scoreBtn" id="team2Plus">+</button>
           </div>
+          <div class="lifelineRow">
+            <button class="life" id="t2Call" title="اتصال بصديق">📞</button>
+            <button class="life" id="t2Block" title="منع إجابة الفريق الثاني">⛔</button>
+            <button class="life" id="t2Double" title="دبل النقاط">⭐</button>
+          </div>
         </div>
 
         <div class="brandCenter">ذهين</div>
@@ -77,6 +93,11 @@
             <div class="teamScore" id="team1ScoreTop">0</div>
             <button class="scoreBtn" id="team1Plus">+</button>
           </div>
+          <div class="lifelineRow">
+            <button class="life" id="t1Double" title="دبل النقاط">⭐</button>
+            <button class="life" id="t1Block" title="منع إجابة الفريق الثاني">⛔</button>
+            <button class="life" id="t1Call" title="اتصال بصديق">📞</button>
+          </div>
         </div>
       </header>
 
@@ -84,6 +105,31 @@
 
       <div class="boardActions">
         <button class="ghost" id="resetGameBtn">لعبة جديدة</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- شاشة الفوز -->
+  <section id="screen-winner" class="screen">
+    <div class="card wide">
+      <div class="celebrate">🎉🎉🎉</div>
+      <h2 id="winnerTitle">انتهت اللعبة</h2>
+      <p class="muted" id="winnerDetails">—</p>
+
+      <div class="winnerScores">
+        <div class="ws">
+          <div class="wsName" id="wTeam2">—</div>
+          <div class="wsScore" id="wScore2">0</div>
+        </div>
+        <div class="ws">
+          <div class="wsName" id="wTeam1">—</div>
+          <div class="wsScore" id="wScore1">0</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <button id="backToBoardBtn" class="ghost">رجوع للوحة</button>
+        <button id="newGameFromWinnerBtn">لعبة جديدة</button>
       </div>
     </div>
   </section>
@@ -97,7 +143,13 @@
       </div>
 
       <div class="imgBox">
+        <button class="flagBtn" id="reportBtn" title="بلاغ عن السؤال">🚩</button>
         <div class="imgPlaceholder" id="imgPlaceholder">صورة تجريبية</div>
+      </div>
+
+      <div class="turnRow">
+        <div class="turnPill" id="turnPill">الدور: —</div>
+        <div class="turnNote" id="turnNote">—</div>
       </div>
 
       <div class="qText" id="qText">—</div>
@@ -107,7 +159,7 @@
       <div id="answerArea" class="answerArea hidden">
         <div class="answerText" id="answerText">—</div>
 
-        <div class="pickRow">
+        <div class="pickRow" id="pickRow">
           <button class="mini" id="pickTeam1">الفريق 1</button>
           <button class="mini ghost" id="pickNoOne">بدون نقاط</button>
           <button class="mini" id="pickTeam2">الفريق 2</button>

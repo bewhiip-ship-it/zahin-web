@@ -1,10 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== Elements =====
-  const screenHome = document.getElementById("screen-home");
-  const screenCategories = document.getElementById("screen-categories");
-  const screenTeams = document.getElementById("screen-teams");
-  const screenBoard = document.getElementById("screen-board");
+  // Screens
+  const sAuth = document.getElementById("screen-auth");
+  const sHome = document.getElementById("screen-home");
+  const sCats = document.getElementById("screen-categories");
+  const sTeams = document.getElementById("screen-teams");
+  const sBoard = document.getElementById("screen-board");
+  const sWinner = document.getElementById("screen-winner");
 
+  // Auth
+  const usernameInput = document.getElementById("usernameInput");
+  const loginBtn = document.getElementById("loginBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const KEY_USER = "zahin_user_v1";
+
+  // Home/Cats/Teams buttons
   const startBtn = document.getElementById("startBtn");
   const backToHomeBtn = document.getElementById("backToHomeBtn");
   const continueBtn = document.getElementById("continueBtn");
@@ -12,12 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const startHostBtn = document.getElementById("startHostBtn");
   const resetGameBtn = document.getElementById("resetGameBtn");
 
+  // Cats UI
   const categoriesDiv = document.getElementById("categories");
   const selectedInfo = document.getElementById("selectedInfo");
+  const MIN_CATS = 3;
+  const MAX_CATS = 6;
 
+  // Teams
   const team1Input = document.getElementById("team1Input");
   const team2Input = document.getElementById("team2Input");
 
+  // Scorebar
   const team1NameTop = document.getElementById("team1NameTop");
   const team2NameTop = document.getElementById("team2NameTop");
   const team1ScoreTop = document.getElementById("team1ScoreTop");
@@ -27,27 +41,51 @@ document.addEventListener("DOMContentLoaded", () => {
   const team2Plus = document.getElementById("team2Plus");
   const team2Minus = document.getElementById("team2Minus");
 
+  // Lifelines buttons
+  const t1Double = document.getElementById("t1Double");
+  const t1Block = document.getElementById("t1Block");
+  const t1Call = document.getElementById("t1Call");
+  const t2Double = document.getElementById("t2Double");
+  const t2Block = document.getElementById("t2Block");
+  const t2Call = document.getElementById("t2Call");
+
+  // Board
   const boardGrid = document.getElementById("boardGrid");
+  const POINTS = [200, 200, 400, 400, 600, 600];
+
+  // Winner
+  const winnerTitle = document.getElementById("winnerTitle");
+  const winnerDetails = document.getElementById("winnerDetails");
+  const wTeam1 = document.getElementById("wTeam1");
+  const wTeam2 = document.getElementById("wTeam2");
+  const wScore1 = document.getElementById("wScore1");
+  const wScore2 = document.getElementById("wScore2");
+  const backToBoardBtn = document.getElementById("backToBoardBtn");
+  const newGameFromWinnerBtn = document.getElementById("newGameFromWinnerBtn");
 
   // Modal
-  const questionModal = document.getElementById("questionModal");
+  const modal = document.getElementById("questionModal");
   const qMeta = document.getElementById("qMeta");
   const timerEl = document.getElementById("timer");
   const qText = document.getElementById("qText");
+  const revealBtn = document.getElementById("revealBtn");
   const answerArea = document.getElementById("answerArea");
   const answerText = document.getElementById("answerText");
-  const revealBtn = document.getElementById("revealBtn");
   const pickTeam1 = document.getElementById("pickTeam1");
   const pickTeam2 = document.getElementById("pickTeam2");
   const pickNoOne = document.getElementById("pickNoOne");
   const closeModalBtn = document.getElementById("closeModalBtn");
   const undoOpenBtn = document.getElementById("undoOpenBtn");
 
-  // ===== Config =====
-  const MIN_CATS = 3;
-  const MAX_CATS = 6;
-  const POINTS = [200, 200, 400, 400, 600, 600];
+  // Turn UI
+  const turnPill = document.getElementById("turnPill");
+  const turnNote = document.getElementById("turnNote");
 
+  // Report
+  const reportBtn = document.getElementById("reportBtn");
+  const KEY_REPORTS = "zahin_reports_v1";
+
+  // Categories
   const CATEGORIES = [
     { id: "islam", name: "إسلاميات" },
     { id: "prophets", name: "قصص الأنبياء" },
@@ -61,11 +99,10 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: "geo", name: "جغرافيا" }
   ];
 
-  // ===== Storage Keys =====
-  const KEY_STATE = "zahin_state_v1";               // حفظ جلسة اللعب
-  const KEY_FINALIZED = "zahin_finalized_ids_v1";  // أسئلة منتهية "ما تتكرر"
+  // Storage keys
+  const KEY_STATE = "zahin_state_v2";
 
-  // ===== State =====
+  // Local state
   let selected = new Set();
   let state = loadState() || null;
 
@@ -75,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== Helpers =====
   function show(screen) {
-    [screenHome, screenCategories, screenTeams, screenBoard].forEach(s => s.classList.remove("active"));
+    [sAuth, sHome, sCats, sTeams, sBoard, sWinner].forEach(x => x.classList.remove("active"));
     screen.classList.add("active");
   }
 
@@ -84,10 +121,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function loadState() {
-    try {
-      const raw = localStorage.getItem(KEY_STATE);
-      return raw ? JSON.parse(raw) : null;
-    } catch { return null; }
+    try { return JSON.parse(localStorage.getItem(KEY_STATE) || "null"); }
+    catch { return null; }
   }
 
   function clearState() {
@@ -95,28 +130,69 @@ document.addEventListener("DOMContentLoaded", () => {
     state = null;
   }
 
-  function loadFinalizedSet(){
+  function getUser() {
+    try { return JSON.parse(localStorage.getItem(KEY_USER) || "null"); }
+    catch { return null; }
+  }
+
+  function setUser(username) {
+    const u = { id: "u_" + username.toLowerCase().replace(/\s+/g, "_"), username };
+    localStorage.setItem(KEY_USER, JSON.stringify(u));
+    return u;
+  }
+
+  function logout() {
+    localStorage.removeItem(KEY_USER);
+    clearState();
+    selected = new Set();
+    show(sAuth);
+  }
+
+  function finalizedKeyForUser(userId) {
+    return `zahin_finalized_ids_${userId}`;
+  }
+
+  function loadFinalizedSet(userId) {
     try {
-      const raw = localStorage.getItem(KEY_FINALIZED);
+      const raw = localStorage.getItem(finalizedKeyForUser(userId));
       const arr = raw ? JSON.parse(raw) : [];
       return new Set(arr);
-    } catch { return new Set(); }
+    } catch {
+      return new Set();
+    }
   }
 
-  function addFinalized(id){
-    const set = loadFinalizedSet();
-    set.add(id);
-    localStorage.setItem(KEY_FINALIZED, JSON.stringify([...set]));
+  function addFinalized(userId, qid) {
+    const set = loadFinalizedSet(userId);
+    set.add(qid);
+    localStorage.setItem(finalizedKeyForUser(userId), JSON.stringify([...set]));
   }
 
-  function formatMMSS(ms){
+  function formatMMSS(ms) {
     const s = Math.floor(ms / 1000);
     const m = Math.floor(s / 60);
     const r = s % 60;
-    return String(m).padStart(2,"0") + ":" + String(r).padStart(2,"0");
+    return String(m).padStart(2, "0") + ":" + String(r).padStart(2, "0");
   }
 
-  function bumpScore(team, delta){
+  function openModal() { modal.classList.remove("hidden"); }
+  function closeModal() { modal.classList.add("hidden"); }
+
+  function startTimer() {
+    tStart = Date.now();
+    timerEl.textContent = "00:00";
+    if (tInterval) clearInterval(tInterval);
+    tInterval = setInterval(() => {
+      timerEl.textContent = formatMMSS(Date.now() - tStart);
+    }, 250);
+  }
+
+  function stopTimer() {
+    if (tInterval) clearInterval(tInterval);
+    tInterval = null;
+  }
+
+  function bumpScore(team, delta) {
     if (!state) return;
     if (team === 1) state.team1Score += delta;
     if (team === 2) state.team2Score += delta;
@@ -124,51 +200,35 @@ document.addEventListener("DOMContentLoaded", () => {
     saveState();
   }
 
-  function renderScorebar(){
+  function setLifeBtn(btn, used) {
+    if (!btn) return;
+    if (used) btn.classList.add("used");
+    else btn.classList.remove("used");
+    btn.disabled = !!used;
+  }
+
+  function renderScorebar() {
     if (!state) return;
+
     team1NameTop.textContent = state.team1Name;
     team2NameTop.textContent = state.team2Name;
     team1ScoreTop.textContent = state.team1Score;
     team2ScoreTop.textContent = state.team2Score;
 
-    // أسماء الأزرار داخل المودال
     pickTeam1.textContent = state.team1Name;
     pickTeam2.textContent = state.team2Name;
+
+    // lifelines UI
+    setLifeBtn(t1Double, state.lifelines.t1.doubleUsed);
+    setLifeBtn(t1Block, state.lifelines.t1.blockUsed);
+    setLifeBtn(t1Call, state.lifelines.t1.callUsed);
+
+    setLifeBtn(t2Double, state.lifelines.t2.doubleUsed);
+    setLifeBtn(t2Block, state.lifelines.t2.blockUsed);
+    setLifeBtn(t2Call, state.lifelines.t2.callUsed);
   }
 
-  // ===== Questions Seed (صور تجريبية) =====
-  function makePlaceholderQuestionsForCategory(catId, catName){
-    // 6 أسئلة لكل فئة
-    return POINTS.map((pts, idx) => {
-      const id = `${catId}_${pts}_${idx}`;
-      return {
-        id,
-        categoryId: catId,
-        categoryName: catName,
-        points: pts,
-        question: `(${catName}) سؤال تجريبي رقم ${idx + 1} بقيمة ${pts} نقطة؟`,
-        answer: `(${catName}) إجابة تجريبية رقم ${idx + 1}.`,
-        image: "placeholder" // مجرد نص داخل الصندوق
-      };
-    });
-  }
-
-  function buildQuestionsBank(selectedCatIds){
-    const finalized = loadFinalizedSet();
-    const bank = {};
-    selectedCatIds.forEach(cid => {
-      const cat = CATEGORIES.find(c => c.id === cid);
-      const all = makePlaceholderQuestionsForCategory(cat.id, cat.name);
-
-      // فلترة الأسئلة المنتهية سابقًا (ما تتكرر على نفس الجهاز)
-      const filtered = all.filter(q => !finalized.has(q.id));
-      bank[cid] = filtered;
-    });
-    return bank;
-  }
-
-  // ===== Categories UI =====
-  function updateSelectedInfo(){
+  function updateSelectedInfo() {
     selectedInfo.textContent = `${selected.size} / ${MAX_CATS}`;
     continueBtn.disabled = selected.size < MIN_CATS || selected.size > MAX_CATS;
   }
@@ -194,57 +254,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
       categoriesDiv.appendChild(div);
     });
-
     updateSelectedInfo();
   }
 
-  // ===== Board Rendering =====
-  function renderBoard(){
-    if (!state) return;
+  // ===== Questions (placeholder) =====
+  function makePlaceholderQuestion(categoryId, categoryName, points, idx) {
+    return {
+      id: `${categoryId}_${points}_${idx}`,
+      categoryId,
+      categoryName,
+      points,
+      question: `(${categoryName}) سؤال تجريبي بقيمة ${points} نقطة؟`,
+      answer: `(${categoryName}) إجابة تجريبية.`,
+      image: "placeholder"
+    };
+  }
 
+  // ===== Board =====
+  function renderBoard() {
+    if (!state) return;
     boardGrid.innerHTML = "";
 
-    // نعرض حتى 6 أعمدة (TV friendly). لو أقل من 6، نعرض فقط المختار.
-    const catIds = state.selectedCategoryIds;
-
-    catIds.forEach(cid => {
+    state.selectedCategoryIds.forEach(cid => {
       const cat = CATEGORIES.find(c => c.id === cid);
+
       const col = document.createElement("div");
       col.className = "colCard";
 
       const header = document.createElement("div");
       header.className = "colHeader";
-      header.textContent = cat.name;
+      header.textContent = cat ? cat.name : cid;
       col.appendChild(header);
 
       const cells = document.createElement("div");
       cells.className = "cells";
 
-      // لكل فئة لازم 6 خلايا نقاط
-      POINTS.forEach((pts, idx) => {
-        const qId = `${cid}_${pts}_${idx}`;
+      const allDone = POINTS.every((p, i) => state.finalized[`${cid}_${p}_${i}`] === true);
 
+      POINTS.forEach((pts, idx) => {
+        const qid = `${cid}_${pts}_${idx}`;
         const cell = document.createElement("div");
         cell.className = "cell";
         cell.textContent = pts;
 
-        // إذا السؤال منتهي
-        if (state.finalized[qId]) {
-          cell.classList.add("used");
-        }
-
-        // إذا الفئة ما عاد فيها أسئلة (كلها منتهية)
-        const allDone = POINTS.every((p, i) => state.finalized[`${cid}_${p}_${i}`] === true);
-        if (allDone) {
-          // نخلي كل خلايا العمود disabled بصريًا
-          cell.classList.add("disabled");
-        }
+        if (state.finalized[qid]) cell.classList.add("used");
+        if (allDone) cell.classList.add("disabled");
 
         cell.addEventListener("click", () => {
-          // ما نسمح اختيار سؤال منتهي أو فئة منتهية
-          if (state.finalized[qId]) return;
+          if (state.finalized[qid]) return;
           if (allDone) return;
-
           openQuestion(cid, pts, idx);
         });
 
@@ -256,162 +314,331 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===== Modal / Question =====
-  function openModal(){
-    questionModal.classList.remove("hidden");
-  }
-  function closeModal(){
-    questionModal.classList.add("hidden");
-  }
-
-  function startTimer(){
-    tStart = Date.now();
-    timerEl.textContent = "00:00";
-    if (tInterval) clearInterval(tInterval);
-    tInterval = setInterval(() => {
-      timerEl.textContent = formatMMSS(Date.now() - tStart);
-    }, 300);
-  }
-  function stopTimer(){
-    if (tInterval) clearInterval(tInterval);
-    tInterval = null;
+  function isGameFinished() {
+    if (!state) return false;
+    return state.selectedCategoryIds.every(cid =>
+      POINTS.every((p, i) => state.finalized[`${cid}_${p}_${i}`] === true)
+    );
   }
 
-  function currentQuestion(){
+  function renderWinner() {
+    if (!state) return;
+
+    const t1 = state.team1Name;
+    const t2 = state.team2Name;
+    const s1 = state.team1Score;
+    const s2 = state.team2Score;
+
+    wTeam1.textContent = t1;
+    wTeam2.textContent = t2;
+    wScore1.textContent = s1;
+    wScore2.textContent = s2;
+
+    if (s1 > s2) {
+      winnerTitle.textContent = `الفائز: ${t1} 🎉`;
+      winnerDetails.textContent = "مبروك! انتهت كل الأسئلة.";
+    } else if (s2 > s1) {
+      winnerTitle.textContent = `الفائز: ${t2} 🎉`;
+      winnerDetails.textContent = "مبروك! انتهت كل الأسئلة.";
+    } else {
+      winnerTitle.textContent = "تعادل 🤝";
+      winnerDetails.textContent = "انتهت كل الأسئلة. (كسر التعادل نضيفه بالمرحلة الجاية)";
+    }
+  }
+
+  function goWinner() {
+    renderWinner();
+    show(sWinner);
+  }
+
+  // ===== Turn + Lifelines =====
+  function currentQuestion() {
     if (!state || !state.currentQuestionId) return null;
-    const qid = state.currentQuestionId;
-    return state.questions[qid] || null;
+    return state.questions[state.currentQuestionId] || null;
   }
 
-  function openQuestion(categoryId, points, idx){
-    const qId = `${categoryId}_${points}_${idx}`;
+  function randomTurnTeam() {
+    return Math.random() < 0.5 ? 1 : 2;
+  }
 
-    // إذا عندنا سؤال مفتوح سابقًا ولم يُنهى، نخليه يرجع له (حسب طلبك)
-    state.currentQuestionId = qId;
-    state.currentRevealed = false;
-
-    // جهّز السؤال لو مو موجود
-    if (!state.questions[qId]) {
-      const cat = CATEGORIES.find(c => c.id === categoryId);
-      state.questions[qId] = {
-        id: qId,
-        categoryId,
-        categoryName: cat.name,
-        points,
-        question: `(${cat.name}) سؤال تجريبي بقيمة ${points} نقطة؟`,
-        answer: `(${cat.name}) إجابة تجريبية.`,
-        image: "placeholder"
-      };
+  function updateTurnUI() {
+    if (!state || !state.currentTurnTeam) {
+      turnPill.textContent = "الدور: —";
+      turnNote.textContent = "—";
+      return;
     }
 
-    // UI
-    const q = state.questions[qId];
+    const teamName = state.currentTurnTeam === 1 ? state.team1Name : state.team2Name;
+    turnPill.textContent = `الدور: ${teamName}`;
+
+    const flags = [];
+    if (state.turnFlags.double) flags.push("⭐ دبل");
+    if (state.turnFlags.block) flags.push("⛔ منع");
+    if (state.turnFlags.call) flags.push("📞 اتصال");
+    turnNote.textContent = flags.length ? `مفعّل: ${flags.join(" • ")}` : "—";
+  }
+
+  function canUseLifeline(team, key) {
+    const lf = team === 1 ? state.lifelines.t1 : state.lifelines.t2;
+    if (key === "double") return !lf.doubleUsed;
+    if (key === "block") return !lf.blockUsed;
+    if (key === "call") return !lf.callUsed;
+    return false;
+  }
+
+  function markUsed(team, key) {
+    const lf = team === 1 ? state.lifelines.t1 : state.lifelines.t2;
+    if (key === "double") lf.doubleUsed = true;
+    if (key === "block") lf.blockUsed = true;
+    if (key === "call") lf.callUsed = true;
+  }
+
+  function applyLifeline(team, key) {
+    if (!state || !state.currentQuestionId) {
+      alert("اختر سؤال أولاً.");
+      return;
+    }
+
+    // دبل فقط للفريق اللي عليه الدور
+    if (key === "double" && team !== state.currentTurnTeam) {
+      alert("⭐ دبل النقاط فقط للفريق اللي عليه الدور.");
+      return;
+    }
+
+    if (!canUseLifeline(team, key)) return;
+
+    if (key === "double") {
+      state.turnFlags.double = true;
+      markUsed(team, "double");
+      alert("تم تفعيل ⭐ دبل النقاط لهذا السؤال.");
+    }
+
+    if (key === "block") {
+      state.turnFlags.block = true;
+      markUsed(team, "block");
+      alert("تم تفعيل ⛔ منع إجابة الفريق الثاني لهذا السؤال.");
+    }
+
+    if (key === "call") {
+      state.turnFlags.call = true;
+      markUsed(team, "call");
+      alert("📞 اتصال بصديق (بدون تغيير في السؤال).");
+    }
+
+    renderScorebar();
+    updateTurnUI();
+    saveState();
+  }
+
+  // ===== Question Modal =====
+  function openQuestion(categoryId, points, idx) {
+    const cat = CATEGORIES.find(c => c.id === categoryId);
+    const q = makePlaceholderQuestion(categoryId, cat ? cat.name : categoryId, points, idx);
+
+    state.currentQuestionId = q.id;
+    state.questions[q.id] = q;
+    state.currentRevealed = false;
+
+    // دور عشوائي + reset flags لهذا السؤال
+    state.currentTurnTeam = randomTurnTeam();
+    state.turnFlags = { double: false, block: false, call: false };
+
     qMeta.textContent = `${q.categoryName} • ${q.points} نقطة`;
     qText.textContent = q.question;
 
     answerArea.classList.add("hidden");
     revealBtn.style.display = "block";
 
+    // رجّع أزرار الاختيار كما كانت
+    pickTeam1.style.display = "";
+    pickTeam2.style.display = "";
+    pickNoOne.style.display = "";
+
+    updateTurnUI();
     renderScorebar();
+
     openModal();
     startTimer();
-
     saveState();
   }
 
-  function revealAnswer(){
+  function revealAnswer() {
     const q = currentQuestion();
     if (!q) return;
 
     state.currentRevealed = true;
-
     answerText.textContent = q.answer;
+
+    // المنع: يخفي الفريق الآخر (غير فريق الدور) بعد الإظهار
+    if (state.turnFlags.block) {
+      if (state.currentTurnTeam === 1) {
+        pickTeam2.style.display = "none";
+      } else {
+        pickTeam1.style.display = "none";
+      }
+    }
+
     answerArea.classList.remove("hidden");
     revealBtn.style.display = "none";
-
     saveState();
   }
 
-  function finalizeQuestion(winnerTeamOrNull){
+  function finalizeQuestion(winnerTeamOrNull) {
     const q = currentQuestion();
     if (!q) return;
 
-    // النقاط تُضاف فقط عند اختيار فريق
-    if (winnerTeamOrNull === 1) state.team1Score += q.points;
-    if (winnerTeamOrNull === 2) state.team2Score += q.points;
+    // النقاط: دبل فقط لو الفائز هو نفس فريق الدور
+    let pts = q.points;
+    if (state.turnFlags.double && winnerTeamOrNull === state.currentTurnTeam) {
+      pts = pts * 2;
+    }
 
-    // تعليم السؤال "منتهي" — ما يرجع يظهر
+    if (winnerTeamOrNull === 1) state.team1Score += pts;
+    if (winnerTeamOrNull === 2) state.team2Score += pts;
+
+    // mark finalized per game + per user non-repeat
     state.finalized[q.id] = true;
-    addFinalized(q.id);
+    addFinalized(state.userId, q.id);
 
-    // خروج من السؤال
+    // clear current
     state.currentQuestionId = null;
     state.currentRevealed = false;
+    state.currentTurnTeam = null;
+    state.turnFlags = { double: false, block: false, call: false };
 
     renderScorebar();
     renderBoard();
     saveState();
+
     closeModal();
     stopTimer();
+
+    if (isGameFinished()) goWinner();
   }
 
-  function undoOpenQuestion(){
-    // "تم اختيار السؤال بالخطأ" => يرجع اللوحة بدون إنهاء السؤال
+  function undoOpenQuestion() {
+    // اختيار بالخطأ: يرجع بدون إنهاء
     state.currentQuestionId = null;
     state.currentRevealed = false;
+    state.currentTurnTeam = null;
+    state.turnFlags = { double: false, block: false, call: false };
     saveState();
     closeModal();
     stopTimer();
   }
 
-  // ===== Game Start =====
-  function startNewGame(selectedCatIds, team1Name, team2Name){
-    const bank = buildQuestionsBank(selectedCatIds);
+  // Close without finalize => يبقى السؤال غير منتهي (يقدر يرجع له)
+  function closeWithoutFinalize() {
+    saveState();
+    closeModal();
+    stopTimer();
+  }
 
-    // نبني state خفيف
+  // ===== Reports =====
+  function loadReports() {
+    try { return JSON.parse(localStorage.getItem(KEY_REPORTS) || "[]"); }
+    catch { return []; }
+  }
+
+  function saveReports(list) {
+    localStorage.setItem(KEY_REPORTS, JSON.stringify(list));
+  }
+
+  function reportQuestion() {
+    const q = currentQuestion();
+    if (!q) return;
+
+    const reason = prompt("اكتب سبب البلاغ (اختياري):") || "";
+    const list = loadReports();
+
+    list.push({
+      id: "r_" + Date.now(),
+      userId: state.userId,
+      username: state.username,
+      questionId: q.id,
+      category: q.categoryName,
+      points: q.points,
+      reason,
+      ts: new Date().toISOString()
+    });
+
+    saveReports(list);
+    alert("تم إرسال البلاغ ✅ (محلياً حالياً)");
+  }
+
+  // ===== Game Start / Restore =====
+  function startNewGame(selectedCatIds, team1Name, team2Name) {
+    const user = getUser();
+    if (!user) { show(sAuth); return; }
+
     state = {
-      version: 1,
+      version: 2,
+      userId: user.id,
+      username: user.username,
+
       selectedCategoryIds: selectedCatIds,
       team1Name,
       team2Name,
       team1Score: 0,
       team2Score: 0,
 
-      // finalized: خريطة questionId => true
+      // per-game finalized map
       finalized: {},
 
-      // الأسئلة (تتولد حسب الحاجة)
+      // questions cache
       questions: {},
 
+      // current
       currentQuestionId: null,
-      currentRevealed: false
+      currentRevealed: false,
+
+      // turn
+      currentTurnTeam: null,
+      turnFlags: { double: false, block: false, call: false },
+
+      // lifelines once per team
+      lifelines: {
+        t1: { doubleUsed: false, blockUsed: false, callUsed: false },
+        t2: { doubleUsed: false, blockUsed: false, callUsed: false }
+      }
     };
 
-    // إذا فئة كل أسئلتها مفلترة (منتهية سابقًا) نخليها رمادي (من خلال renderBoard)
-    // ملاحظة: ما نحذفها الآن، بس وقت العرض يكون كله disabled إذا كلها منتهية.
+    // respect per-user nonrepeat by importing finalized set
+    const finalizedSet = loadFinalizedSet(state.userId);
+    finalizedSet.forEach(qid => { state.finalized[qid] = true; });
 
     saveState();
     renderScorebar();
     renderBoard();
-    show(screenBoard);
+    show(sBoard);
+
+    if (isGameFinished()) goWinner();
   }
 
-  // ===== Restore Session =====
-  function restoreIfAny(){
+  function restoreIfAny() {
+    const user = getUser();
+    if (!user) return false;
+
+    // لو state موجود لكن المستخدم تغير
+    if (state && state.userId !== user.id) {
+      clearState();
+      state = null;
+      return false;
+    }
+
     if (!state) return false;
 
-    // رجّع للوحة مباشرة
     renderScorebar();
     renderBoard();
-    show(screenBoard);
+    show(sBoard);
 
-    // لو فيه سؤال مفتوح، افتحه
+    // restore current question modal if exists
     if (state.currentQuestionId) {
-      const qid = state.currentQuestionId;
-      const q = state.questions[qid];
+      const q = state.questions[state.currentQuestionId];
       if (q) {
         qMeta.textContent = `${q.categoryName} • ${q.points} نقطة`;
         qText.textContent = q.question;
+        updateTurnUI();
 
         if (state.currentRevealed) {
           answerText.textContent = q.answer;
@@ -422,40 +649,56 @@ document.addEventListener("DOMContentLoaded", () => {
           revealBtn.style.display = "block";
         }
 
+        // restore pick buttons visibility
+        pickTeam1.style.display = "";
+        pickTeam2.style.display = "";
+        if (state.turnFlags && state.turnFlags.block) {
+          if (state.currentTurnTeam === 1) pickTeam2.style.display = "none";
+          if (state.currentTurnTeam === 2) pickTeam1.style.display = "none";
+        }
+
         openModal();
         startTimer();
       }
     }
 
+    if (isGameFinished()) goWinner();
     return true;
   }
 
   // ===== Events =====
-  startBtn.addEventListener("click", () => {
-    renderCategories();
-    show(screenCategories);
+
+  // Auth
+  loginBtn.addEventListener("click", () => {
+    const name = (usernameInput.value || "").trim();
+    if (!name) { alert("اكتب اسم المستخدم."); return; }
+    setUser(name);
+    show(sHome);
   });
 
-  backToHomeBtn.addEventListener("click", () => show(screenHome));
+  logoutBtn.addEventListener("click", logout);
+
+  // Home -> Cats
+  startBtn.addEventListener("click", () => {
+    renderCategories();
+    show(sCats);
+  });
+
+  backToHomeBtn.addEventListener("click", () => show(sHome));
 
   continueBtn.addEventListener("click", () => {
     const chosen = [...selected];
     localStorage.setItem("zahin_selected_categories", JSON.stringify(chosen));
-    show(screenTeams);
+    show(sTeams);
   });
 
-  backToCategoriesBtn.addEventListener("click", () => show(screenCategories));
+  backToCategoriesBtn.addEventListener("click", () => show(sCats));
 
   startHostBtn.addEventListener("click", () => {
     const team1 = (team1Input.value || "").trim() || "الفريق الأول";
     const team2 = (team2Input.value || "").trim() || "الفريق الثاني";
-
     const chosen = JSON.parse(localStorage.getItem("zahin_selected_categories") || "[]");
-    if (chosen.length < MIN_CATS) {
-      alert("اختر 3 فئات على الأقل.");
-      return;
-    }
-
+    if (chosen.length < MIN_CATS) { alert("اختر 3 فئات على الأقل."); return; }
     startNewGame(chosen, team1, team2);
   });
 
@@ -465,34 +708,46 @@ document.addEventListener("DOMContentLoaded", () => {
   team2Plus.addEventListener("click", () => bumpScore(2, 100));
   team2Minus.addEventListener("click", () => bumpScore(2, -100));
 
+  // Lifelines (once per team)
+  t1Double.addEventListener("click", () => applyLifeline(1, "double"));
+  t1Block.addEventListener("click", () => applyLifeline(1, "block"));
+  t1Call.addEventListener("click", () => applyLifeline(1, "call"));
+  t2Double.addEventListener("click", () => applyLifeline(2, "double"));
+  t2Block.addEventListener("click", () => applyLifeline(2, "block"));
+  t2Call.addEventListener("click", () => applyLifeline(2, "call"));
+
   // Modal
   revealBtn.addEventListener("click", revealAnswer);
   pickTeam1.addEventListener("click", () => finalizeQuestion(1));
   pickTeam2.addEventListener("click", () => finalizeQuestion(2));
   pickNoOne.addEventListener("click", () => finalizeQuestion(null));
-
-  closeModalBtn.addEventListener("click", () => {
-    // رجوع للوحة بدون إنهاء (إذا ما اخترت فريق)
-    // يبقى السؤال قابل للفتح من جديد داخل نفس القيم
-    state.currentRevealed = state.currentRevealed || false;
-    saveState();
-    closeModal();
-    stopTimer();
-  });
-
+  closeModalBtn.addEventListener("click", closeWithoutFinalize);
   undoOpenBtn.addEventListener("click", undoOpenQuestion);
 
+  // Report
+  reportBtn.addEventListener("click", reportQuestion);
+
+  // Reset
   resetGameBtn.addEventListener("click", () => {
     if (!confirm("تبغى تبدأ لعبة جديدة؟")) return;
     clearState();
     selected = new Set();
-    show(screenHome);
+    show(sHome);
+  });
+
+  // Winner actions
+  backToBoardBtn.addEventListener("click", () => show(sBoard));
+  newGameFromWinnerBtn.addEventListener("click", () => {
+    clearState();
+    selected = new Set();
+    show(sHome);
   });
 
   // ===== Init =====
-  if (restoreIfAny()) {
-    // تم
+  const user = getUser();
+  if (!user) {
+    show(sAuth);
   } else {
-    show(screenHome);
+    if (!restoreIfAny()) show(sHome);
   }
 });
