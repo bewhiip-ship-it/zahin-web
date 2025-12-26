@@ -85,8 +85,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const reportBtn = document.getElementById("reportBtn");
   const KEY_REPORTS = "zahin_reports_v1";
 
-  // Categories
-  const CATEGORIES = [
+  // Storage keys
+  const KEY_STATE = "zahin_state_v2";
+  const KEY_QBANK_CACHE = "zahin_qbank_cache_v1";
+
+  // Local state
+  let selected = new Set();
+  let state = loadState() || null;
+
+  // QBank runtime
+  let QBANK = null; // {version,categories,questions}
+  let QLOOKUP = null; // Map: categoryId -> slot(0..5) -> question
+  let CATEGORIES = []; // from bank
+  const FALLBACK_CATEGORIES = [
     { id: "islam", name: "إسلاميات" },
     { id: "prophets", name: "قصص الأنبياء" },
     { id: "letters", name: "حروف (معاني/مرادفات)" },
@@ -98,13 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: "math", name: "رياضيات" },
     { id: "geo", name: "جغرافيا" }
   ];
-
-  // Storage keys
-  const KEY_STATE = "zahin_state_v2";
-
-  // Local state
-  let selected = new Set();
-  let state = loadState() || null;
 
   // Timer
   let tStart = 0;
@@ -235,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderCategories() {
     categoriesDiv.innerHTML = "";
-    CATEGORIES.forEach(cat => {
+    (CATEGORIES.length ? CATEGORIES : FALLBACK_CATEGORIES).forEach(cat => {
       const div = document.createElement("div");
       div.className = "category" + (selected.has(cat.id) ? " selected" : "");
       div.textContent = cat.name;
@@ -257,17 +261,41 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSelectedInfo();
   }
 
-  // ===== Questions (placeholder) =====
-  function makePlaceholderQuestion(categoryId, categoryName, points, idx) {
-    return {
-      id: `${categoryId}_${points}_${idx}`,
-      categoryId,
-      categoryName,
-      points,
-      question: `(${categoryName}) سؤال تجريبي بقيمة ${points} نقطة؟`,
-      answer: `(${categoryName}) إجابة تجريبية.`,
-      image: "placeholder"
-    };
+  // ===== QBank =====
+  function buildLookup(bank) {
+    const map = new Map(); // categoryId -> Map(slot -> question)
+    bank.questions.forEach(q => {
+      if (!map.has(q.categoryId)) map.set(q.categoryId, new Map());
+      map.get(q.categoryId).set(q.slot, q);
+    });
+    return map;
+  }
+
+  async function loadQBank() {
+    // 1) Try fetch from file
+    try {
+      const res = await fetch("./questions.json", { cache: "no-store" });
+      if (!res.ok) throw new Error("fetch failed");
+      const bank = await res.json();
+      // Save cache
+      localStorage.setItem(KEY_QBANK_CACHE, JSON.stringify(bank));
+      return bank;
+    } catch (_) {
+      // 2) Fallback to cache
+      try {
+        const cached = localStorage.getItem(KEY_QBANK_CACHE);
+        if (cached) return JSON.parse(cached);
+      } catch (_) {}
+      // 3) No bank
+      return null;
+    }
+  }
+
+  function getQuestionBySlot(categoryId, slot) {
+    if (!QLOOKUP) return null;
+    const catMap = QLOOKUP.get(categoryId);
+    if (!catMap) return null;
+    return catMap.get(slot) || null;
   }
 
   // ===== Board =====
@@ -276,7 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
     boardGrid.innerHTML = "";
 
     state.selectedCategoryIds.forEach(cid => {
-      const cat = CATEGORIES.find(c => c.id === cid);
+      const cat = (CATEGORIES.length ? CATEGORIES : FALLBACK_CATEGORIES).find(c => c.id === cid);
 
       const col = document.createElement("div");
       col.className = "colCard";
@@ -432,8 +460,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== Question Modal =====
   function openQuestion(categoryId, points, idx) {
-    const cat = CATEGORIES.find(c => c.id === categoryId);
-    const q = makePlaceholderQuestion(categoryId, cat ? cat.name : categoryId, points, idx);
+    // Ensure bank loaded
+    if (!QLOOKUP) {
+      alert("بنك الأسئلة غير جاهز. حدّث الصفحة وحاول مرة ثانية.");
+      return;
+    }
+
+    // slot = idx (0..5) (متطابق مع تصميم 6 أسئلة)
+    const slot = idx;
+    const qFromBank = getQuestionBySlot(categoryId, slot);
+
+    // Validate points match
+    if (!qFromBank || qFromBank.points !== points) {
+      alert("ما لقيت سؤال مطابق لهذه الخانة. تأكد من questions.json (slot/points).");
+      return;
+    }
+
+    // Build runtime question object with stable ID scheme used by board
+    const q = {
+      id: `${categoryId}_${points}_${idx}`,
+      categoryId: qFromBank.categoryId,
+      categoryName: (CATEGORIES.find(c => c.id === categoryId)?.name) || qFromBank.categoryId,
+      points: qFromBank.points,
+      question: qFromBank.question,
+      answer: qFromBank.answer,
+      image: qFromBank.image || "placeholder"
+    };
 
     state.currentQuestionId = q.id;
     state.questions[q.id] = q;
@@ -585,7 +637,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // per-game finalized map
       finalized: {},
 
-      // questions cache
+      // questions cache (opened questions)
       questions: {},
 
       // current
@@ -743,11 +795,24 @@ document.addEventListener("DOMContentLoaded", () => {
     show(sHome);
   });
 
-  // ===== Init =====
-  const user = getUser();
-  if (!user) {
-    show(sAuth);
-  } else {
-    if (!restoreIfAny()) show(sHome);
-  }
+  // ===== Init (تحميل بنك الأسئلة أول) =====
+  (async function init() {
+    QBANK = await loadQBank();
+    if (QBANK && QBANK.categories && QBANK.questions) {
+      CATEGORIES = QBANK.categories;
+      QLOOKUP = buildLookup(QBANK);
+    } else {
+      // بدون بنك: نخلي الفئات الافتراضية ونمنع فتح الأسئلة
+      CATEGORIES = FALLBACK_CATEGORIES;
+      QLOOKUP = null;
+    }
+
+    const user = getUser();
+    if (!user) {
+      show(sAuth);
+    } else {
+      // try restore
+      if (!restoreIfAny()) show(sHome);
+    }
+  })();
 });

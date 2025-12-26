@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "categories": [
+    { "id": "islam", "name": "إسلاميات" },
+    { "id": "prophets", "name": "قصص الأنبياء" },
+    { "id": "letters", "name": "حروف (معاني/مرادفات)" },
+    { "id": "football_who", "name": "مين اللاعب (صورة)" },
+    { "id": "football_world", "name": "كرة قدم عالمية" },
+    { "id": "football_saudi", "name": "كرة قدم سعودية" },
+    { "id": "art_global", "name": "فن عالمي (صورة)" },
+    { "id": "general", "name": "أسئلة عامة" },
+    { "id": "math", "name": "رياضيات" },
+    { "id": "geo", "name": "جغرافيا" }
+  ],
+  "questions": [
+    { "id": "islam_200_0", "categoryId": "islam", "slot": 0, "points": 200, "question": "كم عدد أركان الإسلام؟", "answer": "خمسة.", "image": "placeholder" },
+    { "id": "islam_200_1", "categoryId": "islam", "slot": 1, "points": 200, "question": "ما اسم صلاة الجماعة التي تُصلّى يوم الجمعة؟", "answer": "صلاة الجمعة.", "image": "placeholder" },
+    { "id": "islam_400_2", "categoryId": "islam", "slot": 2, "points": 400, "question": "ما اسم السورة التي تُسمّى قلب القرآن؟", "answer": "سورة يس.", "image": "placeholder" },
+    { "id": "islam_400_3", "categoryId": "islam", "slot": 3, "points": 400, "question": "ما عدد الصلوات المفروضة في اليوم والليلة؟", "answer": "خمس صلوات.", "image": "placeholder" },
+    { "id": "islam_600_4", "categoryId": "islam", "slot": 4, "points": 600, "question": "ما اسم الليلة التي هي خيرٌ من ألف شهر؟", "answer": "ليلة القدر.", "image": "placeholder" },
+    { "id": "islam_600_5", "categoryId": "islam", "slot": 5, "points": 600, "question": "ما معنى الإحسان في حديث جبريل باختصار؟", "answer": "أن تعبد الله كأنك تراه، فإن لم تكن تراه فإنه يراك.", "image": "placeholder" },
+
+    { "id": "prophets_200_0", "categoryId": "prophets", "slot": 0, "points": 200, "question": "من هو النبي الذي أُلقِي في النار فكانت بردًا وسلامًا؟", "answer": "إبراهيم عليه السلام.", "image": "placeholder" },
+    { "id": "prophets_200_1", "categoryId": "prophets", "slot": 1, "points": 200, "question": "من هو النبي الذي ابتلعه الحوت؟", "answer": "يونس عليه السلام.", "image": "placeholder" },
+    { "id": "prophets_400_2", "categoryId": "prophets", "slot": 2, "points": 400, "question": "من هو النبي الذي كلّمه الله تعالى؟", "answer": "موسى عليه السلام.", "image": "placeholder" },
+    { "id": "prophets_400_3", "categoryId": "prophets", "slot": 3, "points": 400, "question": "من هو النبي الذي عُرف بالصبر على المرض والابتلاء؟", "answer": "أيوب عليه السلام.", "image": "placeholder" },
+    { "id": "prophets_600_4", "categoryId": "prophets", "slot": 4, "points": 600, "question": "من هو النبي الذي سُخِّرت له الريح والجن؟", "answer": "سليمان عليه السلام.", "image": "placeholder" },
+    { "id": "prophets_600_5", "categoryId": "prophets", "slot": 5, "points": 600, "question": "من هو النبي الذي فُتِن قومه بالعجل في غيابه؟", "answer": "موسى عليه السلام (قومه بنو إسرائيل).", "image": "placeholder" },
+
+    { "id": "letters_200_0", "categoryId": "letters", "slot": 0, "points": 200, "question": "معنى كلمة (هتان)؟ (حرف الجواب: م)", "answer": "المطر الخفيف.", "image": "placeholder" },
+    { "id": "letters_200_1", "categoryId": "letters", "slot": 1, "points": 200, "question": "معنى كلمة (حسام)؟ (حرف الجواب: س)", "answer": "السيف القاطع.", "image": "placeholder" },
+    { "id": "letters_400_2", "categoryId": "letters", "slot": 2, "points": 400, "question": "مرادف كلمة (شجاع)؟ (حرف الجواب: ج)", "answer": "جريء.", "image": "placeholder" },
+    { "id": "letters_400_3", "categoryId": "letters", "slot": 3, "points": 400, "question": "مرادف كلمة (سريع)؟ (حرف الجواب: ع)", "answer": "عاجل.", "image": "placeholder" },
+    { "id": "letters_600_4", "categoryId": "letters", "slot": 4, "points": 600, "question": "معنى كلمة (أريج)؟ (حرف الجواب: ر)", "answer": "رائحة طيبة.", "image": "placeholder" },
+    { "id": "letters_600_5", "categoryId": "letters", "slot": 5, "points": 600, "question": "مرادف كلمة (مُحكم)؟ (حرف الجواب: م)", "answer": "متقن.", "image": "placeholder" },
+
+    { "id": "football_who_200_0", "categoryId": "football_who", "slot": 0, "points": 200, "question": "مين اللاعب؟ (صورة تجريبية) — لاعب يُلقّب بالبرغوث.", "answer": "ليونيل ميسي.", "image": "placeholder" },
+    { "id": "football_who_200_1", "categoryId": "football_who", "slot": 1, "points": 200, "question": "مين اللاعب؟ (صورة تجريبية) — مشهور بالتسديدات الحرة.", "answer": "كريستيانو رونالدو.", "image": "placeholder" },
+    { "id": "football_who_400_2", "categoryId": "football_who", "slot": 2, "points": 400, "question": "مين اللاعب؟ (صورة تجريبية) — حارس إيطالي أسطوري.", "answer": "جيانلويجي بوفون.", "image": "placeholder" },
+    { "id": "football_who_400_3", "categoryId": "football_who", "slot": 3, "points": 400, "question": "مين اللاعب؟ (صورة تجريبية) — لاعب وسط إسباني معروف بالتمرير.", "answer": "تشافي (Xavi).", "image": "placeholder" },
+    { "id": "football_who_600_4", "categoryId": "football_who", "slot": 4, "points": 600, "question": "مين اللاعب؟ (صورة تجريبية) — هداف بولندي مشهور.", "answer": "روبرت ليفاندوفسكي.", "image": "placeholder" },
+    { "id": "football_who_600_5", "categoryId": "football_who", "slot": 5, "points": 600, "question": "مين اللاعب؟ (صورة تجريبية) — نجم برازيلي معروف بالمراوغة.", "answer": "نيمار.", "image": "placeholder" },
+
+    { "id": "football_world_200_0", "categoryId": "football_world", "slot": 0, "points": 200, "question": "كم عدد اللاعبين داخل الملعب لكل فريق؟", "answer": "11 لاعب.", "image": "placeholder" },
+    { "id": "football_world_200_1", "categoryId": "football_world", "slot": 1, "points": 200, "question": "ما اسم البطولة التي تُقام كل 4 سنوات للمنتخبات؟", "answer": "كأس العالم.", "image": "placeholder" },
+    { "id": "football_world_400_2", "categoryId": "football_world", "slot": 2, "points": 400, "question": "كم مدة الشوط الواحد في كرة القدم؟", "answer": "45 دقيقة.", "image": "placeholder" },
+    { "id": "football_world_400_3", "categoryId": "football_world", "slot": 3, "points": 400, "question": "كم عدد الحكام داخل الملعب عادةً؟", "answer": "حكم ساحة + مساعدان (وغالبًا حكم رابع خارج الملعب).", "image": "placeholder" },
+    { "id": "football_world_600_4", "categoryId": "football_world", "slot": 4, "points": 600, "question": "ما اسم اللقطة التي تُحتسب فيها الكرة هدفًا إذا عبرت خط المرمى بالكامل؟", "answer": "هدف (Goal).", "image": "placeholder" },
+    { "id": "football_world_600_5", "categoryId": "football_world", "slot": 5, "points": 600, "question": "ما اسم التقنية التي تساعد الحكم بمراجعة اللقطات؟", "answer": "تقنية الفيديو (VAR).", "image": "placeholder" },
+
+    { "id": "football_saudi_200_0", "categoryId": "football_saudi", "slot": 0, "points": 200, "question": "ما اسم الدوري السعودي الأعلى مستوى؟", "answer": "دوري روشن السعودي.", "image": "placeholder" },
+    { "id": "football_saudi_200_1", "categoryId": "football_saudi", "slot": 1, "points": 200, "question": "كم عدد الفرق يلعب عادةً في الدوري (قد يختلف حسب الموسم)؟", "answer": "يتغير حسب الموسم، غالبًا حول 16–18.", "image": "placeholder" },
+    { "id": "football_saudi_400_2", "categoryId": "football_saudi", "slot": 2, "points": 400, "question": "ما اسم نظام الصعود والهبوط بين الدرجات؟", "answer": "صعود وهبوط بين الدوري والدرجة الأدنى.", "image": "placeholder" },
+    { "id": "football_saudi_400_3", "categoryId": "football_saudi", "slot": 3, "points": 400, "question": "اسم مباراة تجمع فريقين كبار وتكون منافسة تاريخية غالبًا؟", "answer": "ديربي.", "image": "placeholder" },
+    { "id": "football_saudi_600_4", "categoryId": "football_saudi", "slot": 4, "points": 600, "question": "ما اسم الجهة التي تنظّم المسابقات محليًا في السعودية؟", "answer": "الاتحاد السعودي لكرة القدم (والرابطة لبعض المسابقات).", "image": "placeholder" },
+    { "id": "football_saudi_600_5", "categoryId": "football_saudi", "slot": 5, "points": 600, "question": "ما اسم البطولة الإقصائية المحلية المعروفة؟", "answer": "كأس الملك.", "image": "placeholder" },
+
+    { "id": "art_global_200_0", "categoryId": "art_global", "slot": 0, "points": 200, "question": "من هو بطل فيلم (Titanic)؟", "answer": "جاك (ليوناردو دي كابريو).", "image": "placeholder" },
+    { "id": "art_global_200_1", "categoryId": "art_global", "slot": 1, "points": 200, "question": "ما اسم مسلسل اشتهر بجملة: Winter is coming؟", "answer": "Game of Thrones.", "image": "placeholder" },
+    { "id": "art_global_400_2", "categoryId": "art_global", "slot": 2, "points": 400, "question": "من هو المغني المعروف بلقب (King of Pop)؟", "answer": "مايكل جاكسون.", "image": "placeholder" },
+    { "id": "art_global_400_3", "categoryId": "art_global", "slot": 3, "points": 400, "question": "ما اسم فيلم الرسوم الذي فيه شخصية (سيمبا)؟", "answer": "The Lion King.", "image": "placeholder" },
+    { "id": "art_global_600_4", "categoryId": "art_global", "slot": 4, "points": 600, "question": "ما اسم سلسلة أفلام عن ساحر يعيش في مدرسة سحر؟", "answer": "Harry Potter.", "image": "placeholder" },
+    { "id": "art_global_600_5", "categoryId": "art_global", "slot": 5, "points": 600, "question": "ما اسم فرقة غنائية بريطانية مشهورة بأغنية: Bohemian Rhapsody؟", "answer": "Queen.", "image": "placeholder" },
+
+    { "id": "general_200_0", "categoryId": "general", "slot": 0, "points": 200, "question": "كم عدد أيام الأسبوع؟", "answer": "7 أيام.", "image": "placeholder" },
+    { "id": "general_200_1", "categoryId": "general", "slot": 1, "points": 200, "question": "ما عاصمة السعودية؟", "answer": "الرياض.", "image": "placeholder" },
+    { "id": "general_400_2", "categoryId": "general", "slot": 2, "points": 400, "question": "ما الكوكب الأقرب للشمس؟", "answer": "عطارد.", "image": "placeholder" },
+    { "id": "general_400_3", "categoryId": "general", "slot": 3, "points": 400, "question": "كم عدد القارات في العالم؟", "answer": "7 قارات.", "image": "placeholder" },
+    { "id": "general_600_4", "categoryId": "general", "slot": 4, "points": 600, "question": "ما اسم أكبر محيط على الأرض؟", "answer": "المحيط الهادئ.", "image": "placeholder" },
+    { "id": "general_600_5", "categoryId": "general", "slot": 5, "points": 600, "question": "ما اسم الغاز الذي تتنفسه الكائنات الحية؟", "answer": "الأكسجين.", "image": "placeholder" },
+
+    { "id": "math_200_0", "categoryId": "math", "slot": 0, "points": 200, "question": "5 + 7 = ؟", "answer": "12", "image": "placeholder" },
+    { "id": "math_200_1", "categoryId": "math", "slot": 1, "points": 200, "question": "9 × 3 = ؟", "answer": "27", "image": "placeholder" },
+    { "id": "math_400_2", "categoryId": "math", "slot": 2, "points": 400, "question": "144 ÷ 12 = ؟", "answer": "12", "image": "placeholder" },
+    { "id": "math_400_3", "categoryId": "math", "slot": 3, "points": 400, "question": "إذا كان x = 6، فما قيمة 2x + 4؟", "answer": "16", "image": "placeholder" },
+    { "id": "math_600_4", "categoryId": "math", "slot": 4, "points": 600, "question": "ما مساحة مربع طول ضلعه 9؟", "answer": "81", "image": "placeholder" },
+    { "id": "math_600_5", "categoryId": "math", "slot": 5, "points": 600, "question": "ما ناتج 2^5 ؟", "answer": "32", "image": "placeholder" },
+
+    { "id": "geo_200_0", "categoryId": "geo", "slot": 0, "points": 200, "question": "ما أكبر قارة من حيث المساحة؟", "answer": "آسيا.", "image": "placeholder" },
+    { "id": "geo_200_1", "categoryId": "geo", "slot": 1, "points": 200, "question": "ما اسم أطول نهر في العالم (إجابة مدرسية شائعة)؟", "answer": "نهر النيل.", "image": "placeholder" },
+    { "id": "geo_400_2", "categoryId": "geo", "slot": 2, "points": 400, "question": "ما عاصمة فرنسا؟", "answer": "باريس.", "image": "placeholder" },
+    { "id": "geo_400_3", "categoryId": "geo", "slot": 3, "points": 400, "question": "في أي قارة تقع البرازيل؟", "answer": "أمريكا الجنوبية.", "image": "placeholder" },
+    { "id": "geo_600_4", "categoryId": "geo", "slot": 4, "points": 600, "question": "ما اسم السلسلة الجبلية التي تمر بعدة دول في أوروبا؟", "answer": "جبال الألب.", "image": "placeholder" },
+    { "id": "geo_600_5", "categoryId": "geo", "slot": 5, "points": 600, "question": "ما اسم البحر الذي يفصل بين السعودية ومصر؟", "answer": "البحر الأحمر.", "image": "placeholder" }
+  ]
+}
