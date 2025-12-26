@@ -10,18 +10,67 @@
 
   <div id="splash" class="splash">
     <div style="text-align: center;">
-      <img src="images/splash.png" alt="شاشة الترحيب" style="max-width: 80%; max-height: 80vh; border-radius: 20px;">
+      <img src="images/splash.png" class="splash-logo floating" alt="شاشة الترحيب">
     </div>
   </div>
 
   <div id="app" class="hidden">
 
     <div id="screen-auth" class="screen">
-      <div class="modal-card" style="margin: 50px auto; text-align: center;">
-        <h2>أهلاً بك يا بطل 🌟</h2>
-        <p>سجل اسمك لتبدأ المنافسة</p>
-        <input type="text" id="usernameInput" class="input" placeholder="اسمك هنا...">
-        <button id="loginBtn" class="btn">دخول</button>
+      <div class="auth-container">
+        
+        <div class="auth-header">
+          <img src="images/splash.png" alt="شعار اللعبة" class="auth-logo">
+          <h3>بوابة المتنافسين</h3>
+        </div>
+
+        <div id="form-login" class="auth-form">
+          <label>اسم المستخدم</label>
+          <input type="text" id="loginUser" class="input" placeholder="اكتب اسمك...">
+          
+          <label>كلمة المرور</label>
+          <input type="password" id="loginPass" class="input" placeholder="••••••••">
+          
+          <div class="auth-links-row">
+            <span id="btnShowForgot" class="link-text">نسيت كلمة المرور؟</span>
+          </div>
+
+          <button id="btnLoginAction" class="btn">دخول</button>
+          
+          <div class="auth-footer">
+            ليس لديك حساب؟ <span id="btnShowRegister" class="link-text bold">انشاء حساب جديد</span>
+          </div>
+        </div>
+
+        <div id="form-register" class="auth-form hidden">
+          <h4>انشاء حساب جديد</h4>
+          <label>اسم المستخدم (جديد)</label>
+          <input type="text" id="regUser" class="input" placeholder="اسمك المميز...">
+          
+          <label>كلمة المرور</label>
+          <input type="password" id="regPass" class="input" placeholder="كلمة مرور قوية">
+          
+          <button id="btnRegisterAction" class="btn secondary">تسجيل حساب</button>
+          
+          <div class="auth-footer">
+            لديك حساب بالفعل؟ <span id="btnBackToLogin1" class="link-text bold">تسجيل الدخول</span>
+          </div>
+        </div>
+
+        <div id="form-forgot" class="auth-form hidden">
+          <h4>استعادة الحساب</h4>
+          <p class="hint">أدخل اسم المستخدم لاستعادة كلمة المرور</p>
+          
+          <label>اسم المستخدم</label>
+          <input type="text" id="forgotUser" class="input" placeholder="اسمك...">
+          
+          <button id="btnForgotAction" class="btn secondary">استعادة</button>
+          
+          <div class="auth-footer">
+            <span id="btnBackToLogin2" class="link-text bold">عودة لتسجيل الدخول</span>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -31,6 +80,7 @@
         <button id="logoutBtn" class="mini-btn" style="width: auto; padding: 0 10px;">خروج</button>
       </div>
       <div style="text-align: center; margin-top: 40px;">
+        <img src="images/splash.png" style="width: 100px; margin-bottom: 20px;" alt="logo">
         <h1>المسابقة الثقافية</h1>
         <p class="hint">تحدى أصدقاءك واختبر معلوماتك</p>
         <button id="goCatsBtn" class="btn">بدء لعبة جديدة</button>
@@ -43,9 +93,7 @@
         <button id="backHomeBtn" class="mini-btn">←</button>
       </div>
       <p class="hint" style="text-align: center; margin: 10px 0;">اختر من 3 إلى 6 فئات</p>
-      
       <div id="categoriesGrid" class="cats-grid"></div>
-      
       <div style="margin-top: 20px; text-align: center;">
         <span id="selectedInfo" class="pill">0 / 6</span>
       </div>
@@ -60,10 +108,8 @@
       <div style="margin-top: 20px;">
         <label>الفريق الأول</label>
         <input type="text" id="team1Input" class="input" placeholder="مثال: الصقور">
-        
         <label>الفريق الثاني</label>
         <input type="text" id="team2Input" class="input" placeholder="مثال: النمور">
-        
         <button id="startGameBtn" class="btn">انطلاق المباراة 🚀</button>
       </div>
     </div>
@@ -83,12 +129,10 @@
             <button id="t1Call" title="اتصال بصديق">📞</button>
           </div>
         </div>
-
         <div class="turn-info">
           <div id="turnPill" class="pill">الدور: —</div>
           <div id="turnNote" style="font-size: 10px; margin-top: 4px;">—</div>
         </div>
-
         <div class="team-box">
           <div class="t-name" id="team2NameTop">الفريق 2</div>
           <div class="t-score" id="team2ScoreTop">0</div>
@@ -103,11 +147,9 @@
           </div>
         </div>
       </div>
-
       <div class="actions-bar">
         <button id="newGameBtn" class="mini-btn" style="width:auto; padding:0 8px;">إنهاء</button>
       </div>
-
       <div id="boardGrid" class="board"></div>
     </div>
 
@@ -138,14 +180,10 @@
         <span id="timer" class="timer">00:00</span>
         <button id="closeModalBtn" class="mini-btn">✕</button>
       </div>
-
       <h2 id="qText" class="q-text">نص السؤال يظهر هنا...</h2>
-
       <div id="revealBtn" class="btn reveal">كشف الإجابة</div>
-
       <div id="answerArea" class="hidden answer">
         <div class="answer-text" id="answerText">الإجابة هنا</div>
-        
         <p class="hint">من أجاب بشكل صحيح؟</p>
         <div class="pick-row">
           <button id="pickTeam1" class="pick-btn">فريق 1</button>
@@ -153,7 +191,6 @@
         </div>
         <button id="pickNoOne" class="pick-btn neutral" style="width:100%; margin-top:10px;">لا أحد</button>
       </div>
-
       <div class="row" style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
         <button id="undoOpenBtn" class="mini-btn" style="width: auto; padding: 0 10px; font-size: 12px;">تراجع (لم يفتح)</button>
         <button id="reportBtn" class="mini-btn" style="width: auto; padding: 0 10px; font-size: 12px; background: #fee; color: red;">إبلاغ</button>
