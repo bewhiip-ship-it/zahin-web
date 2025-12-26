@@ -1,15 +1,21 @@
 {
   "categories": [
     { "id": "islam", "name": "إسلاميات", "image": "images/islamiyat.png" },
-
     { "id": "science", "name": "العلوم والاختراعات", "image": "images/science.png" },
-    { "id": "arabic_lit", "name": "اللغة العربية والأدب", "image": "images/arabic_lit.png" },
-    { "id": "sports", "name": "الرياضة والتاريخ الرياضي", "image": "images/sports.png" },
+    { "id": "arabic_lit", "name": "اللغة العربية", "image": "images/arabic_lit.png" },
+    { "id": "sports", "name": "الرياضة", "image": "images/sports.png" },
     { "id": "history_geo", "name": "التاريخ والجغرافيا", "image": "images/history_geo.png" },
     { "id": "nature", "name": "الحيوان والنبات", "image": "images/nature.png" },
-    { "id": "titles", "name": "الألقاب والشخصيات", "image": "images/titles.png" }
+    { "id": "titles", "name": "الألقاب", "image": "images/titles.png" }
   ],
   "questions": [
+    { "id": "islam_200_0", "categoryId": "islam", "slot": 0, "points": 200, "question": "ما هي السورة التي تعدل ثلث القرآن؟", "answer": "سورة الإخلاص", "image": "images/islamiyat.png" },
+    { "id": "islam_200_1", "categoryId": "islam", "slot": 1, "points": 200, "question": "كم عدد أركان الإسلام؟", "answer": "خمسة أركان", "image": "images/islamiyat.png" },
+    { "id": "islam_400_2", "categoryId": "islam", "slot": 2, "points": 400, "question": "في أي سنة كانت الهجرة النبوية؟", "answer": "622 م (السنة الأولى هجرياً)", "image": "images/islamiyat.png" },
+    { "id": "islam_400_3", "categoryId": "islam", "slot": 3, "points": 400, "question": "من هو أول مؤذن في الإسلام؟", "answer": "بلال بن رباح", "image": "images/islamiyat.png" },
+    { "id": "islam_600_4", "categoryId": "islam", "slot": 4, "points": 600, "question": "ما هي أطول سورة في القرآن الكريم؟", "answer": "سورة البقرة", "image": "images/islamiyat.png" },
+    { "id": "islam_600_5", "categoryId": "islam", "slot": 5, "points": 600, "question": "كم عدد سنوات نزول القرآن الكريم؟", "answer": "23 سنة", "image": "images/islamiyat.png" },
+
     { "id": "science_200_0", "categoryId": "science", "slot": 0, "points": 200, "question": "ما هو أكبر كوكب في مجموعتنا الشمسية؟", "answer": "المشتري", "image": "images/science.png" },
     { "id": "science_200_1", "categoryId": "science", "slot": 1, "points": 200, "question": "من هو العالم الذي وضع قوانين الحركة؟", "answer": "إسحاق نيوتن", "image": "images/science.png" },
     { "id": "science_400_2", "categoryId": "science", "slot": 2, "points": 400, "question": "ما هو الغاز الأكثر وفرة في الغلاف الجوي؟", "answer": "النيتروجين", "image": "images/science.png" },
@@ -17,10 +23,10 @@
     { "id": "science_600_4", "categoryId": "science", "slot": 4, "points": 600, "question": "ما هو أندر فصيلة دم عند البشر؟", "answer": "AB سالب", "image": "images/science.png" },
     { "id": "science_600_5", "categoryId": "science", "slot": 5, "points": 600, "question": "عند أي درجة حرارة يتساوى السيلسيوس والفهرنهايت؟", "answer": "سالب 40", "image": "images/science.png" },
 
-    { "id": "arabic_lit_200_0", "categoryId": "arabic_lit", "slot": 0, "points": 200, "question": "من هو الملقب بـ \"عميد الأدب العربي\"؟", "answer": "طه حسين", "image": "images/arabic_lit.png" },
-    { "id": "arabic_lit_200_1", "categoryId": "arabic_lit", "slot": 1, "points": 200, "question": "ما هو \"اليراع\" في اللغة العربية؟", "answer": "القلم", "image": "images/arabic_lit.png" },
-    { "id": "arabic_lit_400_2", "categoryId": "arabic_lit", "slot": 2, "points": 400, "question": "ما معنى كلمة \"سيبويه\"؟", "answer": "رائحة التفاح", "image": "images/arabic_lit.png" },
-    { "id": "arabic_lit_400_3", "categoryId": "arabic_lit", "slot": 3, "points": 400, "question": "ماذا تعني كلمة \"القاموس\"؟", "answer": "البحر الواسع", "image": "images/arabic_lit.png" },
+    { "id": "arabic_lit_200_0", "categoryId": "arabic_lit", "slot": 0, "points": 200, "question": "من هو الملقب بـ عميد الأدب العربي؟", "answer": "طه حسين", "image": "images/arabic_lit.png" },
+    { "id": "arabic_lit_200_1", "categoryId": "arabic_lit", "slot": 1, "points": 200, "question": "ما هو (اليراع) في اللغة العربية؟", "answer": "القلم", "image": "images/arabic_lit.png" },
+    { "id": "arabic_lit_400_2", "categoryId": "arabic_lit", "slot": 2, "points": 400, "question": "ما معنى كلمة (سيبويه)؟", "answer": "رائحة التفاح", "image": "images/arabic_lit.png" },
+    { "id": "arabic_lit_400_3", "categoryId": "arabic_lit", "slot": 3, "points": 400, "question": "ماذا تعني كلمة (القاموس)؟", "answer": "البحر الواسع", "image": "images/arabic_lit.png" },
     { "id": "arabic_lit_600_4", "categoryId": "arabic_lit", "slot": 4, "points": 600, "question": "من هو واضع علم العَروض؟", "answer": "الخليل بن أحمد الفراهيدي", "image": "images/arabic_lit.png" },
     { "id": "arabic_lit_600_5", "categoryId": "arabic_lit", "slot": 5, "points": 600, "question": "من هو مؤسس علم البلاغة؟", "answer": "عبد القاهر الجرجاني", "image": "images/arabic_lit.png" },
 
@@ -43,13 +49,13 @@
     { "id": "nature_400_2", "categoryId": "nature", "slot": 2, "points": 400, "question": "كم عدد العظام في رقبة الزرافة؟", "answer": "7 عظام", "image": "images/nature.png" },
     { "id": "nature_400_3", "categoryId": "nature", "slot": 3, "points": 400, "question": "ما هو الحيوان الملقب بأم عامر؟", "answer": "الضبع", "image": "images/nature.png" },
     { "id": "nature_600_4", "categoryId": "nature", "slot": 4, "points": 600, "question": "ما هو الحيوان الذي لا يملك هيكلًا عظميًا؟", "answer": "قنديل البحر", "image": "images/nature.png" },
-    { "id": "nature_600_5", "categoryId": "nature", "slot": 5, "points": 600, "question": "ما هو الحيوان صاحب أطول عمر (كما يُذكر في بعض المصادر)؟", "answer": "الإسفنج الزجاجي", "image": "images/nature.png" },
+    { "id": "nature_600_5", "categoryId": "nature", "slot": 5, "points": 600, "question": "ما هو الحيوان صاحب أطول عمر؟", "answer": "الإسفنج الزجاجي", "image": "images/nature.png" },
 
     { "id": "titles_200_0", "categoryId": "titles", "slot": 0, "points": 200, "question": "من هو الملقب بالفاروق؟", "answer": "عمر بن الخطاب", "image": "images/titles.png" },
     { "id": "titles_200_1", "categoryId": "titles", "slot": 1, "points": 200, "question": "من هو الملقب بذي النورين؟", "answer": "عثمان بن عفان", "image": "images/titles.png" },
     { "id": "titles_400_2", "categoryId": "titles", "slot": 2, "points": 400, "question": "من هو الملقب بترجمان القرآن؟", "answer": "عبد الله بن عباس", "image": "images/titles.png" },
     { "id": "titles_400_3", "categoryId": "titles", "slot": 3, "points": 400, "question": "من هو الملقب بأسد الله؟", "answer": "حمزة بن عبد المطلب", "image": "images/titles.png" },
     { "id": "titles_600_4", "categoryId": "titles", "slot": 4, "points": 600, "question": "من هو الملقب بغسيل الملائكة؟", "answer": "حنظلة بن أبي عامر", "image": "images/titles.png" },
-    { "id": "titles_600_5", "categoryId": "titles", "slot": 5, "points": 600, "question": "من هو الملقب بـ \"صقر قريش\"؟", "answer": "عبد الرحمن الداخل", "image": "images/titles.png" }
+    { "id": "titles_600_5", "categoryId": "titles", "slot": 5, "points": 600, "question": "من هو الملقب بـ صقر قريش؟", "answer": "عبد الرحمن الداخل", "image": "images/titles.png" }
   ]
 }
