@@ -10,16 +10,17 @@
 
   <div id="splash" class="splash">
     <div style="text-align: center;">
-      <img src="images/splash.png" class="splash-logo floating" alt="شاشة الترحيب" onerror="this.src='https://placehold.co/200x200?text=Zahin'">
+      <img src="images/splash.png" class="splash-logo floating" alt="Zahin" onerror="this.style.display='none'">
+      <h1 style="margin-top:20px; font-size:40px; color:#333;">زاهين</h1>
     </div>
   </div>
 
   <div id="app" class="hidden">
 
-    <div id="screen-auth" class="screen active">
+    <div id="screen-auth" class="screen">
       <div class="auth-container">
         <div class="auth-header">
-          <img src="images/splash.png" class="auth-logo" onerror="this.src='https://placehold.co/100x100?text=Z'">
+          <img src="images/splash.png" class="auth-logo" onerror="this.src='https://via.placeholder.com/80'">
           <h3>بوابة المتنافسين</h3>
         </div>
 
@@ -33,7 +34,7 @@
 
     <div id="screen-admin" class="screen">
       <div class="topbar">
-        <div class="title">لوحة التحكم (Firebase) ☁️</div>
+        <div class="title">لوحة التحكم 🛠️</div>
         <button id="adminLogoutBtn" class="mini-btn" style="width: auto; padding: 0 10px;">خروج</button>
       </div>
 
@@ -43,11 +44,8 @@
           <h3>1. إضافة فئة جديدة</h3>
           <input type="text" id="newCatName" class="input" placeholder="اسم الفئة (مثال: علوم)">
           <input type="text" id="newCatId" class="input" placeholder="ID الفئة (انجليزي: science)">
-          
-          <label style="font-size:13px; font-weight:bold;">صورة الفئة:</label>
-          <input type="file" id="newCatFile" class="input" accept="image/*">
-          
-          <button id="btnAddCat" class="btn secondary">رفع وحفظ الفئة 📤</button>
+          <input type="text" id="newCatImg" class="input" placeholder="مسار الصورة (images/science.png)">
+          <button id="btnAddCat" class="btn secondary">حفظ الفئة</button>
         </div>
 
         <div class="admin-card">
@@ -65,7 +63,7 @@
                </select>
             </div>
             <div style="flex:1">
-               <label>الخانة</label>
+               <label>رقم الخانة</label>
                <select id="selSlot" class="input">
                  <option value="0">سؤال 1</option>
                  <option value="1">سؤال 2</option>
@@ -78,13 +76,18 @@
           </div>
 
           <textarea id="newQText" class="input" rows="2" placeholder="نص السؤال..."></textarea>
-          <input type="text" id="newQAnswer" class="input" placeholder="الإجابة..."></textarea>
-          
-          <label style="font-size:13px; font-weight:bold;">صورة للسؤال (اختياري):</label>
-          <input type="file" id="newQFile" class="input" accept="image/*">
+          <input type="text" id="newQAnswer" class="input" placeholder="الإجابة...">
+          <input type="text" id="newQImg" class="input" placeholder="مسار صورة السؤال (اختياري)">
 
-          <button id="btnAddQ" class="btn secondary">رفع وحفظ السؤال 📤</button>
+          <button id="btnAddQ" class="btn secondary">حفظ السؤال</button>
         </div>
+
+        <div class="admin-card" style="background:#e8f8f5; border-color:#27ae60;">
+          <h3>3. نشر التغييرات</h3>
+          <p class="hint">اضغط الزر لتحميل ملف البيانات الجديد، ثم استبدل ملف <b>questions.json</b> القديم به.</p>
+          <button id="btnExportJson" class="btn" style="background:#27ae60;">تحميل ملف البيانات (JSON) 📥</button>
+        </div>
+
       </div>
     </div>
 
@@ -94,8 +97,9 @@
         <button id="logoutBtn" class="mini-btn" style="width: auto; padding: 0 10px;">خروج</button>
       </div>
       <div style="text-align: center; margin-top: 40px;">
-        <img src="images/splash.png" style="width: 100px; margin-bottom: 20px;" onerror="this.src='https://placehold.co/100x100?text=Logo'">
+        <img src="images/splash.png" style="width: 120px; margin-bottom: 20px;" onerror="this.style.display='none'">
         <h1>المسابقة الثقافية</h1>
+        <p class="hint">جهز معلوماتك وتحدى أصدقاءك</p>
         <button id="goCatsBtn" class="btn">بدء لعبة جديدة</button>
       </div>
     </div>
@@ -110,8 +114,8 @@
     <div id="screen-teams" class="screen">
       <div class="topbar"><div class="title">أسماء الفرق</div><button id="backCatsBtn" class="mini-btn">←</button></div>
       <div style="margin-top: 20px;">
-        <label>الفريق الأول</label><input type="text" id="team1Input" class="input" placeholder="الفريق 1">
-        <label>الفريق الثاني</label><input type="text" id="team2Input" class="input" placeholder="الفريق 2">
+        <label>الفريق الأول</label><input type="text" id="team1Input" class="input" placeholder="مثال: الصقور">
+        <label>الفريق الثاني</label><input type="text" id="team2Input" class="input" placeholder="مثال: النمور">
         <button id="startGameBtn" class="btn">انطلاق المباراة 🚀</button>
       </div>
     </div>
@@ -158,6 +162,6 @@
     </div>
   </div>
 
-  <script type="module" src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
