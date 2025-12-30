@@ -1,61 +1,5506 @@
 {
   "categories": [
-    { "id": "islam", "name": "إسلاميات", "image": "images/islamiyat.png" },
-    { "id": "science", "name": "العلوم والاختراعات", "image": "images/science.png" },
-    { "id": "arabic_lit", "name": "اللغة العربية", "image": "images/arabic_lit.png" },
-    { "id": "sports", "name": "الرياضة", "image": "images/sports.png" },
-    { "id": "history_geo", "name": "التاريخ والجغرافيا", "image": "images/history_geo.png" },
-    { "id": "nature", "name": "الحيوان والنبات", "image": "images/nature.png" },
-    { "id": "titles", "name": "الألقاب", "image": "images/titles.png" }
+    {
+      "id": "general",
+      "name": "معلومات عامة",
+      "image": "images/general.png"
+    },
+    {
+      "id": "maps",
+      "name": "الخرائط والدول",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "islam",
+      "name": "إسلاميات",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "science",
+      "name": "العلوم",
+      "image": "images/science.png"
+    },
+    {
+      "id": "arabic_lit",
+      "name": "الأدب العربي",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "sports",
+      "name": "الرياضة",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "history_geo",
+      "name": "تاريخ وجغرافيا",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "nature",
+      "name": "عالم الحيوان",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "math",
+      "name": "رياضيات",
+      "image": "images/math.png"
+    },
+    {
+      "id": "football",
+      "name": "كرة القدم",
+      "image": "images/football.png"
+    },
+    {
+      "id": "tech",
+      "name": "تقنية",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "movies",
+      "name": "أفلام ومسلسلات",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "saudi",
+      "name": "السعودية",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "alula",
+      "name": "العلا",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "food",
+      "name": "أكل ومطاعم",
+      "image": "images/food.png"
+    },
+    {
+      "id": "riddles",
+      "name": "ألغاز",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "poetry",
+      "name": "شعر",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "prophets",
+      "name": "قصص الأنبياء",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "cars",
+      "name": "سيارات",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "culture",
+      "name": "ثقافة وفنون",
+      "image": "images/culture.png"
+    }
   ],
   "questions": [
-    { "id": "islam_200_0", "categoryId": "islam", "slot": 0, "points": 200, "question": "ما هي السورة التي تعدل ثلث القرآن؟", "answer": "سورة الإخلاص", "image": "images/islamiyat.png" },
-    { "id": "islam_200_1", "categoryId": "islam", "slot": 1, "points": 200, "question": "كم عدد أركان الإسلام؟", "answer": "خمسة أركان", "image": "images/islamiyat.png" },
-    { "id": "islam_400_2", "categoryId": "islam", "slot": 2, "points": 400, "question": "في أي سنة كانت الهجرة النبوية؟", "answer": "622 م (السنة الأولى هجرياً)", "image": "images/islamiyat.png" },
-    { "id": "islam_400_3", "categoryId": "islam", "slot": 3, "points": 400, "question": "من هو أول مؤذن في الإسلام؟", "answer": "بلال بن رباح", "image": "images/islamiyat.png" },
-    { "id": "islam_600_4", "categoryId": "islam", "slot": 4, "points": 600, "question": "ما هي أطول سورة في القرآن الكريم؟", "answer": "سورة البقرة", "image": "images/islamiyat.png" },
-    { "id": "islam_600_5", "categoryId": "islam", "slot": 5, "points": 600, "question": "كم عدد سنوات نزول القرآن الكريم؟", "answer": "23 سنة", "image": "images/islamiyat.png" },
-
-    { "id": "science_200_0", "categoryId": "science", "slot": 0, "points": 200, "question": "ما هو أكبر كوكب في مجموعتنا الشمسية؟", "answer": "المشتري", "image": "images/science.png" },
-    { "id": "science_200_1", "categoryId": "science", "slot": 1, "points": 200, "question": "من هو العالم الذي وضع قوانين الحركة؟", "answer": "إسحاق نيوتن", "image": "images/science.png" },
-    { "id": "science_400_2", "categoryId": "science", "slot": 2, "points": 400, "question": "ما هو الغاز الأكثر وفرة في الغلاف الجوي؟", "answer": "النيتروجين", "image": "images/science.png" },
-    { "id": "science_400_3", "categoryId": "science", "slot": 3, "points": 400, "question": "كم يستغرق ضوء الشمس للوصول إلى الأرض؟", "answer": "حوالي 8 دقائق و20 ثانية", "image": "images/science.png" },
-    { "id": "science_600_4", "categoryId": "science", "slot": 4, "points": 600, "question": "ما هو أندر فصيلة دم عند البشر؟", "answer": "AB سالب", "image": "images/science.png" },
-    { "id": "science_600_5", "categoryId": "science", "slot": 5, "points": 600, "question": "عند أي درجة حرارة يتساوى السيلسيوس والفهرنهايت؟", "answer": "سالب 40", "image": "images/science.png" },
-
-    { "id": "arabic_lit_200_0", "categoryId": "arabic_lit", "slot": 0, "points": 200, "question": "من هو الملقب بـ عميد الأدب العربي؟", "answer": "طه حسين", "image": "images/arabic_lit.png" },
-    { "id": "arabic_lit_200_1", "categoryId": "arabic_lit", "slot": 1, "points": 200, "question": "ما هو (اليراع) في اللغة العربية؟", "answer": "القلم", "image": "images/arabic_lit.png" },
-    { "id": "arabic_lit_400_2", "categoryId": "arabic_lit", "slot": 2, "points": 400, "question": "ما معنى كلمة (سيبويه)؟", "answer": "رائحة التفاح", "image": "images/arabic_lit.png" },
-    { "id": "arabic_lit_400_3", "categoryId": "arabic_lit", "slot": 3, "points": 400, "question": "ماذا تعني كلمة (القاموس)؟", "answer": "البحر الواسع", "image": "images/arabic_lit.png" },
-    { "id": "arabic_lit_600_4", "categoryId": "arabic_lit", "slot": 4, "points": 600, "question": "من هو واضع علم العَروض؟", "answer": "الخليل بن أحمد الفراهيدي", "image": "images/arabic_lit.png" },
-    { "id": "arabic_lit_600_5", "categoryId": "arabic_lit", "slot": 5, "points": 600, "question": "من هو مؤسس علم البلاغة؟", "answer": "عبد القاهر الجرجاني", "image": "images/arabic_lit.png" },
-
-    { "id": "sports_200_0", "categoryId": "sports", "slot": 0, "points": 200, "question": "ما هي المباراة النهائية لكأس العالم 2022؟", "answer": "الأرجنتين ضد فرنسا", "image": "images/sports.png" },
-    { "id": "sports_200_1", "categoryId": "sports", "slot": 1, "points": 200, "question": "كم عدد الحفر في جولة الغولف المتوسطة؟", "answer": "18 حفرة", "image": "images/sports.png" },
-    { "id": "sports_400_2", "categoryId": "sports", "slot": 2, "points": 400, "question": "ما هي الدولة التي شاركت في جميع نسخ كأس العالم؟", "answer": "البرازيل", "image": "images/sports.png" },
-    { "id": "sports_400_3", "categoryId": "sports", "slot": 3, "points": 400, "question": "في أي عام تأسس الاتحاد الدولي لكرة القدم (FIFA)؟", "answer": "1904", "image": "images/sports.png" },
-    { "id": "sports_600_4", "categoryId": "sports", "slot": 4, "points": 600, "question": "في أي عام ظهرت البطاقات الملونة لأول مرة في المونديال؟", "answer": "1970", "image": "images/sports.png" },
-    { "id": "sports_600_5", "categoryId": "sports", "slot": 5, "points": 600, "question": "ما هي الدولة اللاتينية الوحيدة التي استضافت الأولمبياد والمونديال؟", "answer": "المكسيك", "image": "images/sports.png" },
-
-    { "id": "history_geo_200_0", "categoryId": "history_geo", "slot": 0, "points": 200, "question": "متى وقعت الحرب العالمية الأولى؟", "answer": "1914م", "image": "images/history_geo.png" },
-    { "id": "history_geo_200_1", "categoryId": "history_geo", "slot": 1, "points": 200, "question": "ما هو أعلى جبل في العالم؟", "answer": "إيفرست", "image": "images/history_geo.png" },
-    { "id": "history_geo_400_2", "categoryId": "history_geo", "slot": 2, "points": 400, "question": "ما هي عاصمة إثيوبيا؟", "answer": "أديس أبابا", "image": "images/history_geo.png" },
-    { "id": "history_geo_400_3", "categoryId": "history_geo", "slot": 3, "points": 400, "question": "من هي أول امرأة فازت بجائزة نوبل؟", "answer": "ماري كوري", "image": "images/history_geo.png" },
-    { "id": "history_geo_600_4", "categoryId": "history_geo", "slot": 4, "points": 600, "question": "ما هي الدولة التي تمتلك أطول خط ساحلي في العالم؟", "answer": "كندا", "image": "images/history_geo.png" },
-    { "id": "history_geo_600_5", "categoryId": "history_geo", "slot": 5, "points": 600, "question": "ما هي أعمق نقطة في المحيطات؟", "answer": "خندق ماريانا", "image": "images/history_geo.png" },
-
-    { "id": "nature_200_0", "categoryId": "nature", "slot": 0, "points": 200, "question": "ما هو أسرع حيوان بري؟", "answer": "الفهد", "image": "images/nature.png" },
-    { "id": "nature_200_1", "categoryId": "nature", "slot": 1, "points": 200, "question": "ما هو أكبر حيوان في العالم؟", "answer": "الحوت الأزرق", "image": "images/nature.png" },
-    { "id": "nature_400_2", "categoryId": "nature", "slot": 2, "points": 400, "question": "كم عدد العظام في رقبة الزرافة؟", "answer": "7 عظام", "image": "images/nature.png" },
-    { "id": "nature_400_3", "categoryId": "nature", "slot": 3, "points": 400, "question": "ما هو الحيوان الملقب بأم عامر؟", "answer": "الضبع", "image": "images/nature.png" },
-    { "id": "nature_600_4", "categoryId": "nature", "slot": 4, "points": 600, "question": "ما هو الحيوان الذي لا يملك هيكلًا عظميًا؟", "answer": "قنديل البحر", "image": "images/nature.png" },
-    { "id": "nature_600_5", "categoryId": "nature", "slot": 5, "points": 600, "question": "ما هو الحيوان صاحب أطول عمر؟", "answer": "الإسفنج الزجاجي", "image": "images/nature.png" },
-
-    { "id": "titles_200_0", "categoryId": "titles", "slot": 0, "points": 200, "question": "من هو الملقب بالفاروق؟", "answer": "عمر بن الخطاب", "image": "images/titles.png" },
-    { "id": "titles_200_1", "categoryId": "titles", "slot": 1, "points": 200, "question": "من هو الملقب بذي النورين؟", "answer": "عثمان بن عفان", "image": "images/titles.png" },
-    { "id": "titles_400_2", "categoryId": "titles", "slot": 2, "points": 400, "question": "من هو الملقب بترجمان القرآن؟", "answer": "عبد الله بن عباس", "image": "images/titles.png" },
-    { "id": "titles_400_3", "categoryId": "titles", "slot": 3, "points": 400, "question": "من هو الملقب بأسد الله؟", "answer": "حمزة بن عبد المطلب", "image": "images/titles.png" },
-    { "id": "titles_600_4", "categoryId": "titles", "slot": 4, "points": 600, "question": "من هو الملقب بغسيل الملائكة؟", "answer": "حنظلة بن أبي عامر", "image": "images/titles.png" },
-    { "id": "titles_600_5", "categoryId": "titles", "slot": 5, "points": 600, "question": "من هو الملقب بـ صقر قريش؟", "answer": "عبد الرحمن الداخل", "image": "images/titles.png" }
+    {
+      "id": "general_200_01",
+      "categoryId": "general",
+      "slot": 0,
+      "points": 200,
+      "question": "معلومات عامة: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 1 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_200_02",
+      "categoryId": "general",
+      "slot": 1,
+      "points": 200,
+      "question": "معلومات عامة: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 2 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_200_03",
+      "categoryId": "general",
+      "slot": 2,
+      "points": 200,
+      "question": "معلومات عامة: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 3 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_200_04",
+      "categoryId": "general",
+      "slot": 3,
+      "points": 200,
+      "question": "معلومات عامة: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 4 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_200_05",
+      "categoryId": "general",
+      "slot": 4,
+      "points": 200,
+      "question": "معلومات عامة: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 5 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_200_06",
+      "categoryId": "general",
+      "slot": 5,
+      "points": 200,
+      "question": "معلومات عامة: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 6 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_200_07",
+      "categoryId": "general",
+      "slot": 6,
+      "points": 200,
+      "question": "معلومات عامة: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 7 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_200_08",
+      "categoryId": "general",
+      "slot": 7,
+      "points": 200,
+      "question": "معلومات عامة: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 8 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_200_09",
+      "categoryId": "general",
+      "slot": 8,
+      "points": 200,
+      "question": "معلومات عامة: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 9 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_200_10",
+      "categoryId": "general",
+      "slot": 9,
+      "points": 200,
+      "question": "معلومات عامة: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 10 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_400_11",
+      "categoryId": "general",
+      "slot": 10,
+      "points": 400,
+      "question": "معلومات عامة: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 11 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_400_12",
+      "categoryId": "general",
+      "slot": 11,
+      "points": 400,
+      "question": "معلومات عامة: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 12 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_400_13",
+      "categoryId": "general",
+      "slot": 12,
+      "points": 400,
+      "question": "معلومات عامة: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 13 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_400_14",
+      "categoryId": "general",
+      "slot": 13,
+      "points": 400,
+      "question": "معلومات عامة: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 14 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_400_15",
+      "categoryId": "general",
+      "slot": 14,
+      "points": 400,
+      "question": "معلومات عامة: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 15 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_400_16",
+      "categoryId": "general",
+      "slot": 15,
+      "points": 400,
+      "question": "معلومات عامة: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 16 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_400_17",
+      "categoryId": "general",
+      "slot": 16,
+      "points": 400,
+      "question": "معلومات عامة: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 17 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_400_18",
+      "categoryId": "general",
+      "slot": 17,
+      "points": 400,
+      "question": "معلومات عامة: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 18 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_400_19",
+      "categoryId": "general",
+      "slot": 18,
+      "points": 400,
+      "question": "معلومات عامة: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 19 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_400_20",
+      "categoryId": "general",
+      "slot": 19,
+      "points": 400,
+      "question": "معلومات عامة: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 20 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_600_21",
+      "categoryId": "general",
+      "slot": 20,
+      "points": 600,
+      "question": "معلومات عامة: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 21 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_600_22",
+      "categoryId": "general",
+      "slot": 21,
+      "points": 600,
+      "question": "معلومات عامة: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 22 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_600_23",
+      "categoryId": "general",
+      "slot": 22,
+      "points": 600,
+      "question": "معلومات عامة: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 23 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_600_24",
+      "categoryId": "general",
+      "slot": 23,
+      "points": 600,
+      "question": "معلومات عامة: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 24 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_600_25",
+      "categoryId": "general",
+      "slot": 24,
+      "points": 600,
+      "question": "معلومات عامة: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 25 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_600_26",
+      "categoryId": "general",
+      "slot": 25,
+      "points": 600,
+      "question": "معلومات عامة: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 26 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_600_27",
+      "categoryId": "general",
+      "slot": 26,
+      "points": 600,
+      "question": "معلومات عامة: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 27 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_600_28",
+      "categoryId": "general",
+      "slot": 27,
+      "points": 600,
+      "question": "معلومات عامة: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 28 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_600_29",
+      "categoryId": "general",
+      "slot": 28,
+      "points": 600,
+      "question": "معلومات عامة: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 29 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "general_600_30",
+      "categoryId": "general",
+      "slot": 29,
+      "points": 600,
+      "question": "معلومات عامة: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "معلومات عامة: إجابة 30 — إجابة تجريبية.",
+      "image": "images/general.png"
+    },
+    {
+      "id": "maps_200_01",
+      "categoryId": "maps",
+      "slot": 0,
+      "points": 200,
+      "question": "الخرائط والدول: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 1 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_200_02",
+      "categoryId": "maps",
+      "slot": 1,
+      "points": 200,
+      "question": "الخرائط والدول: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 2 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_200_03",
+      "categoryId": "maps",
+      "slot": 2,
+      "points": 200,
+      "question": "الخرائط والدول: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 3 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_200_04",
+      "categoryId": "maps",
+      "slot": 3,
+      "points": 200,
+      "question": "الخرائط والدول: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 4 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_200_05",
+      "categoryId": "maps",
+      "slot": 4,
+      "points": 200,
+      "question": "الخرائط والدول: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 5 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_200_06",
+      "categoryId": "maps",
+      "slot": 5,
+      "points": 200,
+      "question": "الخرائط والدول: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 6 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_200_07",
+      "categoryId": "maps",
+      "slot": 6,
+      "points": 200,
+      "question": "الخرائط والدول: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 7 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_200_08",
+      "categoryId": "maps",
+      "slot": 7,
+      "points": 200,
+      "question": "الخرائط والدول: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 8 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_200_09",
+      "categoryId": "maps",
+      "slot": 8,
+      "points": 200,
+      "question": "الخرائط والدول: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 9 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_200_10",
+      "categoryId": "maps",
+      "slot": 9,
+      "points": 200,
+      "question": "الخرائط والدول: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 10 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_400_11",
+      "categoryId": "maps",
+      "slot": 10,
+      "points": 400,
+      "question": "الخرائط والدول: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 11 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_400_12",
+      "categoryId": "maps",
+      "slot": 11,
+      "points": 400,
+      "question": "الخرائط والدول: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 12 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_400_13",
+      "categoryId": "maps",
+      "slot": 12,
+      "points": 400,
+      "question": "الخرائط والدول: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 13 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_400_14",
+      "categoryId": "maps",
+      "slot": 13,
+      "points": 400,
+      "question": "الخرائط والدول: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 14 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_400_15",
+      "categoryId": "maps",
+      "slot": 14,
+      "points": 400,
+      "question": "الخرائط والدول: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 15 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_400_16",
+      "categoryId": "maps",
+      "slot": 15,
+      "points": 400,
+      "question": "الخرائط والدول: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 16 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_400_17",
+      "categoryId": "maps",
+      "slot": 16,
+      "points": 400,
+      "question": "الخرائط والدول: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 17 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_400_18",
+      "categoryId": "maps",
+      "slot": 17,
+      "points": 400,
+      "question": "الخرائط والدول: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 18 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_400_19",
+      "categoryId": "maps",
+      "slot": 18,
+      "points": 400,
+      "question": "الخرائط والدول: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 19 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_400_20",
+      "categoryId": "maps",
+      "slot": 19,
+      "points": 400,
+      "question": "الخرائط والدول: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 20 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_600_21",
+      "categoryId": "maps",
+      "slot": 20,
+      "points": 600,
+      "question": "الخرائط والدول: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 21 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_600_22",
+      "categoryId": "maps",
+      "slot": 21,
+      "points": 600,
+      "question": "الخرائط والدول: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 22 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_600_23",
+      "categoryId": "maps",
+      "slot": 22,
+      "points": 600,
+      "question": "الخرائط والدول: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 23 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_600_24",
+      "categoryId": "maps",
+      "slot": 23,
+      "points": 600,
+      "question": "الخرائط والدول: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 24 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_600_25",
+      "categoryId": "maps",
+      "slot": 24,
+      "points": 600,
+      "question": "الخرائط والدول: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 25 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_600_26",
+      "categoryId": "maps",
+      "slot": 25,
+      "points": 600,
+      "question": "الخرائط والدول: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 26 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_600_27",
+      "categoryId": "maps",
+      "slot": 26,
+      "points": 600,
+      "question": "الخرائط والدول: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 27 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_600_28",
+      "categoryId": "maps",
+      "slot": 27,
+      "points": 600,
+      "question": "الخرائط والدول: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 28 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_600_29",
+      "categoryId": "maps",
+      "slot": 28,
+      "points": 600,
+      "question": "الخرائط والدول: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 29 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "maps_600_30",
+      "categoryId": "maps",
+      "slot": 29,
+      "points": 600,
+      "question": "الخرائط والدول: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الخرائط والدول: إجابة 30 — إجابة تجريبية.",
+      "image": "images/maps.png"
+    },
+    {
+      "id": "islam_200_01",
+      "categoryId": "islam",
+      "slot": 0,
+      "points": 200,
+      "question": "إسلاميات: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 1 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_200_02",
+      "categoryId": "islam",
+      "slot": 1,
+      "points": 200,
+      "question": "إسلاميات: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 2 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_200_03",
+      "categoryId": "islam",
+      "slot": 2,
+      "points": 200,
+      "question": "إسلاميات: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 3 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_200_04",
+      "categoryId": "islam",
+      "slot": 3,
+      "points": 200,
+      "question": "إسلاميات: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 4 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_200_05",
+      "categoryId": "islam",
+      "slot": 4,
+      "points": 200,
+      "question": "إسلاميات: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 5 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_200_06",
+      "categoryId": "islam",
+      "slot": 5,
+      "points": 200,
+      "question": "إسلاميات: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 6 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_200_07",
+      "categoryId": "islam",
+      "slot": 6,
+      "points": 200,
+      "question": "إسلاميات: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 7 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_200_08",
+      "categoryId": "islam",
+      "slot": 7,
+      "points": 200,
+      "question": "إسلاميات: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 8 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_200_09",
+      "categoryId": "islam",
+      "slot": 8,
+      "points": 200,
+      "question": "إسلاميات: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 9 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_200_10",
+      "categoryId": "islam",
+      "slot": 9,
+      "points": 200,
+      "question": "إسلاميات: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 10 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_400_11",
+      "categoryId": "islam",
+      "slot": 10,
+      "points": 400,
+      "question": "إسلاميات: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 11 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_400_12",
+      "categoryId": "islam",
+      "slot": 11,
+      "points": 400,
+      "question": "إسلاميات: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 12 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_400_13",
+      "categoryId": "islam",
+      "slot": 12,
+      "points": 400,
+      "question": "إسلاميات: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 13 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_400_14",
+      "categoryId": "islam",
+      "slot": 13,
+      "points": 400,
+      "question": "إسلاميات: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 14 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_400_15",
+      "categoryId": "islam",
+      "slot": 14,
+      "points": 400,
+      "question": "إسلاميات: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 15 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_400_16",
+      "categoryId": "islam",
+      "slot": 15,
+      "points": 400,
+      "question": "إسلاميات: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 16 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_400_17",
+      "categoryId": "islam",
+      "slot": 16,
+      "points": 400,
+      "question": "إسلاميات: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 17 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_400_18",
+      "categoryId": "islam",
+      "slot": 17,
+      "points": 400,
+      "question": "إسلاميات: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 18 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_400_19",
+      "categoryId": "islam",
+      "slot": 18,
+      "points": 400,
+      "question": "إسلاميات: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 19 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_400_20",
+      "categoryId": "islam",
+      "slot": 19,
+      "points": 400,
+      "question": "إسلاميات: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 20 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_600_21",
+      "categoryId": "islam",
+      "slot": 20,
+      "points": 600,
+      "question": "إسلاميات: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 21 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_600_22",
+      "categoryId": "islam",
+      "slot": 21,
+      "points": 600,
+      "question": "إسلاميات: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 22 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_600_23",
+      "categoryId": "islam",
+      "slot": 22,
+      "points": 600,
+      "question": "إسلاميات: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 23 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_600_24",
+      "categoryId": "islam",
+      "slot": 23,
+      "points": 600,
+      "question": "إسلاميات: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 24 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_600_25",
+      "categoryId": "islam",
+      "slot": 24,
+      "points": 600,
+      "question": "إسلاميات: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 25 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_600_26",
+      "categoryId": "islam",
+      "slot": 25,
+      "points": 600,
+      "question": "إسلاميات: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 26 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_600_27",
+      "categoryId": "islam",
+      "slot": 26,
+      "points": 600,
+      "question": "إسلاميات: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 27 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_600_28",
+      "categoryId": "islam",
+      "slot": 27,
+      "points": 600,
+      "question": "إسلاميات: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 28 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_600_29",
+      "categoryId": "islam",
+      "slot": 28,
+      "points": 600,
+      "question": "إسلاميات: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 29 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "islam_600_30",
+      "categoryId": "islam",
+      "slot": 29,
+      "points": 600,
+      "question": "إسلاميات: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "إسلاميات: إجابة 30 — إجابة تجريبية.",
+      "image": "images/islam.png"
+    },
+    {
+      "id": "science_200_01",
+      "categoryId": "science",
+      "slot": 0,
+      "points": 200,
+      "question": "العلوم: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 1 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_200_02",
+      "categoryId": "science",
+      "slot": 1,
+      "points": 200,
+      "question": "العلوم: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 2 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_200_03",
+      "categoryId": "science",
+      "slot": 2,
+      "points": 200,
+      "question": "العلوم: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 3 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_200_04",
+      "categoryId": "science",
+      "slot": 3,
+      "points": 200,
+      "question": "العلوم: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 4 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_200_05",
+      "categoryId": "science",
+      "slot": 4,
+      "points": 200,
+      "question": "العلوم: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 5 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_200_06",
+      "categoryId": "science",
+      "slot": 5,
+      "points": 200,
+      "question": "العلوم: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 6 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_200_07",
+      "categoryId": "science",
+      "slot": 6,
+      "points": 200,
+      "question": "العلوم: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 7 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_200_08",
+      "categoryId": "science",
+      "slot": 7,
+      "points": 200,
+      "question": "العلوم: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 8 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_200_09",
+      "categoryId": "science",
+      "slot": 8,
+      "points": 200,
+      "question": "العلوم: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 9 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_200_10",
+      "categoryId": "science",
+      "slot": 9,
+      "points": 200,
+      "question": "العلوم: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 10 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_400_11",
+      "categoryId": "science",
+      "slot": 10,
+      "points": 400,
+      "question": "العلوم: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 11 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_400_12",
+      "categoryId": "science",
+      "slot": 11,
+      "points": 400,
+      "question": "العلوم: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 12 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_400_13",
+      "categoryId": "science",
+      "slot": 12,
+      "points": 400,
+      "question": "العلوم: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 13 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_400_14",
+      "categoryId": "science",
+      "slot": 13,
+      "points": 400,
+      "question": "العلوم: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 14 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_400_15",
+      "categoryId": "science",
+      "slot": 14,
+      "points": 400,
+      "question": "العلوم: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 15 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_400_16",
+      "categoryId": "science",
+      "slot": 15,
+      "points": 400,
+      "question": "العلوم: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 16 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_400_17",
+      "categoryId": "science",
+      "slot": 16,
+      "points": 400,
+      "question": "العلوم: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 17 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_400_18",
+      "categoryId": "science",
+      "slot": 17,
+      "points": 400,
+      "question": "العلوم: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 18 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_400_19",
+      "categoryId": "science",
+      "slot": 18,
+      "points": 400,
+      "question": "العلوم: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 19 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_400_20",
+      "categoryId": "science",
+      "slot": 19,
+      "points": 400,
+      "question": "العلوم: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 20 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_600_21",
+      "categoryId": "science",
+      "slot": 20,
+      "points": 600,
+      "question": "العلوم: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 21 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_600_22",
+      "categoryId": "science",
+      "slot": 21,
+      "points": 600,
+      "question": "العلوم: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 22 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_600_23",
+      "categoryId": "science",
+      "slot": 22,
+      "points": 600,
+      "question": "العلوم: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 23 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_600_24",
+      "categoryId": "science",
+      "slot": 23,
+      "points": 600,
+      "question": "العلوم: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 24 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_600_25",
+      "categoryId": "science",
+      "slot": 24,
+      "points": 600,
+      "question": "العلوم: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 25 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_600_26",
+      "categoryId": "science",
+      "slot": 25,
+      "points": 600,
+      "question": "العلوم: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 26 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_600_27",
+      "categoryId": "science",
+      "slot": 26,
+      "points": 600,
+      "question": "العلوم: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 27 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_600_28",
+      "categoryId": "science",
+      "slot": 27,
+      "points": 600,
+      "question": "العلوم: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 28 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_600_29",
+      "categoryId": "science",
+      "slot": 28,
+      "points": 600,
+      "question": "العلوم: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 29 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "science_600_30",
+      "categoryId": "science",
+      "slot": 29,
+      "points": 600,
+      "question": "العلوم: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلوم: إجابة 30 — إجابة تجريبية.",
+      "image": "images/science.png"
+    },
+    {
+      "id": "arabic_lit_200_01",
+      "categoryId": "arabic_lit",
+      "slot": 0,
+      "points": 200,
+      "question": "الأدب العربي: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 1 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_200_02",
+      "categoryId": "arabic_lit",
+      "slot": 1,
+      "points": 200,
+      "question": "الأدب العربي: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 2 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_200_03",
+      "categoryId": "arabic_lit",
+      "slot": 2,
+      "points": 200,
+      "question": "الأدب العربي: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 3 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_200_04",
+      "categoryId": "arabic_lit",
+      "slot": 3,
+      "points": 200,
+      "question": "الأدب العربي: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 4 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_200_05",
+      "categoryId": "arabic_lit",
+      "slot": 4,
+      "points": 200,
+      "question": "الأدب العربي: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 5 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_200_06",
+      "categoryId": "arabic_lit",
+      "slot": 5,
+      "points": 200,
+      "question": "الأدب العربي: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 6 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_200_07",
+      "categoryId": "arabic_lit",
+      "slot": 6,
+      "points": 200,
+      "question": "الأدب العربي: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 7 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_200_08",
+      "categoryId": "arabic_lit",
+      "slot": 7,
+      "points": 200,
+      "question": "الأدب العربي: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 8 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_200_09",
+      "categoryId": "arabic_lit",
+      "slot": 8,
+      "points": 200,
+      "question": "الأدب العربي: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 9 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_200_10",
+      "categoryId": "arabic_lit",
+      "slot": 9,
+      "points": 200,
+      "question": "الأدب العربي: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 10 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_400_11",
+      "categoryId": "arabic_lit",
+      "slot": 10,
+      "points": 400,
+      "question": "الأدب العربي: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 11 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_400_12",
+      "categoryId": "arabic_lit",
+      "slot": 11,
+      "points": 400,
+      "question": "الأدب العربي: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 12 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_400_13",
+      "categoryId": "arabic_lit",
+      "slot": 12,
+      "points": 400,
+      "question": "الأدب العربي: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 13 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_400_14",
+      "categoryId": "arabic_lit",
+      "slot": 13,
+      "points": 400,
+      "question": "الأدب العربي: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 14 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_400_15",
+      "categoryId": "arabic_lit",
+      "slot": 14,
+      "points": 400,
+      "question": "الأدب العربي: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 15 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_400_16",
+      "categoryId": "arabic_lit",
+      "slot": 15,
+      "points": 400,
+      "question": "الأدب العربي: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 16 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_400_17",
+      "categoryId": "arabic_lit",
+      "slot": 16,
+      "points": 400,
+      "question": "الأدب العربي: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 17 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_400_18",
+      "categoryId": "arabic_lit",
+      "slot": 17,
+      "points": 400,
+      "question": "الأدب العربي: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 18 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_400_19",
+      "categoryId": "arabic_lit",
+      "slot": 18,
+      "points": 400,
+      "question": "الأدب العربي: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 19 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_400_20",
+      "categoryId": "arabic_lit",
+      "slot": 19,
+      "points": 400,
+      "question": "الأدب العربي: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 20 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_600_21",
+      "categoryId": "arabic_lit",
+      "slot": 20,
+      "points": 600,
+      "question": "الأدب العربي: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 21 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_600_22",
+      "categoryId": "arabic_lit",
+      "slot": 21,
+      "points": 600,
+      "question": "الأدب العربي: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 22 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_600_23",
+      "categoryId": "arabic_lit",
+      "slot": 22,
+      "points": 600,
+      "question": "الأدب العربي: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 23 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_600_24",
+      "categoryId": "arabic_lit",
+      "slot": 23,
+      "points": 600,
+      "question": "الأدب العربي: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 24 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_600_25",
+      "categoryId": "arabic_lit",
+      "slot": 24,
+      "points": 600,
+      "question": "الأدب العربي: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 25 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_600_26",
+      "categoryId": "arabic_lit",
+      "slot": 25,
+      "points": 600,
+      "question": "الأدب العربي: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 26 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_600_27",
+      "categoryId": "arabic_lit",
+      "slot": 26,
+      "points": 600,
+      "question": "الأدب العربي: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 27 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_600_28",
+      "categoryId": "arabic_lit",
+      "slot": 27,
+      "points": 600,
+      "question": "الأدب العربي: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 28 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_600_29",
+      "categoryId": "arabic_lit",
+      "slot": 28,
+      "points": 600,
+      "question": "الأدب العربي: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 29 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "arabic_lit_600_30",
+      "categoryId": "arabic_lit",
+      "slot": 29,
+      "points": 600,
+      "question": "الأدب العربي: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الأدب العربي: إجابة 30 — إجابة تجريبية.",
+      "image": "images/arabic_lit.png"
+    },
+    {
+      "id": "sports_200_01",
+      "categoryId": "sports",
+      "slot": 0,
+      "points": 200,
+      "question": "الرياضة: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 1 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_200_02",
+      "categoryId": "sports",
+      "slot": 1,
+      "points": 200,
+      "question": "الرياضة: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 2 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_200_03",
+      "categoryId": "sports",
+      "slot": 2,
+      "points": 200,
+      "question": "الرياضة: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 3 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_200_04",
+      "categoryId": "sports",
+      "slot": 3,
+      "points": 200,
+      "question": "الرياضة: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 4 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_200_05",
+      "categoryId": "sports",
+      "slot": 4,
+      "points": 200,
+      "question": "الرياضة: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 5 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_200_06",
+      "categoryId": "sports",
+      "slot": 5,
+      "points": 200,
+      "question": "الرياضة: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 6 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_200_07",
+      "categoryId": "sports",
+      "slot": 6,
+      "points": 200,
+      "question": "الرياضة: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 7 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_200_08",
+      "categoryId": "sports",
+      "slot": 7,
+      "points": 200,
+      "question": "الرياضة: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 8 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_200_09",
+      "categoryId": "sports",
+      "slot": 8,
+      "points": 200,
+      "question": "الرياضة: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 9 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_200_10",
+      "categoryId": "sports",
+      "slot": 9,
+      "points": 200,
+      "question": "الرياضة: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 10 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_400_11",
+      "categoryId": "sports",
+      "slot": 10,
+      "points": 400,
+      "question": "الرياضة: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 11 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_400_12",
+      "categoryId": "sports",
+      "slot": 11,
+      "points": 400,
+      "question": "الرياضة: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 12 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_400_13",
+      "categoryId": "sports",
+      "slot": 12,
+      "points": 400,
+      "question": "الرياضة: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 13 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_400_14",
+      "categoryId": "sports",
+      "slot": 13,
+      "points": 400,
+      "question": "الرياضة: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 14 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_400_15",
+      "categoryId": "sports",
+      "slot": 14,
+      "points": 400,
+      "question": "الرياضة: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 15 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_400_16",
+      "categoryId": "sports",
+      "slot": 15,
+      "points": 400,
+      "question": "الرياضة: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 16 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_400_17",
+      "categoryId": "sports",
+      "slot": 16,
+      "points": 400,
+      "question": "الرياضة: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 17 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_400_18",
+      "categoryId": "sports",
+      "slot": 17,
+      "points": 400,
+      "question": "الرياضة: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 18 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_400_19",
+      "categoryId": "sports",
+      "slot": 18,
+      "points": 400,
+      "question": "الرياضة: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 19 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_400_20",
+      "categoryId": "sports",
+      "slot": 19,
+      "points": 400,
+      "question": "الرياضة: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 20 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_600_21",
+      "categoryId": "sports",
+      "slot": 20,
+      "points": 600,
+      "question": "الرياضة: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 21 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_600_22",
+      "categoryId": "sports",
+      "slot": 21,
+      "points": 600,
+      "question": "الرياضة: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 22 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_600_23",
+      "categoryId": "sports",
+      "slot": 22,
+      "points": 600,
+      "question": "الرياضة: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 23 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_600_24",
+      "categoryId": "sports",
+      "slot": 23,
+      "points": 600,
+      "question": "الرياضة: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 24 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_600_25",
+      "categoryId": "sports",
+      "slot": 24,
+      "points": 600,
+      "question": "الرياضة: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 25 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_600_26",
+      "categoryId": "sports",
+      "slot": 25,
+      "points": 600,
+      "question": "الرياضة: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 26 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_600_27",
+      "categoryId": "sports",
+      "slot": 26,
+      "points": 600,
+      "question": "الرياضة: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 27 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_600_28",
+      "categoryId": "sports",
+      "slot": 27,
+      "points": 600,
+      "question": "الرياضة: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 28 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_600_29",
+      "categoryId": "sports",
+      "slot": 28,
+      "points": 600,
+      "question": "الرياضة: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 29 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "sports_600_30",
+      "categoryId": "sports",
+      "slot": 29,
+      "points": 600,
+      "question": "الرياضة: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "الرياضة: إجابة 30 — إجابة تجريبية.",
+      "image": "images/sports.png"
+    },
+    {
+      "id": "history_geo_200_01",
+      "categoryId": "history_geo",
+      "slot": 0,
+      "points": 200,
+      "question": "تاريخ وجغرافيا: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 1 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_200_02",
+      "categoryId": "history_geo",
+      "slot": 1,
+      "points": 200,
+      "question": "تاريخ وجغرافيا: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 2 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_200_03",
+      "categoryId": "history_geo",
+      "slot": 2,
+      "points": 200,
+      "question": "تاريخ وجغرافيا: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 3 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_200_04",
+      "categoryId": "history_geo",
+      "slot": 3,
+      "points": 200,
+      "question": "تاريخ وجغرافيا: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 4 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_200_05",
+      "categoryId": "history_geo",
+      "slot": 4,
+      "points": 200,
+      "question": "تاريخ وجغرافيا: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 5 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_200_06",
+      "categoryId": "history_geo",
+      "slot": 5,
+      "points": 200,
+      "question": "تاريخ وجغرافيا: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 6 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_200_07",
+      "categoryId": "history_geo",
+      "slot": 6,
+      "points": 200,
+      "question": "تاريخ وجغرافيا: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 7 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_200_08",
+      "categoryId": "history_geo",
+      "slot": 7,
+      "points": 200,
+      "question": "تاريخ وجغرافيا: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 8 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_200_09",
+      "categoryId": "history_geo",
+      "slot": 8,
+      "points": 200,
+      "question": "تاريخ وجغرافيا: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 9 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_200_10",
+      "categoryId": "history_geo",
+      "slot": 9,
+      "points": 200,
+      "question": "تاريخ وجغرافيا: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 10 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_400_11",
+      "categoryId": "history_geo",
+      "slot": 10,
+      "points": 400,
+      "question": "تاريخ وجغرافيا: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 11 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_400_12",
+      "categoryId": "history_geo",
+      "slot": 11,
+      "points": 400,
+      "question": "تاريخ وجغرافيا: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 12 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_400_13",
+      "categoryId": "history_geo",
+      "slot": 12,
+      "points": 400,
+      "question": "تاريخ وجغرافيا: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 13 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_400_14",
+      "categoryId": "history_geo",
+      "slot": 13,
+      "points": 400,
+      "question": "تاريخ وجغرافيا: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 14 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_400_15",
+      "categoryId": "history_geo",
+      "slot": 14,
+      "points": 400,
+      "question": "تاريخ وجغرافيا: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 15 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_400_16",
+      "categoryId": "history_geo",
+      "slot": 15,
+      "points": 400,
+      "question": "تاريخ وجغرافيا: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 16 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_400_17",
+      "categoryId": "history_geo",
+      "slot": 16,
+      "points": 400,
+      "question": "تاريخ وجغرافيا: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 17 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_400_18",
+      "categoryId": "history_geo",
+      "slot": 17,
+      "points": 400,
+      "question": "تاريخ وجغرافيا: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 18 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_400_19",
+      "categoryId": "history_geo",
+      "slot": 18,
+      "points": 400,
+      "question": "تاريخ وجغرافيا: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 19 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_400_20",
+      "categoryId": "history_geo",
+      "slot": 19,
+      "points": 400,
+      "question": "تاريخ وجغرافيا: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 20 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_600_21",
+      "categoryId": "history_geo",
+      "slot": 20,
+      "points": 600,
+      "question": "تاريخ وجغرافيا: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 21 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_600_22",
+      "categoryId": "history_geo",
+      "slot": 21,
+      "points": 600,
+      "question": "تاريخ وجغرافيا: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 22 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_600_23",
+      "categoryId": "history_geo",
+      "slot": 22,
+      "points": 600,
+      "question": "تاريخ وجغرافيا: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 23 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_600_24",
+      "categoryId": "history_geo",
+      "slot": 23,
+      "points": 600,
+      "question": "تاريخ وجغرافيا: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 24 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_600_25",
+      "categoryId": "history_geo",
+      "slot": 24,
+      "points": 600,
+      "question": "تاريخ وجغرافيا: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 25 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_600_26",
+      "categoryId": "history_geo",
+      "slot": 25,
+      "points": 600,
+      "question": "تاريخ وجغرافيا: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 26 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_600_27",
+      "categoryId": "history_geo",
+      "slot": 26,
+      "points": 600,
+      "question": "تاريخ وجغرافيا: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 27 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_600_28",
+      "categoryId": "history_geo",
+      "slot": 27,
+      "points": 600,
+      "question": "تاريخ وجغرافيا: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 28 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_600_29",
+      "categoryId": "history_geo",
+      "slot": 28,
+      "points": 600,
+      "question": "تاريخ وجغرافيا: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 29 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "history_geo_600_30",
+      "categoryId": "history_geo",
+      "slot": 29,
+      "points": 600,
+      "question": "تاريخ وجغرافيا: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تاريخ وجغرافيا: إجابة 30 — إجابة تجريبية.",
+      "image": "images/history_geo.png"
+    },
+    {
+      "id": "nature_200_01",
+      "categoryId": "nature",
+      "slot": 0,
+      "points": 200,
+      "question": "عالم الحيوان: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 1 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_200_02",
+      "categoryId": "nature",
+      "slot": 1,
+      "points": 200,
+      "question": "عالم الحيوان: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 2 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_200_03",
+      "categoryId": "nature",
+      "slot": 2,
+      "points": 200,
+      "question": "عالم الحيوان: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 3 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_200_04",
+      "categoryId": "nature",
+      "slot": 3,
+      "points": 200,
+      "question": "عالم الحيوان: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 4 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_200_05",
+      "categoryId": "nature",
+      "slot": 4,
+      "points": 200,
+      "question": "عالم الحيوان: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 5 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_200_06",
+      "categoryId": "nature",
+      "slot": 5,
+      "points": 200,
+      "question": "عالم الحيوان: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 6 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_200_07",
+      "categoryId": "nature",
+      "slot": 6,
+      "points": 200,
+      "question": "عالم الحيوان: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 7 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_200_08",
+      "categoryId": "nature",
+      "slot": 7,
+      "points": 200,
+      "question": "عالم الحيوان: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 8 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_200_09",
+      "categoryId": "nature",
+      "slot": 8,
+      "points": 200,
+      "question": "عالم الحيوان: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 9 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_200_10",
+      "categoryId": "nature",
+      "slot": 9,
+      "points": 200,
+      "question": "عالم الحيوان: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 10 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_400_11",
+      "categoryId": "nature",
+      "slot": 10,
+      "points": 400,
+      "question": "عالم الحيوان: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 11 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_400_12",
+      "categoryId": "nature",
+      "slot": 11,
+      "points": 400,
+      "question": "عالم الحيوان: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 12 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_400_13",
+      "categoryId": "nature",
+      "slot": 12,
+      "points": 400,
+      "question": "عالم الحيوان: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 13 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_400_14",
+      "categoryId": "nature",
+      "slot": 13,
+      "points": 400,
+      "question": "عالم الحيوان: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 14 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_400_15",
+      "categoryId": "nature",
+      "slot": 14,
+      "points": 400,
+      "question": "عالم الحيوان: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 15 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_400_16",
+      "categoryId": "nature",
+      "slot": 15,
+      "points": 400,
+      "question": "عالم الحيوان: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 16 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_400_17",
+      "categoryId": "nature",
+      "slot": 16,
+      "points": 400,
+      "question": "عالم الحيوان: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 17 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_400_18",
+      "categoryId": "nature",
+      "slot": 17,
+      "points": 400,
+      "question": "عالم الحيوان: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 18 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_400_19",
+      "categoryId": "nature",
+      "slot": 18,
+      "points": 400,
+      "question": "عالم الحيوان: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 19 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_400_20",
+      "categoryId": "nature",
+      "slot": 19,
+      "points": 400,
+      "question": "عالم الحيوان: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 20 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_600_21",
+      "categoryId": "nature",
+      "slot": 20,
+      "points": 600,
+      "question": "عالم الحيوان: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 21 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_600_22",
+      "categoryId": "nature",
+      "slot": 21,
+      "points": 600,
+      "question": "عالم الحيوان: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 22 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_600_23",
+      "categoryId": "nature",
+      "slot": 22,
+      "points": 600,
+      "question": "عالم الحيوان: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 23 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_600_24",
+      "categoryId": "nature",
+      "slot": 23,
+      "points": 600,
+      "question": "عالم الحيوان: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 24 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_600_25",
+      "categoryId": "nature",
+      "slot": 24,
+      "points": 600,
+      "question": "عالم الحيوان: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 25 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_600_26",
+      "categoryId": "nature",
+      "slot": 25,
+      "points": 600,
+      "question": "عالم الحيوان: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 26 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_600_27",
+      "categoryId": "nature",
+      "slot": 26,
+      "points": 600,
+      "question": "عالم الحيوان: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 27 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_600_28",
+      "categoryId": "nature",
+      "slot": 27,
+      "points": 600,
+      "question": "عالم الحيوان: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 28 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_600_29",
+      "categoryId": "nature",
+      "slot": 28,
+      "points": 600,
+      "question": "عالم الحيوان: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 29 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "nature_600_30",
+      "categoryId": "nature",
+      "slot": 29,
+      "points": 600,
+      "question": "عالم الحيوان: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "عالم الحيوان: إجابة 30 — إجابة تجريبية.",
+      "image": "images/nature.png"
+    },
+    {
+      "id": "math_200_01",
+      "categoryId": "math",
+      "slot": 0,
+      "points": 200,
+      "question": "رياضيات: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 1 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_200_02",
+      "categoryId": "math",
+      "slot": 1,
+      "points": 200,
+      "question": "رياضيات: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 2 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_200_03",
+      "categoryId": "math",
+      "slot": 2,
+      "points": 200,
+      "question": "رياضيات: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 3 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_200_04",
+      "categoryId": "math",
+      "slot": 3,
+      "points": 200,
+      "question": "رياضيات: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 4 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_200_05",
+      "categoryId": "math",
+      "slot": 4,
+      "points": 200,
+      "question": "رياضيات: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 5 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_200_06",
+      "categoryId": "math",
+      "slot": 5,
+      "points": 200,
+      "question": "رياضيات: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 6 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_200_07",
+      "categoryId": "math",
+      "slot": 6,
+      "points": 200,
+      "question": "رياضيات: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 7 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_200_08",
+      "categoryId": "math",
+      "slot": 7,
+      "points": 200,
+      "question": "رياضيات: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 8 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_200_09",
+      "categoryId": "math",
+      "slot": 8,
+      "points": 200,
+      "question": "رياضيات: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 9 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_200_10",
+      "categoryId": "math",
+      "slot": 9,
+      "points": 200,
+      "question": "رياضيات: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 10 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_400_11",
+      "categoryId": "math",
+      "slot": 10,
+      "points": 400,
+      "question": "رياضيات: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 11 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_400_12",
+      "categoryId": "math",
+      "slot": 11,
+      "points": 400,
+      "question": "رياضيات: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 12 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_400_13",
+      "categoryId": "math",
+      "slot": 12,
+      "points": 400,
+      "question": "رياضيات: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 13 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_400_14",
+      "categoryId": "math",
+      "slot": 13,
+      "points": 400,
+      "question": "رياضيات: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 14 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_400_15",
+      "categoryId": "math",
+      "slot": 14,
+      "points": 400,
+      "question": "رياضيات: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 15 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_400_16",
+      "categoryId": "math",
+      "slot": 15,
+      "points": 400,
+      "question": "رياضيات: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 16 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_400_17",
+      "categoryId": "math",
+      "slot": 16,
+      "points": 400,
+      "question": "رياضيات: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 17 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_400_18",
+      "categoryId": "math",
+      "slot": 17,
+      "points": 400,
+      "question": "رياضيات: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 18 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_400_19",
+      "categoryId": "math",
+      "slot": 18,
+      "points": 400,
+      "question": "رياضيات: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 19 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_400_20",
+      "categoryId": "math",
+      "slot": 19,
+      "points": 400,
+      "question": "رياضيات: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 20 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_600_21",
+      "categoryId": "math",
+      "slot": 20,
+      "points": 600,
+      "question": "رياضيات: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 21 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_600_22",
+      "categoryId": "math",
+      "slot": 21,
+      "points": 600,
+      "question": "رياضيات: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 22 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_600_23",
+      "categoryId": "math",
+      "slot": 22,
+      "points": 600,
+      "question": "رياضيات: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 23 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_600_24",
+      "categoryId": "math",
+      "slot": 23,
+      "points": 600,
+      "question": "رياضيات: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 24 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_600_25",
+      "categoryId": "math",
+      "slot": 24,
+      "points": 600,
+      "question": "رياضيات: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 25 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_600_26",
+      "categoryId": "math",
+      "slot": 25,
+      "points": 600,
+      "question": "رياضيات: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 26 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_600_27",
+      "categoryId": "math",
+      "slot": 26,
+      "points": 600,
+      "question": "رياضيات: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 27 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_600_28",
+      "categoryId": "math",
+      "slot": 27,
+      "points": 600,
+      "question": "رياضيات: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 28 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_600_29",
+      "categoryId": "math",
+      "slot": 28,
+      "points": 600,
+      "question": "رياضيات: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 29 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "math_600_30",
+      "categoryId": "math",
+      "slot": 29,
+      "points": 600,
+      "question": "رياضيات: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "رياضيات: إجابة 30 — إجابة تجريبية.",
+      "image": "images/math.png"
+    },
+    {
+      "id": "football_200_01",
+      "categoryId": "football",
+      "slot": 0,
+      "points": 200,
+      "question": "كرة القدم: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 1 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_200_02",
+      "categoryId": "football",
+      "slot": 1,
+      "points": 200,
+      "question": "كرة القدم: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 2 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_200_03",
+      "categoryId": "football",
+      "slot": 2,
+      "points": 200,
+      "question": "كرة القدم: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 3 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_200_04",
+      "categoryId": "football",
+      "slot": 3,
+      "points": 200,
+      "question": "كرة القدم: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 4 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_200_05",
+      "categoryId": "football",
+      "slot": 4,
+      "points": 200,
+      "question": "كرة القدم: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 5 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_200_06",
+      "categoryId": "football",
+      "slot": 5,
+      "points": 200,
+      "question": "كرة القدم: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 6 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_200_07",
+      "categoryId": "football",
+      "slot": 6,
+      "points": 200,
+      "question": "كرة القدم: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 7 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_200_08",
+      "categoryId": "football",
+      "slot": 7,
+      "points": 200,
+      "question": "كرة القدم: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 8 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_200_09",
+      "categoryId": "football",
+      "slot": 8,
+      "points": 200,
+      "question": "كرة القدم: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 9 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_200_10",
+      "categoryId": "football",
+      "slot": 9,
+      "points": 200,
+      "question": "كرة القدم: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 10 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_400_11",
+      "categoryId": "football",
+      "slot": 10,
+      "points": 400,
+      "question": "كرة القدم: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 11 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_400_12",
+      "categoryId": "football",
+      "slot": 11,
+      "points": 400,
+      "question": "كرة القدم: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 12 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_400_13",
+      "categoryId": "football",
+      "slot": 12,
+      "points": 400,
+      "question": "كرة القدم: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 13 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_400_14",
+      "categoryId": "football",
+      "slot": 13,
+      "points": 400,
+      "question": "كرة القدم: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 14 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_400_15",
+      "categoryId": "football",
+      "slot": 14,
+      "points": 400,
+      "question": "كرة القدم: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 15 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_400_16",
+      "categoryId": "football",
+      "slot": 15,
+      "points": 400,
+      "question": "كرة القدم: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 16 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_400_17",
+      "categoryId": "football",
+      "slot": 16,
+      "points": 400,
+      "question": "كرة القدم: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 17 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_400_18",
+      "categoryId": "football",
+      "slot": 17,
+      "points": 400,
+      "question": "كرة القدم: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 18 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_400_19",
+      "categoryId": "football",
+      "slot": 18,
+      "points": 400,
+      "question": "كرة القدم: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 19 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_400_20",
+      "categoryId": "football",
+      "slot": 19,
+      "points": 400,
+      "question": "كرة القدم: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 20 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_600_21",
+      "categoryId": "football",
+      "slot": 20,
+      "points": 600,
+      "question": "كرة القدم: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 21 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_600_22",
+      "categoryId": "football",
+      "slot": 21,
+      "points": 600,
+      "question": "كرة القدم: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 22 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_600_23",
+      "categoryId": "football",
+      "slot": 22,
+      "points": 600,
+      "question": "كرة القدم: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 23 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_600_24",
+      "categoryId": "football",
+      "slot": 23,
+      "points": 600,
+      "question": "كرة القدم: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 24 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_600_25",
+      "categoryId": "football",
+      "slot": 24,
+      "points": 600,
+      "question": "كرة القدم: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 25 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_600_26",
+      "categoryId": "football",
+      "slot": 25,
+      "points": 600,
+      "question": "كرة القدم: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 26 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_600_27",
+      "categoryId": "football",
+      "slot": 26,
+      "points": 600,
+      "question": "كرة القدم: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 27 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_600_28",
+      "categoryId": "football",
+      "slot": 27,
+      "points": 600,
+      "question": "كرة القدم: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 28 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_600_29",
+      "categoryId": "football",
+      "slot": 28,
+      "points": 600,
+      "question": "كرة القدم: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 29 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "football_600_30",
+      "categoryId": "football",
+      "slot": 29,
+      "points": 600,
+      "question": "كرة القدم: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "كرة القدم: إجابة 30 — إجابة تجريبية.",
+      "image": "images/football.png"
+    },
+    {
+      "id": "tech_200_01",
+      "categoryId": "tech",
+      "slot": 0,
+      "points": 200,
+      "question": "تقنية: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 1 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_200_02",
+      "categoryId": "tech",
+      "slot": 1,
+      "points": 200,
+      "question": "تقنية: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 2 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_200_03",
+      "categoryId": "tech",
+      "slot": 2,
+      "points": 200,
+      "question": "تقنية: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 3 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_200_04",
+      "categoryId": "tech",
+      "slot": 3,
+      "points": 200,
+      "question": "تقنية: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 4 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_200_05",
+      "categoryId": "tech",
+      "slot": 4,
+      "points": 200,
+      "question": "تقنية: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 5 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_200_06",
+      "categoryId": "tech",
+      "slot": 5,
+      "points": 200,
+      "question": "تقنية: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 6 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_200_07",
+      "categoryId": "tech",
+      "slot": 6,
+      "points": 200,
+      "question": "تقنية: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 7 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_200_08",
+      "categoryId": "tech",
+      "slot": 7,
+      "points": 200,
+      "question": "تقنية: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 8 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_200_09",
+      "categoryId": "tech",
+      "slot": 8,
+      "points": 200,
+      "question": "تقنية: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 9 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_200_10",
+      "categoryId": "tech",
+      "slot": 9,
+      "points": 200,
+      "question": "تقنية: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 10 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_400_11",
+      "categoryId": "tech",
+      "slot": 10,
+      "points": 400,
+      "question": "تقنية: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 11 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_400_12",
+      "categoryId": "tech",
+      "slot": 11,
+      "points": 400,
+      "question": "تقنية: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 12 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_400_13",
+      "categoryId": "tech",
+      "slot": 12,
+      "points": 400,
+      "question": "تقنية: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 13 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_400_14",
+      "categoryId": "tech",
+      "slot": 13,
+      "points": 400,
+      "question": "تقنية: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 14 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_400_15",
+      "categoryId": "tech",
+      "slot": 14,
+      "points": 400,
+      "question": "تقنية: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 15 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_400_16",
+      "categoryId": "tech",
+      "slot": 15,
+      "points": 400,
+      "question": "تقنية: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 16 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_400_17",
+      "categoryId": "tech",
+      "slot": 16,
+      "points": 400,
+      "question": "تقنية: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 17 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_400_18",
+      "categoryId": "tech",
+      "slot": 17,
+      "points": 400,
+      "question": "تقنية: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 18 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_400_19",
+      "categoryId": "tech",
+      "slot": 18,
+      "points": 400,
+      "question": "تقنية: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 19 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_400_20",
+      "categoryId": "tech",
+      "slot": 19,
+      "points": 400,
+      "question": "تقنية: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 20 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_600_21",
+      "categoryId": "tech",
+      "slot": 20,
+      "points": 600,
+      "question": "تقنية: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 21 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_600_22",
+      "categoryId": "tech",
+      "slot": 21,
+      "points": 600,
+      "question": "تقنية: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 22 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_600_23",
+      "categoryId": "tech",
+      "slot": 22,
+      "points": 600,
+      "question": "تقنية: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 23 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_600_24",
+      "categoryId": "tech",
+      "slot": 23,
+      "points": 600,
+      "question": "تقنية: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 24 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_600_25",
+      "categoryId": "tech",
+      "slot": 24,
+      "points": 600,
+      "question": "تقنية: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 25 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_600_26",
+      "categoryId": "tech",
+      "slot": 25,
+      "points": 600,
+      "question": "تقنية: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 26 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_600_27",
+      "categoryId": "tech",
+      "slot": 26,
+      "points": 600,
+      "question": "تقنية: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 27 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_600_28",
+      "categoryId": "tech",
+      "slot": 27,
+      "points": 600,
+      "question": "تقنية: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 28 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_600_29",
+      "categoryId": "tech",
+      "slot": 28,
+      "points": 600,
+      "question": "تقنية: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 29 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "tech_600_30",
+      "categoryId": "tech",
+      "slot": 29,
+      "points": 600,
+      "question": "تقنية: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "تقنية: إجابة 30 — إجابة تجريبية.",
+      "image": "images/tech.png"
+    },
+    {
+      "id": "movies_200_01",
+      "categoryId": "movies",
+      "slot": 0,
+      "points": 200,
+      "question": "أفلام ومسلسلات: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 1 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_200_02",
+      "categoryId": "movies",
+      "slot": 1,
+      "points": 200,
+      "question": "أفلام ومسلسلات: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 2 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_200_03",
+      "categoryId": "movies",
+      "slot": 2,
+      "points": 200,
+      "question": "أفلام ومسلسلات: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 3 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_200_04",
+      "categoryId": "movies",
+      "slot": 3,
+      "points": 200,
+      "question": "أفلام ومسلسلات: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 4 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_200_05",
+      "categoryId": "movies",
+      "slot": 4,
+      "points": 200,
+      "question": "أفلام ومسلسلات: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 5 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_200_06",
+      "categoryId": "movies",
+      "slot": 5,
+      "points": 200,
+      "question": "أفلام ومسلسلات: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 6 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_200_07",
+      "categoryId": "movies",
+      "slot": 6,
+      "points": 200,
+      "question": "أفلام ومسلسلات: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 7 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_200_08",
+      "categoryId": "movies",
+      "slot": 7,
+      "points": 200,
+      "question": "أفلام ومسلسلات: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 8 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_200_09",
+      "categoryId": "movies",
+      "slot": 8,
+      "points": 200,
+      "question": "أفلام ومسلسلات: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 9 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_200_10",
+      "categoryId": "movies",
+      "slot": 9,
+      "points": 200,
+      "question": "أفلام ومسلسلات: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 10 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_400_11",
+      "categoryId": "movies",
+      "slot": 10,
+      "points": 400,
+      "question": "أفلام ومسلسلات: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 11 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_400_12",
+      "categoryId": "movies",
+      "slot": 11,
+      "points": 400,
+      "question": "أفلام ومسلسلات: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 12 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_400_13",
+      "categoryId": "movies",
+      "slot": 12,
+      "points": 400,
+      "question": "أفلام ومسلسلات: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 13 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_400_14",
+      "categoryId": "movies",
+      "slot": 13,
+      "points": 400,
+      "question": "أفلام ومسلسلات: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 14 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_400_15",
+      "categoryId": "movies",
+      "slot": 14,
+      "points": 400,
+      "question": "أفلام ومسلسلات: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 15 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_400_16",
+      "categoryId": "movies",
+      "slot": 15,
+      "points": 400,
+      "question": "أفلام ومسلسلات: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 16 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_400_17",
+      "categoryId": "movies",
+      "slot": 16,
+      "points": 400,
+      "question": "أفلام ومسلسلات: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 17 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_400_18",
+      "categoryId": "movies",
+      "slot": 17,
+      "points": 400,
+      "question": "أفلام ومسلسلات: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 18 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_400_19",
+      "categoryId": "movies",
+      "slot": 18,
+      "points": 400,
+      "question": "أفلام ومسلسلات: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 19 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_400_20",
+      "categoryId": "movies",
+      "slot": 19,
+      "points": 400,
+      "question": "أفلام ومسلسلات: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 20 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_600_21",
+      "categoryId": "movies",
+      "slot": 20,
+      "points": 600,
+      "question": "أفلام ومسلسلات: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 21 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_600_22",
+      "categoryId": "movies",
+      "slot": 21,
+      "points": 600,
+      "question": "أفلام ومسلسلات: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 22 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_600_23",
+      "categoryId": "movies",
+      "slot": 22,
+      "points": 600,
+      "question": "أفلام ومسلسلات: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 23 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_600_24",
+      "categoryId": "movies",
+      "slot": 23,
+      "points": 600,
+      "question": "أفلام ومسلسلات: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 24 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_600_25",
+      "categoryId": "movies",
+      "slot": 24,
+      "points": 600,
+      "question": "أفلام ومسلسلات: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 25 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_600_26",
+      "categoryId": "movies",
+      "slot": 25,
+      "points": 600,
+      "question": "أفلام ومسلسلات: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 26 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_600_27",
+      "categoryId": "movies",
+      "slot": 26,
+      "points": 600,
+      "question": "أفلام ومسلسلات: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 27 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_600_28",
+      "categoryId": "movies",
+      "slot": 27,
+      "points": 600,
+      "question": "أفلام ومسلسلات: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 28 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_600_29",
+      "categoryId": "movies",
+      "slot": 28,
+      "points": 600,
+      "question": "أفلام ومسلسلات: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 29 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "movies_600_30",
+      "categoryId": "movies",
+      "slot": 29,
+      "points": 600,
+      "question": "أفلام ومسلسلات: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أفلام ومسلسلات: إجابة 30 — إجابة تجريبية.",
+      "image": "images/movies.png"
+    },
+    {
+      "id": "saudi_200_01",
+      "categoryId": "saudi",
+      "slot": 0,
+      "points": 200,
+      "question": "السعودية: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 1 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_200_02",
+      "categoryId": "saudi",
+      "slot": 1,
+      "points": 200,
+      "question": "السعودية: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 2 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_200_03",
+      "categoryId": "saudi",
+      "slot": 2,
+      "points": 200,
+      "question": "السعودية: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 3 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_200_04",
+      "categoryId": "saudi",
+      "slot": 3,
+      "points": 200,
+      "question": "السعودية: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 4 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_200_05",
+      "categoryId": "saudi",
+      "slot": 4,
+      "points": 200,
+      "question": "السعودية: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 5 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_200_06",
+      "categoryId": "saudi",
+      "slot": 5,
+      "points": 200,
+      "question": "السعودية: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 6 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_200_07",
+      "categoryId": "saudi",
+      "slot": 6,
+      "points": 200,
+      "question": "السعودية: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 7 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_200_08",
+      "categoryId": "saudi",
+      "slot": 7,
+      "points": 200,
+      "question": "السعودية: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 8 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_200_09",
+      "categoryId": "saudi",
+      "slot": 8,
+      "points": 200,
+      "question": "السعودية: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 9 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_200_10",
+      "categoryId": "saudi",
+      "slot": 9,
+      "points": 200,
+      "question": "السعودية: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 10 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_400_11",
+      "categoryId": "saudi",
+      "slot": 10,
+      "points": 400,
+      "question": "السعودية: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 11 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_400_12",
+      "categoryId": "saudi",
+      "slot": 11,
+      "points": 400,
+      "question": "السعودية: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 12 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_400_13",
+      "categoryId": "saudi",
+      "slot": 12,
+      "points": 400,
+      "question": "السعودية: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 13 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_400_14",
+      "categoryId": "saudi",
+      "slot": 13,
+      "points": 400,
+      "question": "السعودية: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 14 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_400_15",
+      "categoryId": "saudi",
+      "slot": 14,
+      "points": 400,
+      "question": "السعودية: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 15 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_400_16",
+      "categoryId": "saudi",
+      "slot": 15,
+      "points": 400,
+      "question": "السعودية: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 16 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_400_17",
+      "categoryId": "saudi",
+      "slot": 16,
+      "points": 400,
+      "question": "السعودية: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 17 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_400_18",
+      "categoryId": "saudi",
+      "slot": 17,
+      "points": 400,
+      "question": "السعودية: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 18 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_400_19",
+      "categoryId": "saudi",
+      "slot": 18,
+      "points": 400,
+      "question": "السعودية: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 19 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_400_20",
+      "categoryId": "saudi",
+      "slot": 19,
+      "points": 400,
+      "question": "السعودية: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 20 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_600_21",
+      "categoryId": "saudi",
+      "slot": 20,
+      "points": 600,
+      "question": "السعودية: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 21 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_600_22",
+      "categoryId": "saudi",
+      "slot": 21,
+      "points": 600,
+      "question": "السعودية: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 22 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_600_23",
+      "categoryId": "saudi",
+      "slot": 22,
+      "points": 600,
+      "question": "السعودية: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 23 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_600_24",
+      "categoryId": "saudi",
+      "slot": 23,
+      "points": 600,
+      "question": "السعودية: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 24 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_600_25",
+      "categoryId": "saudi",
+      "slot": 24,
+      "points": 600,
+      "question": "السعودية: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 25 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_600_26",
+      "categoryId": "saudi",
+      "slot": 25,
+      "points": 600,
+      "question": "السعودية: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 26 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_600_27",
+      "categoryId": "saudi",
+      "slot": 26,
+      "points": 600,
+      "question": "السعودية: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 27 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_600_28",
+      "categoryId": "saudi",
+      "slot": 27,
+      "points": 600,
+      "question": "السعودية: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 28 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_600_29",
+      "categoryId": "saudi",
+      "slot": 28,
+      "points": 600,
+      "question": "السعودية: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 29 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "saudi_600_30",
+      "categoryId": "saudi",
+      "slot": 29,
+      "points": 600,
+      "question": "السعودية: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "السعودية: إجابة 30 — إجابة تجريبية.",
+      "image": "images/saudi.png"
+    },
+    {
+      "id": "alula_200_01",
+      "categoryId": "alula",
+      "slot": 0,
+      "points": 200,
+      "question": "العلا: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 1 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_200_02",
+      "categoryId": "alula",
+      "slot": 1,
+      "points": 200,
+      "question": "العلا: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 2 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_200_03",
+      "categoryId": "alula",
+      "slot": 2,
+      "points": 200,
+      "question": "العلا: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 3 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_200_04",
+      "categoryId": "alula",
+      "slot": 3,
+      "points": 200,
+      "question": "العلا: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 4 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_200_05",
+      "categoryId": "alula",
+      "slot": 4,
+      "points": 200,
+      "question": "العلا: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 5 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_200_06",
+      "categoryId": "alula",
+      "slot": 5,
+      "points": 200,
+      "question": "العلا: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 6 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_200_07",
+      "categoryId": "alula",
+      "slot": 6,
+      "points": 200,
+      "question": "العلا: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 7 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_200_08",
+      "categoryId": "alula",
+      "slot": 7,
+      "points": 200,
+      "question": "العلا: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 8 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_200_09",
+      "categoryId": "alula",
+      "slot": 8,
+      "points": 200,
+      "question": "العلا: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 9 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_200_10",
+      "categoryId": "alula",
+      "slot": 9,
+      "points": 200,
+      "question": "العلا: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 10 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_400_11",
+      "categoryId": "alula",
+      "slot": 10,
+      "points": 400,
+      "question": "العلا: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 11 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_400_12",
+      "categoryId": "alula",
+      "slot": 11,
+      "points": 400,
+      "question": "العلا: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 12 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_400_13",
+      "categoryId": "alula",
+      "slot": 12,
+      "points": 400,
+      "question": "العلا: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 13 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_400_14",
+      "categoryId": "alula",
+      "slot": 13,
+      "points": 400,
+      "question": "العلا: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 14 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_400_15",
+      "categoryId": "alula",
+      "slot": 14,
+      "points": 400,
+      "question": "العلا: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 15 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_400_16",
+      "categoryId": "alula",
+      "slot": 15,
+      "points": 400,
+      "question": "العلا: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 16 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_400_17",
+      "categoryId": "alula",
+      "slot": 16,
+      "points": 400,
+      "question": "العلا: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 17 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_400_18",
+      "categoryId": "alula",
+      "slot": 17,
+      "points": 400,
+      "question": "العلا: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 18 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_400_19",
+      "categoryId": "alula",
+      "slot": 18,
+      "points": 400,
+      "question": "العلا: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 19 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_400_20",
+      "categoryId": "alula",
+      "slot": 19,
+      "points": 400,
+      "question": "العلا: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 20 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_600_21",
+      "categoryId": "alula",
+      "slot": 20,
+      "points": 600,
+      "question": "العلا: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 21 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_600_22",
+      "categoryId": "alula",
+      "slot": 21,
+      "points": 600,
+      "question": "العلا: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 22 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_600_23",
+      "categoryId": "alula",
+      "slot": 22,
+      "points": 600,
+      "question": "العلا: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 23 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_600_24",
+      "categoryId": "alula",
+      "slot": 23,
+      "points": 600,
+      "question": "العلا: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 24 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_600_25",
+      "categoryId": "alula",
+      "slot": 24,
+      "points": 600,
+      "question": "العلا: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 25 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_600_26",
+      "categoryId": "alula",
+      "slot": 25,
+      "points": 600,
+      "question": "العلا: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 26 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_600_27",
+      "categoryId": "alula",
+      "slot": 26,
+      "points": 600,
+      "question": "العلا: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 27 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_600_28",
+      "categoryId": "alula",
+      "slot": 27,
+      "points": 600,
+      "question": "العلا: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 28 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_600_29",
+      "categoryId": "alula",
+      "slot": 28,
+      "points": 600,
+      "question": "العلا: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 29 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "alula_600_30",
+      "categoryId": "alula",
+      "slot": 29,
+      "points": 600,
+      "question": "العلا: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "العلا: إجابة 30 — إجابة تجريبية.",
+      "image": "images/alula.png"
+    },
+    {
+      "id": "food_200_01",
+      "categoryId": "food",
+      "slot": 0,
+      "points": 200,
+      "question": "أكل ومطاعم: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 1 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_200_02",
+      "categoryId": "food",
+      "slot": 1,
+      "points": 200,
+      "question": "أكل ومطاعم: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 2 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_200_03",
+      "categoryId": "food",
+      "slot": 2,
+      "points": 200,
+      "question": "أكل ومطاعم: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 3 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_200_04",
+      "categoryId": "food",
+      "slot": 3,
+      "points": 200,
+      "question": "أكل ومطاعم: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 4 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_200_05",
+      "categoryId": "food",
+      "slot": 4,
+      "points": 200,
+      "question": "أكل ومطاعم: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 5 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_200_06",
+      "categoryId": "food",
+      "slot": 5,
+      "points": 200,
+      "question": "أكل ومطاعم: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 6 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_200_07",
+      "categoryId": "food",
+      "slot": 6,
+      "points": 200,
+      "question": "أكل ومطاعم: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 7 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_200_08",
+      "categoryId": "food",
+      "slot": 7,
+      "points": 200,
+      "question": "أكل ومطاعم: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 8 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_200_09",
+      "categoryId": "food",
+      "slot": 8,
+      "points": 200,
+      "question": "أكل ومطاعم: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 9 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_200_10",
+      "categoryId": "food",
+      "slot": 9,
+      "points": 200,
+      "question": "أكل ومطاعم: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 10 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_400_11",
+      "categoryId": "food",
+      "slot": 10,
+      "points": 400,
+      "question": "أكل ومطاعم: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 11 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_400_12",
+      "categoryId": "food",
+      "slot": 11,
+      "points": 400,
+      "question": "أكل ومطاعم: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 12 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_400_13",
+      "categoryId": "food",
+      "slot": 12,
+      "points": 400,
+      "question": "أكل ومطاعم: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 13 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_400_14",
+      "categoryId": "food",
+      "slot": 13,
+      "points": 400,
+      "question": "أكل ومطاعم: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 14 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_400_15",
+      "categoryId": "food",
+      "slot": 14,
+      "points": 400,
+      "question": "أكل ومطاعم: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 15 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_400_16",
+      "categoryId": "food",
+      "slot": 15,
+      "points": 400,
+      "question": "أكل ومطاعم: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 16 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_400_17",
+      "categoryId": "food",
+      "slot": 16,
+      "points": 400,
+      "question": "أكل ومطاعم: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 17 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_400_18",
+      "categoryId": "food",
+      "slot": 17,
+      "points": 400,
+      "question": "أكل ومطاعم: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 18 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_400_19",
+      "categoryId": "food",
+      "slot": 18,
+      "points": 400,
+      "question": "أكل ومطاعم: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 19 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_400_20",
+      "categoryId": "food",
+      "slot": 19,
+      "points": 400,
+      "question": "أكل ومطاعم: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 20 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_600_21",
+      "categoryId": "food",
+      "slot": 20,
+      "points": 600,
+      "question": "أكل ومطاعم: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 21 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_600_22",
+      "categoryId": "food",
+      "slot": 21,
+      "points": 600,
+      "question": "أكل ومطاعم: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 22 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_600_23",
+      "categoryId": "food",
+      "slot": 22,
+      "points": 600,
+      "question": "أكل ومطاعم: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 23 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_600_24",
+      "categoryId": "food",
+      "slot": 23,
+      "points": 600,
+      "question": "أكل ومطاعم: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 24 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_600_25",
+      "categoryId": "food",
+      "slot": 24,
+      "points": 600,
+      "question": "أكل ومطاعم: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 25 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_600_26",
+      "categoryId": "food",
+      "slot": 25,
+      "points": 600,
+      "question": "أكل ومطاعم: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 26 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_600_27",
+      "categoryId": "food",
+      "slot": 26,
+      "points": 600,
+      "question": "أكل ومطاعم: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 27 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_600_28",
+      "categoryId": "food",
+      "slot": 27,
+      "points": 600,
+      "question": "أكل ومطاعم: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 28 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_600_29",
+      "categoryId": "food",
+      "slot": 28,
+      "points": 600,
+      "question": "أكل ومطاعم: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 29 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "food_600_30",
+      "categoryId": "food",
+      "slot": 29,
+      "points": 600,
+      "question": "أكل ومطاعم: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "أكل ومطاعم: إجابة 30 — إجابة تجريبية.",
+      "image": "images/food.png"
+    },
+    {
+      "id": "riddles_200_01",
+      "categoryId": "riddles",
+      "slot": 0,
+      "points": 200,
+      "question": "ألغاز: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 1 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_200_02",
+      "categoryId": "riddles",
+      "slot": 1,
+      "points": 200,
+      "question": "ألغاز: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 2 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_200_03",
+      "categoryId": "riddles",
+      "slot": 2,
+      "points": 200,
+      "question": "ألغاز: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 3 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_200_04",
+      "categoryId": "riddles",
+      "slot": 3,
+      "points": 200,
+      "question": "ألغاز: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 4 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_200_05",
+      "categoryId": "riddles",
+      "slot": 4,
+      "points": 200,
+      "question": "ألغاز: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 5 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_200_06",
+      "categoryId": "riddles",
+      "slot": 5,
+      "points": 200,
+      "question": "ألغاز: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 6 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_200_07",
+      "categoryId": "riddles",
+      "slot": 6,
+      "points": 200,
+      "question": "ألغاز: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 7 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_200_08",
+      "categoryId": "riddles",
+      "slot": 7,
+      "points": 200,
+      "question": "ألغاز: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 8 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_200_09",
+      "categoryId": "riddles",
+      "slot": 8,
+      "points": 200,
+      "question": "ألغاز: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 9 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_200_10",
+      "categoryId": "riddles",
+      "slot": 9,
+      "points": 200,
+      "question": "ألغاز: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 10 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_400_11",
+      "categoryId": "riddles",
+      "slot": 10,
+      "points": 400,
+      "question": "ألغاز: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 11 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_400_12",
+      "categoryId": "riddles",
+      "slot": 11,
+      "points": 400,
+      "question": "ألغاز: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 12 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_400_13",
+      "categoryId": "riddles",
+      "slot": 12,
+      "points": 400,
+      "question": "ألغاز: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 13 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_400_14",
+      "categoryId": "riddles",
+      "slot": 13,
+      "points": 400,
+      "question": "ألغاز: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 14 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_400_15",
+      "categoryId": "riddles",
+      "slot": 14,
+      "points": 400,
+      "question": "ألغاز: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 15 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_400_16",
+      "categoryId": "riddles",
+      "slot": 15,
+      "points": 400,
+      "question": "ألغاز: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 16 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_400_17",
+      "categoryId": "riddles",
+      "slot": 16,
+      "points": 400,
+      "question": "ألغاز: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 17 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_400_18",
+      "categoryId": "riddles",
+      "slot": 17,
+      "points": 400,
+      "question": "ألغاز: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 18 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_400_19",
+      "categoryId": "riddles",
+      "slot": 18,
+      "points": 400,
+      "question": "ألغاز: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 19 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_400_20",
+      "categoryId": "riddles",
+      "slot": 19,
+      "points": 400,
+      "question": "ألغاز: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 20 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_600_21",
+      "categoryId": "riddles",
+      "slot": 20,
+      "points": 600,
+      "question": "ألغاز: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 21 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_600_22",
+      "categoryId": "riddles",
+      "slot": 21,
+      "points": 600,
+      "question": "ألغاز: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 22 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_600_23",
+      "categoryId": "riddles",
+      "slot": 22,
+      "points": 600,
+      "question": "ألغاز: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 23 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_600_24",
+      "categoryId": "riddles",
+      "slot": 23,
+      "points": 600,
+      "question": "ألغاز: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 24 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_600_25",
+      "categoryId": "riddles",
+      "slot": 24,
+      "points": 600,
+      "question": "ألغاز: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 25 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_600_26",
+      "categoryId": "riddles",
+      "slot": 25,
+      "points": 600,
+      "question": "ألغاز: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 26 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_600_27",
+      "categoryId": "riddles",
+      "slot": 26,
+      "points": 600,
+      "question": "ألغاز: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 27 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_600_28",
+      "categoryId": "riddles",
+      "slot": 27,
+      "points": 600,
+      "question": "ألغاز: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 28 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_600_29",
+      "categoryId": "riddles",
+      "slot": 28,
+      "points": 600,
+      "question": "ألغاز: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 29 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "riddles_600_30",
+      "categoryId": "riddles",
+      "slot": 29,
+      "points": 600,
+      "question": "ألغاز: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ألغاز: إجابة 30 — إجابة تجريبية.",
+      "image": "images/riddles.png"
+    },
+    {
+      "id": "poetry_200_01",
+      "categoryId": "poetry",
+      "slot": 0,
+      "points": 200,
+      "question": "شعر: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 1 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_200_02",
+      "categoryId": "poetry",
+      "slot": 1,
+      "points": 200,
+      "question": "شعر: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 2 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_200_03",
+      "categoryId": "poetry",
+      "slot": 2,
+      "points": 200,
+      "question": "شعر: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 3 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_200_04",
+      "categoryId": "poetry",
+      "slot": 3,
+      "points": 200,
+      "question": "شعر: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 4 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_200_05",
+      "categoryId": "poetry",
+      "slot": 4,
+      "points": 200,
+      "question": "شعر: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 5 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_200_06",
+      "categoryId": "poetry",
+      "slot": 5,
+      "points": 200,
+      "question": "شعر: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 6 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_200_07",
+      "categoryId": "poetry",
+      "slot": 6,
+      "points": 200,
+      "question": "شعر: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 7 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_200_08",
+      "categoryId": "poetry",
+      "slot": 7,
+      "points": 200,
+      "question": "شعر: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 8 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_200_09",
+      "categoryId": "poetry",
+      "slot": 8,
+      "points": 200,
+      "question": "شعر: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 9 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_200_10",
+      "categoryId": "poetry",
+      "slot": 9,
+      "points": 200,
+      "question": "شعر: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 10 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_400_11",
+      "categoryId": "poetry",
+      "slot": 10,
+      "points": 400,
+      "question": "شعر: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 11 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_400_12",
+      "categoryId": "poetry",
+      "slot": 11,
+      "points": 400,
+      "question": "شعر: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 12 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_400_13",
+      "categoryId": "poetry",
+      "slot": 12,
+      "points": 400,
+      "question": "شعر: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 13 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_400_14",
+      "categoryId": "poetry",
+      "slot": 13,
+      "points": 400,
+      "question": "شعر: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 14 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_400_15",
+      "categoryId": "poetry",
+      "slot": 14,
+      "points": 400,
+      "question": "شعر: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 15 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_400_16",
+      "categoryId": "poetry",
+      "slot": 15,
+      "points": 400,
+      "question": "شعر: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 16 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_400_17",
+      "categoryId": "poetry",
+      "slot": 16,
+      "points": 400,
+      "question": "شعر: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 17 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_400_18",
+      "categoryId": "poetry",
+      "slot": 17,
+      "points": 400,
+      "question": "شعر: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 18 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_400_19",
+      "categoryId": "poetry",
+      "slot": 18,
+      "points": 400,
+      "question": "شعر: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 19 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_400_20",
+      "categoryId": "poetry",
+      "slot": 19,
+      "points": 400,
+      "question": "شعر: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 20 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_600_21",
+      "categoryId": "poetry",
+      "slot": 20,
+      "points": 600,
+      "question": "شعر: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 21 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_600_22",
+      "categoryId": "poetry",
+      "slot": 21,
+      "points": 600,
+      "question": "شعر: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 22 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_600_23",
+      "categoryId": "poetry",
+      "slot": 22,
+      "points": 600,
+      "question": "شعر: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 23 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_600_24",
+      "categoryId": "poetry",
+      "slot": 23,
+      "points": 600,
+      "question": "شعر: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 24 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_600_25",
+      "categoryId": "poetry",
+      "slot": 24,
+      "points": 600,
+      "question": "شعر: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 25 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_600_26",
+      "categoryId": "poetry",
+      "slot": 25,
+      "points": 600,
+      "question": "شعر: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 26 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_600_27",
+      "categoryId": "poetry",
+      "slot": 26,
+      "points": 600,
+      "question": "شعر: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 27 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_600_28",
+      "categoryId": "poetry",
+      "slot": 27,
+      "points": 600,
+      "question": "شعر: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 28 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_600_29",
+      "categoryId": "poetry",
+      "slot": 28,
+      "points": 600,
+      "question": "شعر: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 29 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "poetry_600_30",
+      "categoryId": "poetry",
+      "slot": 29,
+      "points": 600,
+      "question": "شعر: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "شعر: إجابة 30 — إجابة تجريبية.",
+      "image": "images/poetry.png"
+    },
+    {
+      "id": "prophets_200_01",
+      "categoryId": "prophets",
+      "slot": 0,
+      "points": 200,
+      "question": "قصص الأنبياء: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 1 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_200_02",
+      "categoryId": "prophets",
+      "slot": 1,
+      "points": 200,
+      "question": "قصص الأنبياء: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 2 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_200_03",
+      "categoryId": "prophets",
+      "slot": 2,
+      "points": 200,
+      "question": "قصص الأنبياء: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 3 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_200_04",
+      "categoryId": "prophets",
+      "slot": 3,
+      "points": 200,
+      "question": "قصص الأنبياء: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 4 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_200_05",
+      "categoryId": "prophets",
+      "slot": 4,
+      "points": 200,
+      "question": "قصص الأنبياء: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 5 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_200_06",
+      "categoryId": "prophets",
+      "slot": 5,
+      "points": 200,
+      "question": "قصص الأنبياء: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 6 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_200_07",
+      "categoryId": "prophets",
+      "slot": 6,
+      "points": 200,
+      "question": "قصص الأنبياء: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 7 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_200_08",
+      "categoryId": "prophets",
+      "slot": 7,
+      "points": 200,
+      "question": "قصص الأنبياء: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 8 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_200_09",
+      "categoryId": "prophets",
+      "slot": 8,
+      "points": 200,
+      "question": "قصص الأنبياء: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 9 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_200_10",
+      "categoryId": "prophets",
+      "slot": 9,
+      "points": 200,
+      "question": "قصص الأنبياء: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 10 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_400_11",
+      "categoryId": "prophets",
+      "slot": 10,
+      "points": 400,
+      "question": "قصص الأنبياء: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 11 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_400_12",
+      "categoryId": "prophets",
+      "slot": 11,
+      "points": 400,
+      "question": "قصص الأنبياء: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 12 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_400_13",
+      "categoryId": "prophets",
+      "slot": 12,
+      "points": 400,
+      "question": "قصص الأنبياء: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 13 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_400_14",
+      "categoryId": "prophets",
+      "slot": 13,
+      "points": 400,
+      "question": "قصص الأنبياء: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 14 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_400_15",
+      "categoryId": "prophets",
+      "slot": 14,
+      "points": 400,
+      "question": "قصص الأنبياء: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 15 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_400_16",
+      "categoryId": "prophets",
+      "slot": 15,
+      "points": 400,
+      "question": "قصص الأنبياء: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 16 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_400_17",
+      "categoryId": "prophets",
+      "slot": 16,
+      "points": 400,
+      "question": "قصص الأنبياء: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 17 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_400_18",
+      "categoryId": "prophets",
+      "slot": 17,
+      "points": 400,
+      "question": "قصص الأنبياء: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 18 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_400_19",
+      "categoryId": "prophets",
+      "slot": 18,
+      "points": 400,
+      "question": "قصص الأنبياء: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 19 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_400_20",
+      "categoryId": "prophets",
+      "slot": 19,
+      "points": 400,
+      "question": "قصص الأنبياء: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 20 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_600_21",
+      "categoryId": "prophets",
+      "slot": 20,
+      "points": 600,
+      "question": "قصص الأنبياء: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 21 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_600_22",
+      "categoryId": "prophets",
+      "slot": 21,
+      "points": 600,
+      "question": "قصص الأنبياء: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 22 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_600_23",
+      "categoryId": "prophets",
+      "slot": 22,
+      "points": 600,
+      "question": "قصص الأنبياء: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 23 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_600_24",
+      "categoryId": "prophets",
+      "slot": 23,
+      "points": 600,
+      "question": "قصص الأنبياء: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 24 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_600_25",
+      "categoryId": "prophets",
+      "slot": 24,
+      "points": 600,
+      "question": "قصص الأنبياء: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 25 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_600_26",
+      "categoryId": "prophets",
+      "slot": 25,
+      "points": 600,
+      "question": "قصص الأنبياء: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 26 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_600_27",
+      "categoryId": "prophets",
+      "slot": 26,
+      "points": 600,
+      "question": "قصص الأنبياء: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 27 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_600_28",
+      "categoryId": "prophets",
+      "slot": 27,
+      "points": 600,
+      "question": "قصص الأنبياء: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 28 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_600_29",
+      "categoryId": "prophets",
+      "slot": 28,
+      "points": 600,
+      "question": "قصص الأنبياء: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 29 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "prophets_600_30",
+      "categoryId": "prophets",
+      "slot": 29,
+      "points": 600,
+      "question": "قصص الأنبياء: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "قصص الأنبياء: إجابة 30 — إجابة تجريبية.",
+      "image": "images/prophets.png"
+    },
+    {
+      "id": "cars_200_01",
+      "categoryId": "cars",
+      "slot": 0,
+      "points": 200,
+      "question": "سيارات: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 1 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_200_02",
+      "categoryId": "cars",
+      "slot": 1,
+      "points": 200,
+      "question": "سيارات: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 2 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_200_03",
+      "categoryId": "cars",
+      "slot": 2,
+      "points": 200,
+      "question": "سيارات: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 3 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_200_04",
+      "categoryId": "cars",
+      "slot": 3,
+      "points": 200,
+      "question": "سيارات: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 4 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_200_05",
+      "categoryId": "cars",
+      "slot": 4,
+      "points": 200,
+      "question": "سيارات: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 5 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_200_06",
+      "categoryId": "cars",
+      "slot": 5,
+      "points": 200,
+      "question": "سيارات: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 6 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_200_07",
+      "categoryId": "cars",
+      "slot": 6,
+      "points": 200,
+      "question": "سيارات: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 7 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_200_08",
+      "categoryId": "cars",
+      "slot": 7,
+      "points": 200,
+      "question": "سيارات: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 8 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_200_09",
+      "categoryId": "cars",
+      "slot": 8,
+      "points": 200,
+      "question": "سيارات: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 9 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_200_10",
+      "categoryId": "cars",
+      "slot": 9,
+      "points": 200,
+      "question": "سيارات: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 10 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_400_11",
+      "categoryId": "cars",
+      "slot": 10,
+      "points": 400,
+      "question": "سيارات: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 11 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_400_12",
+      "categoryId": "cars",
+      "slot": 11,
+      "points": 400,
+      "question": "سيارات: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 12 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_400_13",
+      "categoryId": "cars",
+      "slot": 12,
+      "points": 400,
+      "question": "سيارات: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 13 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_400_14",
+      "categoryId": "cars",
+      "slot": 13,
+      "points": 400,
+      "question": "سيارات: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 14 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_400_15",
+      "categoryId": "cars",
+      "slot": 14,
+      "points": 400,
+      "question": "سيارات: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 15 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_400_16",
+      "categoryId": "cars",
+      "slot": 15,
+      "points": 400,
+      "question": "سيارات: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 16 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_400_17",
+      "categoryId": "cars",
+      "slot": 16,
+      "points": 400,
+      "question": "سيارات: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 17 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_400_18",
+      "categoryId": "cars",
+      "slot": 17,
+      "points": 400,
+      "question": "سيارات: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 18 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_400_19",
+      "categoryId": "cars",
+      "slot": 18,
+      "points": 400,
+      "question": "سيارات: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 19 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_400_20",
+      "categoryId": "cars",
+      "slot": 19,
+      "points": 400,
+      "question": "سيارات: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 20 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_600_21",
+      "categoryId": "cars",
+      "slot": 20,
+      "points": 600,
+      "question": "سيارات: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 21 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_600_22",
+      "categoryId": "cars",
+      "slot": 21,
+      "points": 600,
+      "question": "سيارات: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 22 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_600_23",
+      "categoryId": "cars",
+      "slot": 22,
+      "points": 600,
+      "question": "سيارات: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 23 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_600_24",
+      "categoryId": "cars",
+      "slot": 23,
+      "points": 600,
+      "question": "سيارات: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 24 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_600_25",
+      "categoryId": "cars",
+      "slot": 24,
+      "points": 600,
+      "question": "سيارات: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 25 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_600_26",
+      "categoryId": "cars",
+      "slot": 25,
+      "points": 600,
+      "question": "سيارات: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 26 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_600_27",
+      "categoryId": "cars",
+      "slot": 26,
+      "points": 600,
+      "question": "سيارات: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 27 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_600_28",
+      "categoryId": "cars",
+      "slot": 27,
+      "points": 600,
+      "question": "سيارات: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 28 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_600_29",
+      "categoryId": "cars",
+      "slot": 28,
+      "points": 600,
+      "question": "سيارات: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 29 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "cars_600_30",
+      "categoryId": "cars",
+      "slot": 29,
+      "points": 600,
+      "question": "سيارات: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "سيارات: إجابة 30 — إجابة تجريبية.",
+      "image": "images/cars.png"
+    },
+    {
+      "id": "culture_200_01",
+      "categoryId": "culture",
+      "slot": 0,
+      "points": 200,
+      "question": "ثقافة وفنون: سؤال 1 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 1 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_200_02",
+      "categoryId": "culture",
+      "slot": 1,
+      "points": 200,
+      "question": "ثقافة وفنون: سؤال 2 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 2 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_200_03",
+      "categoryId": "culture",
+      "slot": 2,
+      "points": 200,
+      "question": "ثقافة وفنون: سؤال 3 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 3 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_200_04",
+      "categoryId": "culture",
+      "slot": 3,
+      "points": 200,
+      "question": "ثقافة وفنون: سؤال 4 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 4 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_200_05",
+      "categoryId": "culture",
+      "slot": 4,
+      "points": 200,
+      "question": "ثقافة وفنون: سؤال 5 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 5 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_200_06",
+      "categoryId": "culture",
+      "slot": 5,
+      "points": 200,
+      "question": "ثقافة وفنون: سؤال 6 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 6 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_200_07",
+      "categoryId": "culture",
+      "slot": 6,
+      "points": 200,
+      "question": "ثقافة وفنون: سؤال 7 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 7 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_200_08",
+      "categoryId": "culture",
+      "slot": 7,
+      "points": 200,
+      "question": "ثقافة وفنون: سؤال 8 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 8 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_200_09",
+      "categoryId": "culture",
+      "slot": 8,
+      "points": 200,
+      "question": "ثقافة وفنون: سؤال 9 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 9 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_200_10",
+      "categoryId": "culture",
+      "slot": 9,
+      "points": 200,
+      "question": "ثقافة وفنون: سؤال 10 (سهل) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 10 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_400_11",
+      "categoryId": "culture",
+      "slot": 10,
+      "points": 400,
+      "question": "ثقافة وفنون: سؤال 11 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 11 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_400_12",
+      "categoryId": "culture",
+      "slot": 11,
+      "points": 400,
+      "question": "ثقافة وفنون: سؤال 12 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 12 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_400_13",
+      "categoryId": "culture",
+      "slot": 12,
+      "points": 400,
+      "question": "ثقافة وفنون: سؤال 13 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 13 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_400_14",
+      "categoryId": "culture",
+      "slot": 13,
+      "points": 400,
+      "question": "ثقافة وفنون: سؤال 14 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 14 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_400_15",
+      "categoryId": "culture",
+      "slot": 14,
+      "points": 400,
+      "question": "ثقافة وفنون: سؤال 15 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 15 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_400_16",
+      "categoryId": "culture",
+      "slot": 15,
+      "points": 400,
+      "question": "ثقافة وفنون: سؤال 16 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 16 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_400_17",
+      "categoryId": "culture",
+      "slot": 16,
+      "points": 400,
+      "question": "ثقافة وفنون: سؤال 17 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 17 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_400_18",
+      "categoryId": "culture",
+      "slot": 17,
+      "points": 400,
+      "question": "ثقافة وفنون: سؤال 18 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 18 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_400_19",
+      "categoryId": "culture",
+      "slot": 18,
+      "points": 400,
+      "question": "ثقافة وفنون: سؤال 19 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 19 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_400_20",
+      "categoryId": "culture",
+      "slot": 19,
+      "points": 400,
+      "question": "ثقافة وفنون: سؤال 20 (متوسط) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 20 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_600_21",
+      "categoryId": "culture",
+      "slot": 20,
+      "points": 600,
+      "question": "ثقافة وفنون: سؤال 21 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 21 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_600_22",
+      "categoryId": "culture",
+      "slot": 21,
+      "points": 600,
+      "question": "ثقافة وفنون: سؤال 22 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 22 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_600_23",
+      "categoryId": "culture",
+      "slot": 22,
+      "points": 600,
+      "question": "ثقافة وفنون: سؤال 23 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 23 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_600_24",
+      "categoryId": "culture",
+      "slot": 23,
+      "points": 600,
+      "question": "ثقافة وفنون: سؤال 24 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 24 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_600_25",
+      "categoryId": "culture",
+      "slot": 24,
+      "points": 600,
+      "question": "ثقافة وفنون: سؤال 25 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 25 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_600_26",
+      "categoryId": "culture",
+      "slot": 25,
+      "points": 600,
+      "question": "ثقافة وفنون: سؤال 26 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 26 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_600_27",
+      "categoryId": "culture",
+      "slot": 26,
+      "points": 600,
+      "question": "ثقافة وفنون: سؤال 27 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 27 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_600_28",
+      "categoryId": "culture",
+      "slot": 27,
+      "points": 600,
+      "question": "ثقافة وفنون: سؤال 28 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 28 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_600_29",
+      "categoryId": "culture",
+      "slot": 28,
+      "points": 600,
+      "question": "ثقافة وفنون: سؤال 29 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 29 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    },
+    {
+      "id": "culture_600_30",
+      "categoryId": "culture",
+      "slot": 29,
+      "points": 600,
+      "question": "ثقافة وفنون: سؤال 30 (صعب) — هذا سؤال تجريبي للعبة.",
+      "answer": "ثقافة وفنون: إجابة 30 — إجابة تجريبية.",
+      "image": "images/culture.png"
+    }
   ]
 }
