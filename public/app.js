@@ -1,427 +1,569 @@
-document.addEventListener("DOMContentLoaded", async () => {
-    // 1. Splash Logic (3 Seconds)
-    setTimeout(() => {
-      const splash = document.getElementById("splash");
-      if(splash) {
-         splash.style.transition = "opacity 0.5s"; splash.style.opacity = "0";
-         setTimeout(() => splash.classList.add("hidden"), 500);
-      }
-      document.getElementById("app").classList.remove("hidden");
-    }, 3000);
+// Game State
+let gameState = {
+    username: '',
+    selectedCategories: [],
+    team1: { name: 'فريق 1', score: 0, lifelines: { double: true, block: true, call: true } },
+    team2: { name: 'فريق 2', score: 0, lifelines: { double: true, block: true, call: true } },
+    currentTurn: 1,
+    questions: [],
+    answeredQuestions: [],
+    currentQuestion: null,
+    timerInterval: null,
+    timerSeconds: 0
+};
 
-    // 2. Constants
-    const KEY_SESSION = "zahin_session_v1";
-    const KEY_STATE = "zahin_state_v3";
-    const KEY_SELECTED = "zahin_selected_v1";
-    const KEY_CUSTOM_DATA = "zahin_data_v1"; // لتخزين تعديلات الأدمن
-    const POINTS = [200, 200, 400, 400, 600, 600];
-    const MIN_CATS = 3; const MAX_CATS = 6;
+// Categories Data
+const categories = [
+    { id: 'islamic', name: 'الإسلاميات', image: 'images/islamic.jpg' },
+    { id: 'science', name: 'العلوم والاختراعات', image: 'images/science.jpg' },
+    { id: 'arabic', name: 'اللغة العربية والأدب', image: 'images/arabic.jpg' },
+    { id: 'sports', name: 'الرياضة والتاريخ الرياضي', image: 'images/sports.jpg' },
+    { id: 'history', name: 'التاريخ والجغرافيا', image: 'images/history.jpg' },
+    { id: 'nature', name: 'الحيوان والنبات', image: 'images/nature.jpg' },
+    { id: 'people', name: 'الألقاب والشخصيات', image: 'images/people.jpg' }
+];
 
-    const screens = {
-        auth: document.getElementById("screen-auth"),
-        admin: document.getElementById("screen-admin"),
-        home: document.getElementById("screen-home"),
-        cats: document.getElementById("screen-categories"),
-        teams: document.getElementById("screen-teams"),
-        board: document.getElementById("screen-board"),
-        winner: document.getElementById("screen-winner")
-    };
-
-    const show = (key) => {
-        Object.values(screens).forEach(el => el && el.classList.remove("active"));
-        if (screens[key]) screens[key].classList.add("active");
-    };
-
-    let QBANK = { categories: [], questions: [] };
-    let QLOOKUP = null;
-    let selected = new Set();
-    let state = null;
-    let tInterval = null;
-
-    // 3. Data Loading
-    const loadData = async () => {
-        let baseData = { categories: [], questions: [] };
-        
-        // 1. محاولة تحميل الملف الأصلي
-        try {
-            const res = await fetch("./questions.json");
-            if(res.ok) baseData = await res.json();
-        } catch (e) {
-            console.log("No local file found, starting empty.");
-        }
-
-        // 2. دمج تعديلات الأدمن المخزنة في المتصفح
-        const customRaw = localStorage.getItem(KEY_CUSTOM_DATA);
-        if (customRaw) {
-            try {
-                // إذا كان هناك تعديلات محفوظة، نعتمدها
-                baseData = JSON.parse(customRaw); 
-            } catch(e) {}
-        }
-
-        QBANK = baseData;
-        buildLookup();
-    };
-
-    const buildLookup = () => {
-        QLOOKUP = new Map();
-        if(QBANK.questions) {
-            QBANK.questions.forEach(q => {
-                if(!QLOOKUP.has(q.categoryId)) QLOOKUP.set(q.categoryId, new Map());
-                QLOOKUP.get(q.categoryId).set(q.slot, q);
-            });
-        }
-    };
-
-    const saveCustomData = () => {
-        localStorage.setItem(KEY_CUSTOM_DATA, JSON.stringify(QBANK));
-        buildLookup();
-    };
-
-    // 4. Admin Logic
-    const initAdmin = () => {
-        const selCat = document.getElementById("selCatForQ");
-
-        const refreshSelect = () => {
-            selCat.innerHTML = "";
-            if(QBANK.categories) {
-                QBANK.categories.forEach(c => {
-                    const op = document.createElement("option");
-                    op.value = c.id; op.textContent = c.name;
-                    selCat.appendChild(op);
-                });
-            }
-        };
-        refreshSelect();
-
-        // إضافة فئة
-        document.getElementById("btnAddCat").onclick = () => {
-            const name = document.getElementById("newCatName").value.trim();
-            const id = document.getElementById("newCatId").value.trim();
-            const img = document.getElementById("newCatImg").value.trim();
-            
-            if(!name || !id) return alert("أدخل الاسم والـ ID");
-            if(QBANK.categories.find(c => c.id === id)) return alert("ID موجود مسبقاً");
-
-            QBANK.categories.push({ id, name, image: img || "images/placeholder.png" });
-            saveCustomData();
-            refreshSelect();
-            alert("تم حفظ الفئة محلياً ✅");
-            
-            document.getElementById("newCatName").value = "";
-            document.getElementById("newCatId").value = "";
-            document.getElementById("newCatImg").value = "";
-        };
-
-        // إضافة سؤال
-        document.getElementById("btnAddQ").onclick = () => {
-            const catId = selCat.value;
-            const pts = parseInt(document.getElementById("selPoints").value);
-            const slot = parseInt(document.getElementById("selSlot").value);
-            const txt = document.getElementById("newQText").value.trim();
-            const ans = document.getElementById("newQAnswer").value.trim();
-            const img = document.getElementById("newQImg").value.trim();
-
-            if(!catId) return alert("يجب إضافة فئة أولاً");
-            if(!txt || !ans) return alert("أكمل البيانات");
-
-            const qid = `${catId}_${pts}_${slot}`;
-            
-            // حذف القديم إن وجد
-            QBANK.questions = QBANK.questions.filter(q => !(q.categoryId === catId && q.slot === slot));
-
-            QBANK.questions.push({
-                id: qid, categoryId: catId, slot: slot, points: pts,
-                question: txt, answer: ans, image: img || null
-            });
-
-            saveCustomData();
-            alert("تم حفظ السؤال محلياً ✅");
-            
-            document.getElementById("newQText").value = "";
-            document.getElementById("newQAnswer").value = "";
-            document.getElementById("newQImg").value = "";
-        };
-
-        // تصدير الملف
-        document.getElementById("btnExportJson").onclick = () => {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(QBANK, null, 2));
-            const dlAnchorElem = document.createElement('a');
-            dlAnchorElem.setAttribute("href", dataStr);
-            dlAnchorElem.setAttribute("download", "questions.json");
-            document.body.appendChild(dlAnchorElem);
-            dlAnchorElem.click();
-            dlAnchorElem.remove();
-        };
-    };
-
-    // 5. Auth
-    const setSession = (u, r) => localStorage.setItem(KEY_SESSION, JSON.stringify({username:u, role:r}));
-    const getSession = () => JSON.parse(localStorage.getItem(KEY_SESSION)||"null");
-
-    document.getElementById("btnLoginAction").onclick = () => {
-        const u = document.getElementById("loginUser").value.trim().toLowerCase();
-        const p = document.getElementById("loginPass").value.trim();
-        if(!u || !p) return alert("أكمل البيانات");
-
-        if(u === "admin" && p === "admin123") {
-            setSession("Admin", "admin");
-            initAdmin();
-            show("admin");
-        } else {
-            setSession(u, "user");
-            show("home");
-        }
-    };
-
-    const doLogout = () => {
-        if(confirm("خروج؟")) {
-            localStorage.removeItem(KEY_SESSION);
-            localStorage.removeItem(KEY_SELECTED);
-            localStorage.removeItem(KEY_STATE);
-            show("auth");
-        }
-    };
-    document.getElementById("logoutBtn").onclick = doLogout;
-    document.getElementById("adminLogoutBtn").onclick = doLogout;
-
-    // 6. Game Logic (Render & Play)
-    const renderCategories = () => {
-        const grid = document.getElementById("categoriesGrid");
-        grid.innerHTML = "";
-        QBANK.categories.forEach(cat => {
-            const btn = document.createElement("button");
-            const imgPath = cat.image || "images/placeholder.png";
-            btn.style.backgroundImage = `url("${imgPath}")`;
-            btn.style.backgroundSize = "cover";
-            btn.style.backgroundPosition = "center";
-            btn.className = "category-card"; 
-            btn.style.height="100px"; btn.style.borderRadius="12px"; btn.style.border=selected.has(cat.id)?"4px solid #333":"1px solid #ddd";
-            
-            const ov = document.createElement("div");
-            ov.style.cssText="position:absolute;inset:0;background:rgba(0,0,0,0.4);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;";
-            ov.textContent = cat.name;
-            btn.appendChild(ov);
-            btn.style.position="relative"; btn.style.overflow="hidden"; btn.style.cursor="pointer";
-
-            btn.onclick = () => {
-                if (selected.has(cat.id)) selected.delete(cat.id);
-                else { if (selected.size >= MAX_CATS) return; selected.add(cat.id); }
-                renderCategories();
-                document.getElementById("selectedInfo").textContent = `${selected.size} / 6`;
-                document.getElementById("toTeamsBtn").disabled = selected.size < MIN_CATS;
-            };
-            grid.appendChild(btn);
-        });
-    };
-
-    const renderBoard = () => {
-        const grid = document.getElementById("boardGrid");
-        grid.innerHTML = "";
-        const cols = state.selectedCategoryIds.length;
-        grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-
-        state.selectedCategoryIds.forEach(cid => {
-            const cat = QBANK.categories.find(c => c.id === cid);
-            const col = document.createElement("div"); col.className = "colCard";
-            const h = document.createElement("div"); h.className = "colHeader"; h.textContent = cat ? cat.name : cid;
-            const cells = document.createElement("div");
-
-            const allDone = POINTS.every((p, i) => state.finalized[`${cid}_${p}_${i}`]);
-
-            POINTS.forEach((pts, idx) => {
-                const qid = `${cid}_${pts}_${idx}`;
-                const cell = document.createElement("div"); cell.className = "cell"; cell.textContent = pts;
-                
-                if (state.finalized[qid]) cell.classList.add("used");
-                if (allDone) cell.classList.add("disabled");
-
-                cell.onclick = () => {
-                    if (!state.finalized[qid]) openQuestion(cid, pts, idx);
-                };
-                cells.appendChild(cell);
-            });
-            col.appendChild(h); col.appendChild(cells); grid.appendChild(col);
-        });
-    };
-
-    const openQuestion = (catId, pts, idx) => {
-        if(!QLOOKUP) return alert("جار تحميل الأسئلة...");
-        const qData = QLOOKUP.get(catId)?.get(idx);
-        if(!qData || qData.points !== pts) return alert("السؤال غير متوفر لهذه الخانة!");
-
-        const qid = `${catId}_${pts}_${idx}`;
-        const catName = QBANK.categories.find(c=>c.id===catId)?.name || catId;
-
-        state.currentQuestionId = qid;
-        state.questions[qid] = { ...qData, points: pts };
-        state.currentRevealed = false;
-        state.currentTurnTeam = Math.random() < 0.5 ? 1 : 2; 
-        state.turnFlags = { double: false, block: false, call: false };
-
-        document.getElementById("qMeta").textContent = `${catName} • ${pts}`;
-        document.getElementById("qText").textContent = qData.question;
-        
-        const imgDisplay = document.getElementById("qImageDisplay");
-        const imgArea = document.getElementById("qImageArea");
-        if(qData.image) {
-            imgDisplay.src = qData.image;
-            imgArea.style.display = "block";
-        } else {
-            imgArea.style.display = "none";
-        }
-
-        document.getElementById("revealBtn").style.display = "block";
-        document.getElementById("answerArea").classList.add("hidden");
-        document.getElementById("pickTeam1").style.display = "";
-        document.getElementById("pickTeam2").style.display = "";
-
-        updateTurn();
-        renderScore();
-        document.getElementById("questionModal").classList.remove("hidden");
-        startTimer();
-        saveState();
-    };
-
-    const revealAnswer = () => {
-        const q = state.questions[state.currentQuestionId];
-        state.currentRevealed = true;
-        document.getElementById("answerText").textContent = q.answer;
-        
-        if(state.turnFlags.block) {
-            if(state.currentTurnTeam === 1) document.getElementById("pickTeam2").style.display="none";
-            else document.getElementById("pickTeam1").style.display="none";
-        }
-
-        document.getElementById("answerArea").classList.remove("hidden");
-        document.getElementById("revealBtn").style.display = "none";
-        saveState();
-    };
-
-    const finalize = (winner) => {
-        const q = state.questions[state.currentQuestionId];
-        let pts = q.points;
-        if(state.turnFlags.double && winner === state.currentTurnTeam) pts *= 2;
-
-        if(winner === 1) state.s1 += pts;
-        if(winner === 2) state.s2 += pts;
-
-        state.finalized[state.currentQuestionId] = true;
-        state.currentQuestionId = null; 
-        
-        renderScore();
-        renderBoard();
-        document.getElementById("questionModal").classList.add("hidden");
-        stopTimer();
-        saveState();
-
-        const allDone = state.selectedCategoryIds.every(cid => POINTS.every((p, i) => state.finalized[`${cid}_${p}_${i}`]));
-        if(allDone) goWinner();
-    };
-
-    const goWinner = () => {
-        document.getElementById("wTeam1").textContent = state.t1;
-        document.getElementById("wTeam2").textContent = state.t2;
-        document.getElementById("wScore1").textContent = state.s1;
-        document.getElementById("wScore2").textContent = state.s2;
-        
-        const title = document.getElementById("winnerTitle");
-        if(state.s1 > state.s2) title.textContent = `الفائز: ${state.t1} 🎉`;
-        else if(state.s2 > state.s1) title.textContent = `الفائز: ${state.t2} 🎉`;
-        else title.textContent = "تعادل 🤝";
-        
-        show("winner");
-    };
-
-    // UI & Events
-    const updateTurn = () => {
-        if(!state || !state.currentQuestionId) {
-            document.getElementById("turnPill").textContent = "—"; 
-            document.getElementById("turnNote").textContent = "";
-            return;
-        }
-        const name = state.currentTurnTeam===1?state.t1:state.t2;
-        document.getElementById("turnPill").textContent = `الدور: ${name}`;
-        const f = [];
-        if(state.turnFlags.double) f.push("⭐"); if(state.turnFlags.block) f.push("⛔"); if(state.turnFlags.call) f.push("📞");
-        document.getElementById("turnNote").textContent = f.join(" ");
-    };
-    const renderScore = () => {
-        if(!state) return;
-        document.getElementById("team1NameTop").textContent = state.t1;
-        document.getElementById("team2NameTop").textContent = state.t2;
-        document.getElementById("team1ScoreTop").textContent = state.s1;
-        document.getElementById("team2ScoreTop").textContent = state.s2;
-        document.getElementById("pickTeam1").textContent = state.t1;
-        document.getElementById("pickTeam2").textContent = state.t2;
-        const setL = (id, u) => { const b=document.getElementById(id); if(b){b.classList.toggle("used",!!u); b.disabled=!!u;} };
-        setL("t1Double", state.lifelines.t1.double); setL("t1Block", state.lifelines.t1.block); setL("t1Call", state.lifelines.t1.call);
-        setL("t2Double", state.lifelines.t2.double); setL("t2Block", state.lifelines.t2.block); setL("t2Call", state.lifelines.t2.call);
-    };
-    const startTimer = () => {
-        let s = Date.now();
-        if(tInterval) clearInterval(tInterval);
-        tInterval = setInterval(()=> {
-            const d = Math.floor((Date.now()-s)/1000);
-            document.getElementById("timer").textContent = `${String(Math.floor(d/60)).padStart(2,"0")}:${String(d%60).padStart(2,"0")}`;
-        }, 250);
-    };
-    const stopTimer = () => { if(tInterval) clearInterval(tInterval); };
-
-    // Buttons
-    document.getElementById("goCatsBtn").onclick = () => { renderCategories(); show("cats"); };
-    document.getElementById("backHomeBtn").onclick = () => show("home");
-    document.getElementById("backCatsBtn").onclick = () => show("cats");
-    document.getElementById("toTeamsBtn").onclick = () => { localStorage.setItem(KEY_SELECTED, JSON.stringify([...selected])); show("teams"); };
-    document.getElementById("startGameBtn").onclick = () => {
-        const chosen = JSON.parse(localStorage.getItem(KEY_SELECTED) || "[]");
-        if(chosen.length < MIN_CATS) return alert("اختر 3 فئات على الأقل");
-        state = {
-            t1: document.getElementById("team1Input").value.trim() || "الفريق الأول",
-            t2: document.getElementById("team2Input").value.trim() || "الفريق الثاني",
-            s1: 0, s2: 0, selectedCategoryIds: chosen, finalized: {}, questions: {},
-            lifelines: { t1: {double:false,block:false,call:false}, t2: {double:false,block:false,call:false} }
-        };
-        saveState(); renderScore(); renderBoard(); show("board");
-    };
-    document.getElementById("revealBtn").onclick = revealAnswer;
-    document.getElementById("pickTeam1").onclick = () => finalize(1);
-    document.getElementById("pickTeam2").onclick = () => finalize(2);
-    document.getElementById("pickNoOne").onclick = () => finalize(null);
-    document.getElementById("closeModalBtn").onclick = () => { document.getElementById("questionModal").classList.add("hidden"); stopTimer(); };
-    document.getElementById("undoOpenBtn").onclick = () => { document.getElementById("questionModal").classList.add("hidden"); stopTimer(); };
-    document.getElementById("newGameBtn").onclick = () => { if(confirm("إنهاء؟")) show("home"); };
-    document.getElementById("newGameFromWinnerBtn").onclick = () => show("home");
-
-    const life = (team, key) => {
-        if(!state.currentQuestionId) return;
-        if(key==="double" && team!==state.currentTurnTeam) return alert("الدبل لصاحب الدور");
-        const t = team===1?state.lifelines.t1:state.lifelines.t2;
-        if(t[key]) return; t[key]=true; state.turnFlags[key]=true;
-        renderScore(); updateTurn(); saveState();
-    };
-    document.getElementById("t1Double").onclick = () => life(1,"double");
-    document.getElementById("t1Block").onclick = () => life(1,"block");
-    document.getElementById("t1Call").onclick = () => life(1,"call");
-    document.getElementById("t2Double").onclick = () => life(2,"double");
-    document.getElementById("t2Block").onclick = () => life(2,"block");
-    document.getElementById("t2Call").onclick = () => life(2,"call");
-
-    const adj = (t, v) => { if(state) { if(t===1) state.s1+=v; else state.s2+=v; renderScore(); saveState(); }};
-    document.getElementById("team1Plus").onclick = () => adj(1, 100);
-    document.getElementById("team1Minus").onclick = () => adj(1, -100);
-    document.getElementById("team2Plus").onclick = () => adj(2, 100);
-    document.getElementById("team2Minus").onclick = () => adj(2, -100);
-
-    const saveState = () => localStorage.setItem(KEY_STATE, JSON.stringify(state));
-
-    // Init
-    await loadData();
-    const sess = getSession();
-    if(sess) {
-        if(sess.role === "admin") { initAdmin(); show("admin"); }
-        else show("home");
-    } else {
-        show("auth");
-    }
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    initApp();
 });
+
+function initApp() {
+    // Show splash for 3 seconds
+    setTimeout(() => {
+        showScreen('login-screen');
+    }, 3000);
+    
+    // Load answered questions from localStorage
+    loadAnsweredQuestions();
+    
+    // Setup event listeners
+    setupEventListeners();
+}
+
+function setupEventListeners() {
+    // Login
+    document.getElementById('login-btn').addEventListener('click', handleLogin);
+    document.getElementById('username-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleLogin();
+    });
+    
+    // Home
+    document.getElementById('start-game-btn').addEventListener('click', () => showScreen('category-screen'));
+    document.getElementById('logout-btn').addEventListener('click', handleLogout);
+    
+    // Categories
+    document.getElementById('next-categories-btn').addEventListener('click', handleCategoriesNext);
+    
+    // Team Names
+    document.getElementById('start-playing-btn').addEventListener('click', startGame);
+    
+    // Question
+    document.getElementById('show-answer-btn').addEventListener('click', showAnswer);
+    document.getElementById('report-btn').addEventListener('click', reportQuestion);
+    
+    // Win Screen
+    document.getElementById('new-game-btn').addEventListener('click', newGame);
+    document.getElementById('home-btn').addEventListener('click', () => showScreen('home-screen'));
+    
+    // Score buttons
+    document.querySelectorAll('.score-btn').forEach(btn => {
+        btn.addEventListener('click', handleScoreAdjustment);
+    });
+}
+
+function showScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+    });
+    document.getElementById(screenId).classList.add('active');
+    
+    // Special screen initializations
+    if (screenId === 'category-screen') {
+        renderCategories();
+    } else if (screenId === 'game-board-screen') {
+        renderGameBoard();
+    }
+}
+
+function handleLogin() {
+    const username = document.getElementById('username-input').value.trim();
+    if (username) {
+        gameState.username = username;
+        showScreen('home-screen');
+    }
+}
+
+function handleLogout() {
+    gameState.username = '';
+    document.getElementById('username-input').value = '';
+    showScreen('login-screen');
+}
+
+function renderCategories() {
+    const grid = document.getElementById('categories-grid');
+    grid.innerHTML = '';
+    
+    categories.forEach(category => {
+        const card = document.createElement('div');
+        card.className = 'category-card';
+        card.dataset.categoryId = category.id;
+        
+        const img = document.createElement('img');
+        img.src = category.image;
+        img.alt = category.name;
+        img.onerror = () => {
+            // Fallback if image doesn't exist
+            card.style.background = 'linear-gradient(135deg, #2563eb, #7c3aed)';
+            card.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; font-size: 1.5rem; font-weight: bold;">${category.name}</div>`;
+        };
+        
+        card.appendChild(img);
+        card.addEventListener('click', () => toggleCategory(category.id));
+        grid.appendChild(card);
+    });
+    
+    updateCategorySelection();
+}
+
+function toggleCategory(categoryId) {
+    const index = gameState.selectedCategories.indexOf(categoryId);
+    
+    if (index > -1) {
+        gameState.selectedCategories.splice(index, 1);
+    } else {
+        if (gameState.selectedCategories.length < 6) {
+            gameState.selectedCategories.push(categoryId);
+        }
+    }
+    
+    updateCategorySelection();
+}
+
+function updateCategorySelection() {
+    const cards = document.querySelectorAll('.category-card');
+    cards.forEach(card => {
+        const categoryId = card.dataset.categoryId;
+        if (gameState.selectedCategories.includes(categoryId)) {
+            card.classList.add('selected');
+        } else {
+            card.classList.remove('selected');
+        }
+    });
+    
+    const count = gameState.selectedCategories.length;
+    document.getElementById('selected-count').textContent = `${count}/6`;
+    
+    const nextBtn = document.getElementById('next-categories-btn');
+    nextBtn.disabled = count < 3;
+}
+
+function handleCategoriesNext() {
+    showScreen('team-names-screen');
+}
+
+function startGame() {
+    const team1Name = document.getElementById('team1-name').value.trim() || 'فريق 1';
+    const team2Name = document.getElementById('team2-name').value.trim() || 'فريق 2';
+    
+    gameState.team1.name = team1Name;
+    gameState.team2.name = team2Name;
+    gameState.team1.score = 0;
+    gameState.team2.score = 0;
+    
+    // Load questions for selected categories
+    loadQuestions();
+    
+    // Random first turn
+    gameState.currentTurn = Math.random() > 0.5 ? 1 : 2;
+    
+    showScreen('game-board-screen');
+}
+
+async function loadQuestions() {
+    try {
+        const response = await fetch('questions.json');
+        const data = await response.json();
+        
+        // Filter questions by selected categories
+        gameState.questions = [];
+        gameState.selectedCategories.forEach(catId => {
+            const catQuestions = data[catId] || [];
+            // Get 6 questions per category (2x200, 2x400, 2x600)
+            const questions200 = catQuestions.filter(q => q.points === 200).slice(0, 2);
+            const questions400 = catQuestions.filter(q => q.points === 400).slice(0, 2);
+            const questions600 = catQuestions.filter(q => q.points === 600).slice(0, 2);
+            
+            gameState.questions.push(...questions200, ...questions400, ...questions600);
+        });
+    } catch (error) {
+        console.error('Error loading questions:', error);
+        // Fallback: create dummy questions
+        createDummyQuestions();
+    }
+}
+
+function createDummyQuestions() {
+    gameState.questions = [];
+    gameState.selectedCategories.forEach((catId, index) => {
+        const category = categories.find(c => c.id === catId);
+        [200, 200, 400, 400, 600, 600].forEach((points, qIndex) => {
+            gameState.questions.push({
+                id: `${catId}_${qIndex}`,
+                category: catId,
+                categoryName: category.name,
+                categoryImage: category.image,
+                points: points,
+                question: `سؤال تجريبي ${points} نقطة - ${category.name}`,
+                answer: `إجابة تجريبية`
+            });
+        });
+    });
+}
+
+function renderGameBoard() {
+    // Update team names and scores
+    document.getElementById('team1-display').textContent = gameState.team1.name;
+    document.getElementById('team2-display').textContent = gameState.team2.name;
+    updateScores();
+    
+    // Render board
+    const board = document.getElementById('game-board');
+    board.innerHTML = '';
+    
+    gameState.selectedCategories.forEach(catId => {
+        const category = categories.find(c => c.id === catId);
+        const column = document.createElement('div');
+        column.className = 'category-column';
+        column.dataset.categoryId = catId;
+        
+        // Category header
+        const header = document.createElement('div');
+        header.className = 'category-header';
+        const img = document.createElement('img');
+        img.src = category.image;
+        img.alt = category.name;
+        img.onerror = () => {
+            header.style.background = 'linear-gradient(135deg, #2563eb, #7c3aed)';
+            header.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; font-size: 1rem; font-weight: bold; padding: 5px;">${category.name}</div>`;
+        };
+        header.appendChild(img);
+        column.appendChild(header);
+        
+        // Questions
+        const catQuestions = gameState.questions.filter(q => q.category === catId);
+        [200, 200, 400, 400, 600, 600].forEach((points, index) => {
+            const question = catQuestions[index];
+            const cell = document.createElement('div');
+            cell.className = 'question-cell';
+            cell.textContent = points;
+            
+            if (question && !isQuestionAnswered(question.id)) {
+                cell.addEventListener('click', () => openQuestion(question));
+            } else {
+                cell.classList.add('answered');
+            }
+            
+            column.appendChild(cell);
+        });
+        
+        // Check if category is depleted
+        const unanswered = catQuestions.filter(q => !isQuestionAnswered(q.id));
+        if (unanswered.length === 0) {
+            column.classList.add('depleted');
+        }
+        
+        board.appendChild(column);
+    });
+}
+
+function openQuestion(question) {
+    gameState.currentQuestion = question;
+    
+    // Set category image
+    const img = document.getElementById('question-category-img');
+    img.src = question.categoryImage;
+    img.alt = question.categoryName;
+    
+    // Set question text
+    document.getElementById('question-text').textContent = question.question;
+    
+    // Hide answer initially
+    document.getElementById('answer-section').classList.add('hidden');
+    document.getElementById('team-selection').classList.add('hidden');
+    document.getElementById('show-answer-btn').style.display = 'block';
+    
+    // Setup team selection buttons
+    document.getElementById('select-team1').textContent = gameState.team1.name;
+    document.getElementById('select-team2').textContent = gameState.team2.name;
+    
+    // Add event listeners for team selection
+    document.querySelectorAll('.team-select-btn').forEach(btn => {
+        btn.replaceWith(btn.cloneNode(true)); // Remove old listeners
+    });
+    
+    document.getElementById('select-team1').addEventListener('click', () => handleAnswer(1));
+    document.getElementById('select-team2').addEventListener('click', () => handleAnswer(2));
+    document.querySelector('.team-select-btn[data-team="none"]').addEventListener('click', () => handleAnswer(0));
+    
+    // Show lifelines for current turn
+    renderLifelines();
+    
+    // Start timer
+    startTimer();
+    
+    showScreen('question-screen');
+}
+
+function showAnswer() {
+    document.getElementById('answer-text').textContent = gameState.currentQuestion.answer;
+    document.getElementById('answer-section').classList.remove('hidden');
+    document.getElementById('team-selection').classList.remove('hidden');
+    document.getElementById('show-answer-btn').style.display = 'none';
+}
+
+function handleAnswer(teamNumber) {
+    stopTimer();
+    
+    if (teamNumber > 0) {
+        const points = gameState.currentQuestion.points;
+        if (teamNumber === 1) {
+            gameState.team1.score += points;
+        } else {
+            gameState.team2.score += points;
+        }
+    }
+    
+    // Mark question as answered
+    markQuestionAnswered(gameState.currentQuestion.id);
+    
+    // Switch turn
+    gameState.currentTurn = gameState.currentTurn === 1 ? 2 : 1;
+    
+    // Check if game is over
+    if (isGameOver()) {
+        endGame();
+    } else {
+        showScreen('game-board-screen');
+    }
+}
+
+function renderLifelines() {
+    const container = document.getElementById('lifelines-container');
+    container.innerHTML = '';
+    
+    const currentTeam = gameState.currentTurn === 1 ? gameState.team1 : gameState.team2;
+    
+    if (currentTeam.lifelines.double) {
+        const btn = document.createElement('button');
+        btn.className = 'lifeline-btn';
+        btn.textContent = '⚡ دبل النقاط';
+        btn.addEventListener('click', () => useLifeline('double'));
+        container.appendChild(btn);
+    }
+    
+    if (currentTeam.lifelines.block) {
+        const btn = document.createElement('button');
+        btn.className = 'lifeline-btn';
+        btn.textContent = '🚫 منع الإجابة';
+        btn.addEventListener('click', () => useLifeline('block'));
+        container.appendChild(btn);
+    }
+    
+    if (currentTeam.lifelines.call) {
+        const btn = document.createElement('button');
+        btn.className = 'lifeline-btn';
+        btn.textContent = '📞 اتصال بصديق';
+        btn.addEventListener('click', () => useLifeline('call'));
+        container.appendChild(btn);
+    }
+    
+    container.classList.remove('hidden');
+}
+
+function useLifeline(type) {
+    const currentTeam = gameState.currentTurn === 1 ? gameState.team1 : gameState.team2;
+    currentTeam.lifelines[type] = false;
+    
+    if (type === 'double') {
+        gameState.currentQuestion.points *= 2;
+        alert('تم مضاعفة النقاط! 🎉');
+    } else if (type === 'block') {
+        const otherTeam = gameState.currentTurn === 1 ? 2 : 1;
+        const otherBtn = document.getElementById(`select-team${otherTeam}`);
+        if (otherBtn) otherBtn.style.display = 'none';
+        alert('تم منع الفريق الآخر من الإجابة! 🚫');
+    } else if (type === 'call') {
+        alert('وقت الاتصال بصديق! المؤقت مستمر... 📞');
+    }
+    
+    renderLifelines();
+}
+
+function startTimer() {
+    gameState.timerSeconds = 0;
+    updateTimerDisplay();
+    
+    gameState.timerInterval = setInterval(() => {
+        gameState.timerSeconds++;
+        updateTimerDisplay();
+    }, 1000);
+}
+
+function stopTimer() {
+    if (gameState.timerInterval) {
+        clearInterval(gameState.timerInterval);
+        gameState.timerInterval = null;
+    }
+}
+
+function updateTimerDisplay() {
+    const minutes = Math.floor(gameState.timerSeconds / 60);
+    const seconds = gameState.timerSeconds % 60;
+    const display = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    document.getElementById('question-timer').textContent = display;
+}
+
+function handleScoreAdjustment(e) {
+    const team = parseInt(e.target.dataset.team);
+    const action = e.target.dataset.action;
+    
+    if (team === 1) {
+        gameState.team1.score += action === 'add' ? 100 : -100;
+        gameState.team1.score = Math.max(0, gameState.team1.score);
+    } else {
+        gameState.team2.score += action === 'add' ? 100 : -100;
+        gameState.team2.score = Math.max(0, gameState.team2.score);
+    }
+    
+    updateScores();
+}
+
+function updateScores() {
+    document.getElementById('team1-points').textContent = gameState.team1.score;
+    document.getElementById('team2-points').textContent = gameState.team2.score;
+}
+
+function reportQuestion() {
+    const reason = prompt('سبب البلاغ:');
+    if (reason) {
+        const report = {
+            questionId: gameState.currentQuestion.id,
+            question: gameState.currentQuestion.question,
+            answer: gameState.currentQuestion.answer,
+            reason: reason,
+            timestamp: new Date().toISOString(),
+            username: gameState.username
+        };
+        
+        // Save to localStorage
+        const reports = JSON.parse(localStorage.getItem('zahin_reports') || '[]');
+        reports.push(report);
+        localStorage.setItem('zahin_reports', JSON.stringify(reports));
+        
+        alert('تم إرسال البلاغ! شكراً لك 🙏');
+    }
+}
+
+function isQuestionAnswered(questionId) {
+    return gameState.answeredQuestions.includes(questionId);
+}
+
+function markQuestionAnswered(questionId) {
+    if (!gameState.answeredQuestions.includes(questionId)) {
+        gameState.answeredQuestions.push(questionId);
+        saveAnsweredQuestions();
+    }
+}
+
+function loadAnsweredQuestions() {
+    const saved = localStorage.getItem(`zahin_answered_${gameState.username}`);
+    if (saved) {
+        gameState.answeredQuestions = JSON.parse(saved);
+    }
+}
+
+function saveAnsweredQuestions() {
+    localStorage.setItem(`zahin_answered_${gameState.username}`, JSON.stringify(gameState.answeredQuestions));
+}
+
+function isGameOver() {
+    return gameState.questions.every(q => isQuestionAnswered(q.id));
+}
+
+function endGame() {
+    const score1 = gameState.team1.score;
+    const score2 = gameState.team2.score;
+    
+    if (score1 === score2) {
+        // Tiebreaker
+        showTiebreaker();
+    } else {
+        showWinScreen();
+    }
+}
+
+function showWinScreen() {
+    const score1 = gameState.team1.score;
+    const score2 = gameState.team2.score;
+    
+    document.getElementById('final-team1-name').textContent = gameState.team1.name;
+    document.getElementById('final-team1-score').textContent = score1;
+    document.getElementById('final-team2-name').textContent = gameState.team2.name;
+    document.getElementById('final-team2-score').textContent = score2;
+    
+    if (score1 > score2) {
+        document.getElementById('win-title').textContent = `🎉 ${gameState.team1.name} فاز! 🎉`;
+    } else if (score2 > score1) {
+        document.getElementById('win-title').textContent = `🎉 ${gameState.team2.name} فاز! 🎉`;
+    } else {
+        document.getElementById('win-title').textContent = '🤝 تعادل! 🤝';
+    }
+    
+    showScreen('win-screen');
+}
+
+function showTiebreaker() {
+    // Load a hard tiebreaker question
+    const tiebreakerQ = {
+        question: 'سؤال كسر التعادل الصعب هنا',
+        answer: 'الإجابة الصعبة هنا'
+    };
+    
+    document.getElementById('tiebreaker-question').textContent = tiebreakerQ.question;
+    document.getElementById('tiebreaker-answer-text').textContent = tiebreakerQ.answer;
+    document.getElementById('tiebreaker-answer').classList.add('hidden');
+    document.getElementById('tiebreaker-selection').classList.add('hidden');
+    
+    // Setup buttons
+    document.getElementById('show-tiebreaker-answer').addEventListener('click', () => {
+        document.getElementById('tiebreaker-answer').classList.remove('hidden');
+        document.getElementById('tiebreaker-selection').classList.remove('hidden');
+    });
+    
+    document.querySelectorAll('#tiebreaker-selection .team-select-btn').forEach((btn, index) => {
+        btn.textContent = index === 0 ? gameState.team1.name : gameState.team2.name;
+        btn.addEventListener('click', () => {
+            if (index === 0) {
+                gameState.team1.score += 1000;
+            } else {
+                gameState.team2.score += 1000;
+            }
+            showWinScreen();
+        });
+    });
+    
+    showScreen('tiebreaker-screen');
+}
+
+function newGame() {
+    // Reset game state but keep username and answered questions
+    gameState.selectedCategories = [];
+    gameState.team1 = { name: 'فريق 1', score: 0, lifelines: { double: true, block: true, call: true } };
+    gameState.team2 = { name: 'فريق 2', score: 0, lifelines: { double: true, block: true, call: true } };
+    gameState.currentTurn = 1;
+    gameState.questions = [];
+    gameState.currentQuestion = null;
+    
+    showScreen('category-screen');
+}
