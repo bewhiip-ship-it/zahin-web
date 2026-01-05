@@ -784,4 +784,59 @@ function showTiebreaker() {
     
     document.getElementById('tiebreaker-question').textContent = tiebreakerQ.question;
     document.getElementById('tiebreaker-answer-text').textContent = tiebreakerQ.answer;
-    document.getElementById('tiebre
+    document.getElementById('tiebreaker-answer').classList.add('hidden');
+    document.getElementById('tiebreaker-selection').classList.add('hidden');
+    
+    const showBtn = document.getElementById('show-tiebreaker-answer');
+    const newShowBtn = showBtn.cloneNode(true);
+    showBtn.parentNode.replaceChild(newShowBtn, showBtn);
+    
+    newShowBtn.addEventListener('click', () => {
+        document.getElementById('tiebreaker-answer').classList.remove('hidden');
+        document.getElementById('tiebreaker-selection').classList.remove('hidden');
+    });
+    
+    const buttons = document.querySelectorAll('#tiebreaker-selection .team-select-btn');
+    buttons.forEach((btn, index) => {
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+        
+        newBtn.textContent = index === 0 ? gameState.team1.name : gameState.team2.name;
+        newBtn.addEventListener('click', () => {
+            if (index === 0) {
+                gameState.team1.score += 1000;
+            } else {
+                gameState.team2.score += 1000;
+            }
+            showWinScreen();
+        });
+    });
+    
+    showScreen('tiebreaker-screen');
+}
+
+function newGame() {
+    gameState.selectedCategories = [];
+    gameState.team1 = { name: 'فريق 1', score: 0, lifelines: { double: true, block: true, call: true } };
+    gameState.team2 = { name: 'فريق 2', score: 0, lifelines: { double: true, block: true, call: true } };
+    gameState.currentTurn = 1;
+    gameState.questions = [];
+    gameState.currentQuestion = null;
+    
+    document.getElementById('team1-name').value = 'فريق 1';
+    document.getElementById('team2-name').value = 'فريق 2';
+    
+    showScreen('category-screen');
+}
+
+function resetGame() {
+    gameState.selectedCategories = [];
+    gameState.team1 = { name: 'فريق 1', score: 0, lifelines: { double: true, block: true, call: true } };
+    gameState.team2 = { name: 'فريق 2', score: 0, lifelines: { double: true, block: true, call: true } };
+    gameState.currentTurn = 1;
+    gameState.questions = [];
+    gameState.currentQuestion = null;
+    
+    document.getElementById('team1-name').value = 'فريق 1';
+    document.getElementById('team2-name').value = 'فريق 2';
+}
