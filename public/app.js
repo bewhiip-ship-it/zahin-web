@@ -294,20 +294,24 @@ function renderGameBoard() {
         // Get questions for this category
         const catQuestions = gameState.questions.filter(q => q.category === catId);
         
-        // Create cells for each point value
-        [200, 200, 400, 400, 600, 600].forEach((points, index) => {
-            const question = catQuestions.find((q, i) => q.points === points && catQuestions.indexOf(q) === catQuestions.filter(cq => cq.points === points).indexOf(q) + (points === 200 ? 0 : points === 400 ? 2 : 4));
-            
+        // Separate questions by points
+        const q200 = catQuestions.filter(q => q.points === 200);
+        const q400 = catQuestions.filter(q => q.points === 400);
+        const q600 = catQuestions.filter(q => q.points === 600);
+        
+        // Create cells in order: 200, 200, 400, 400, 600, 600
+        const orderedQuestions = [
+            q200[0], q200[1], q400[0], q400[1], q600[0], q600[1]
+        ];
+        
+        orderedQuestions.forEach((question, index) => {
             const cell = document.createElement('div');
             cell.className = 'question-cell';
+            const points = index < 2 ? 200 : index < 4 ? 400 : 600;
             cell.textContent = points;
             
-            if (question) {
-                if (!isQuestionAnswered(question.id)) {
-                    cell.addEventListener('click', () => openQuestion(question));
-                } else {
-                    cell.classList.add('answered');
-                }
+            if (question && !isQuestionAnswered(question.id)) {
+                cell.addEventListener('click', () => openQuestion(question));
             } else {
                 cell.classList.add('answered');
             }
