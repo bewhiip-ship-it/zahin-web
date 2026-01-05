@@ -485,6 +485,9 @@ function openQuestion(question) {
     // Set question text
     document.getElementById('question-text').textContent = question.question;
     
+    // Load related image from Wikimedia
+    loadQuestionImage(question.question);
+    
     // Hide answer initially
     document.getElementById('answer-section').classList.add('hidden');
     document.getElementById('team-selection').classList.add('hidden');
@@ -520,6 +523,69 @@ function openQuestion(question) {
     startTimer();
     
     showScreen('question-screen');
+}
+
+async function loadQuestionImage(questionText) {
+    const imageContainer = document.getElementById('question-image-container');
+    const imageElement = document.getElementById('question-image');
+    
+    // Hide initially
+    imageContainer.style.display = 'none';
+    
+    try {
+        // Extract key words from question (remove question marks, common words)
+        const keywords = extractKeywords(questionText);
+        
+        if (!keywords) {
+            return; // No keywords found
+        }
+        
+        // Show loading state
+        imageContainer.style.display = 'block';
+        imageElement.classList.add('loading');
+        imageElement.src = '';
+        
+        // Search Wikimedia Commons
+        const searchUrl = `https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrsearch=${encodeURIComponent(keywords)}&gsrlimit=1&prop=imageinfo&iiprop=url&iiurlwidth=400`;
+        
+        const response = await fetch(searchUrl);
+        const data = await response.json();
+        
+        if (data.query && data.query.pages) {
+            const pages = Object.values(data.query.pages);
+            if (pages.length > 0 && pages[0].imageinfo) {
+                const imageUrl = pages[0].imageinfo[0].thumburl || pages[0].imageinfo[0].url;
+                imageElement.src = imageUrl;
+                imageElement.classList.remove('loading');
+                imageElement.onerror = () => {
+                    imageContainer.style.display = 'none';
+                };
+            } else {
+                imageContainer.style.display = 'none';
+            }
+        } else {
+            imageContainer.style.display = 'none';
+        }
+    } catch (error) {
+        console.error('Error loading image:', error);
+        imageContainer.style.display = 'none';
+    }
+}
+
+function extractKeywords(questionText) {
+    // Remove common Arabic question words and punctuation
+    const commonWords = ['ما', 'من', 'هو', 'هي', 'كم', 'أين', 'متى', 'لماذا', 'كيف', 'هل', 'الذي', 'التي', 'في', 'إلى', 'على', 'عن', 'مع', 'أو', 'و', 'ف', 'ب', 'ل', 'ك'];
+    
+    // Clean and split
+    let words = questionText
+        .replace(/[؟?!،,.]/g, '')
+        .split(' ')
+        .filter(word => word.length > 2 && !commonWords.includes(word));
+    
+    // Take first 2-3 meaningful words
+    const keywords = words.slice(0, 3).join(' ');
+    
+    return keywords || null;
 }
 
 function showAnswer() {
