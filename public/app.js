@@ -15,13 +15,13 @@ let gameState = {
 
 // Categories Data
 const categories = [
-    { id: 'islamic', name: 'الإسلاميات', image: 'images/islamic.jpg' },
-    { id: 'science', name: 'العلوم والاختراعات', image: 'images/science.jpg' },
+    { id: 'islamic', name: 'الإسلاميات', image: 'images/islamiyat.png' },
+    { id: 'science', name: 'العلوم والاختراعات', image: 'images/science.png' },
     { id: 'arabic', name: 'اللغة العربية والأدب', image: 'images/arabic.jpg' },
-    { id: 'sports', name: 'الرياضة والتاريخ الرياضي', image: 'images/sports.jpg' },
-    { id: 'history', name: 'التاريخ والجغرافيا', image: 'images/history.jpg' },
-    { id: 'nature', name: 'الحيوان والنبات', image: 'images/nature.jpg' },
-    { id: 'people', name: 'الألقاب والشخصيات', image: 'images/people.jpg' }
+    { id: 'sports', name: 'الرياضة والتاريخ الرياضي', image: 'images/sports.png' },
+    { id: 'history', name: 'التاريخ والجغرافيا', image: 'images/history_geo.png' },
+    { id: 'nature', name: 'الحيوان والنبات', image: 'images/nature.png' },
+    { id: 'people', name: 'الألقاب والشخصيات', image: 'images/titles.png' }
 ];
 
 // Initialize
