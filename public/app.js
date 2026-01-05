@@ -9,7 +9,8 @@ let gameState = {
     answeredQuestions: [],
     currentQuestion: null,
     timerInterval: null,
-    timerSeconds: 0
+    timerSeconds: 0,
+    allQuestionsData: null
 };
 
 // Categories Data
@@ -28,17 +29,46 @@ document.addEventListener('DOMContentLoaded', () => {
     initApp();
 });
 
-function initApp() {
+async function initApp() {
+    // Load questions data first
+    await loadQuestionsData();
+    
     // Show splash for 3 seconds
     setTimeout(() => {
         showScreen('login-screen');
     }, 3000);
     
-    // Load answered questions from localStorage
-    loadAnsweredQuestions();
-    
     // Setup event listeners
     setupEventListeners();
+}
+
+async function loadQuestionsData() {
+    try {
+        const response = await fetch('questions.json');
+        gameState.allQuestionsData = await response.json();
+        console.log('Questions loaded successfully');
+    } catch (error) {
+        console.error('Error loading questions:', error);
+        // Create fallback data
+        gameState.allQuestionsData = createFallbackQuestions();
+    }
+}
+
+function createFallbackQuestions() {
+    const fallback = {};
+    categories.forEach(cat => {
+        fallback[cat.id] = [];
+        [200, 200, 400, 400, 600, 600].forEach((points, index) => {
+            fallback[cat.id].push({
+                id: `${cat.id}_${index}`,
+                category: cat.id,
+                points: points,
+                question: `سؤال ${points} نقطة - ${cat.name}`,
+                answer: `الإجابة ${index + 1}`
+            });
+        });
+    });
+    return fallback;
 }
 
 function setupEventListeners() {
@@ -49,7 +79,10 @@ function setupEventListeners() {
     });
     
     // Home
-    document.getElementById('start-game-btn').addEventListener('click', () => showScreen('category-screen'));
+    document.getElementById('start-game-btn').addEventListener('click', () => {
+        gameState.selectedCategories = [];
+        showScreen('category-screen');
+    });
     document.getElementById('logout-btn').addEventListener('click', handleLogout);
     
     // Categories
@@ -64,7 +97,10 @@ function setupEventListeners() {
     
     // Win Screen
     document.getElementById('new-game-btn').addEventListener('click', newGame);
-    document.getElementById('home-btn').addEventListener('click', () => showScreen('home-screen'));
+    document.getElementById('home-btn').addEventListener('click', () => {
+        resetGame();
+        showScreen('home-screen');
+    });
     
     // Score buttons
     document.querySelectorAll('.score-btn').forEach(btn => {
@@ -76,26 +112,33 @@ function showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(screen => {
         screen.classList.remove('active');
     });
-    document.getElementById(screenId).classList.add('active');
     
-    // Special screen initializations
-    if (screenId === 'category-screen') {
-        renderCategories();
-    } else if (screenId === 'game-board-screen') {
-        renderGameBoard();
-    }
+    setTimeout(() => {
+        document.getElementById(screenId).classList.add('active');
+        
+        // Special screen initializations
+        if (screenId === 'category-screen') {
+            renderCategories();
+        } else if (screenId === 'game-board-screen') {
+            renderGameBoard();
+        }
+    }, 50);
 }
 
 function handleLogin() {
     const username = document.getElementById('username-input').value.trim();
     if (username) {
         gameState.username = username;
+        loadAnsweredQuestions();
         showScreen('home-screen');
+    } else {
+        alert('الرجاء إدخال اسم المستخدم');
     }
 }
 
 function handleLogout() {
     gameState.username = '';
+    gameState.answeredQuestions = [];
     document.getElementById('username-input').value = '';
     showScreen('login-screen');
 }
@@ -113,9 +156,8 @@ function renderCategories() {
         img.src = category.image;
         img.alt = category.name;
         img.onerror = () => {
-            // Fallback if image doesn't exist
-            card.style.background = 'linear-gradient(135deg, #2563eb, #7c3aed)';
-            card.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; font-size: 1.5rem; font-weight: bold;">${category.name}</div>`;
+            card.style.background = 'linear-gradient(135deg, #b8a67d, #8b8577)';
+            card.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; font-size: 1.3rem; font-weight: 800; padding: 10px; color: #2d2923;">${category.name}</div>`;
         };
         
         card.appendChild(img);
@@ -134,6 +176,8 @@ function toggleCategory(categoryId) {
     } else {
         if (gameState.selectedCategories.length < 6) {
             gameState.selectedCategories.push(categoryId);
+        } else {
+            alert('يمكنك اختيار 6 فئات كحد أقصى');
         }
     }
     
@@ -159,20 +203,28 @@ function updateCategorySelection() {
 }
 
 function handleCategoriesNext() {
-    showScreen('team-names-screen');
+    if (gameState.selectedCategories.length >= 3) {
+        showScreen('team-names-screen');
+    }
 }
 
 function startGame() {
     const team1Name = document.getElementById('team1-name').value.trim() || 'فريق 1';
     const team2Name = document.getElementById('team2-name').value.trim() || 'فريق 2';
     
-    gameState.team1.name = team1Name;
-    gameState.team2.name = team2Name;
-    gameState.team1.score = 0;
-    gameState.team2.score = 0;
+    gameState.team1 = { 
+        name: team1Name, 
+        score: 0, 
+        lifelines: { double: true, block: true, call: true } 
+    };
+    gameState.team2 = { 
+        name: team2Name, 
+        score: 0, 
+        lifelines: { double: true, block: true, call: true } 
+    };
     
     // Load questions for selected categories
-    loadQuestions();
+    loadGameQuestions();
     
     // Random first turn
     gameState.currentTurn = Math.random() > 0.5 ? 1 : 2;
@@ -180,45 +232,34 @@ function startGame() {
     showScreen('game-board-screen');
 }
 
-async function loadQuestions() {
-    try {
-        const response = await fetch('questions.json');
-        const data = await response.json();
-        
-        // Filter questions by selected categories
-        gameState.questions = [];
-        gameState.selectedCategories.forEach(catId => {
-            const catQuestions = data[catId] || [];
-            // Get 6 questions per category (2x200, 2x400, 2x600)
-            const questions200 = catQuestions.filter(q => q.points === 200).slice(0, 2);
-            const questions400 = catQuestions.filter(q => q.points === 400).slice(0, 2);
-            const questions600 = catQuestions.filter(q => q.points === 600).slice(0, 2);
-            
-            gameState.questions.push(...questions200, ...questions400, ...questions600);
-        });
-    } catch (error) {
-        console.error('Error loading questions:', error);
-        // Fallback: create dummy questions
-        createDummyQuestions();
-    }
-}
-
-function createDummyQuestions() {
+function loadGameQuestions() {
     gameState.questions = [];
-    gameState.selectedCategories.forEach((catId, index) => {
+    
+    if (!gameState.allQuestionsData) {
+        console.error('Questions data not loaded');
+        return;
+    }
+    
+    gameState.selectedCategories.forEach(catId => {
         const category = categories.find(c => c.id === catId);
-        [200, 200, 400, 400, 600, 600].forEach((points, qIndex) => {
-            gameState.questions.push({
-                id: `${catId}_${qIndex}`,
-                category: catId,
-                categoryName: category.name,
-                categoryImage: category.image,
-                points: points,
-                question: `سؤال تجريبي ${points} نقطة - ${category.name}`,
-                answer: `إجابة تجريبية`
+        const catQuestions = gameState.allQuestionsData[catId] || [];
+        
+        if (catQuestions.length > 0) {
+            // Get questions by point value
+            const q200 = catQuestions.filter(q => q.points === 200).slice(0, 2);
+            const q400 = catQuestions.filter(q => q.points === 400).slice(0, 2);
+            const q600 = catQuestions.filter(q => q.points === 600).slice(0, 2);
+            
+            // Add category info to each question
+            [...q200, ...q400, ...q600].forEach(q => {
+                q.categoryName = category.name;
+                q.categoryImage = category.image;
+                gameState.questions.push(q);
             });
-        });
+        }
     });
+    
+    console.log(`Loaded ${gameState.questions.length} questions for the game`);
 }
 
 function renderGameBoard() {
@@ -244,22 +285,29 @@ function renderGameBoard() {
         img.src = category.image;
         img.alt = category.name;
         img.onerror = () => {
-            header.style.background = 'linear-gradient(135deg, #2563eb, #7c3aed)';
-            header.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; font-size: 1rem; font-weight: bold; padding: 5px;">${category.name}</div>`;
+            header.style.background = 'linear-gradient(135deg, #b8a67d, #8b8577)';
+            header.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; font-size: 0.9rem; font-weight: 800; padding: 5px; color: #2d2923;">${category.name}</div>`;
         };
         header.appendChild(img);
         column.appendChild(header);
         
-        // Questions
+        // Get questions for this category
         const catQuestions = gameState.questions.filter(q => q.category === catId);
+        
+        // Create cells for each point value
         [200, 200, 400, 400, 600, 600].forEach((points, index) => {
-            const question = catQuestions[index];
+            const question = catQuestions.find((q, i) => q.points === points && catQuestions.indexOf(q) === catQuestions.filter(cq => cq.points === points).indexOf(q) + (points === 200 ? 0 : points === 400 ? 2 : 4));
+            
             const cell = document.createElement('div');
             cell.className = 'question-cell';
             cell.textContent = points;
             
-            if (question && !isQuestionAnswered(question.id)) {
-                cell.addEventListener('click', () => openQuestion(question));
+            if (question) {
+                if (!isQuestionAnswered(question.id)) {
+                    cell.addEventListener('click', () => openQuestion(question));
+                } else {
+                    cell.classList.add('answered');
+                }
             } else {
                 cell.classList.add('answered');
             }
@@ -278,12 +326,20 @@ function renderGameBoard() {
 }
 
 function openQuestion(question) {
-    gameState.currentQuestion = question;
+    gameState.currentQuestion = { ...question, originalPoints: question.points };
+    
+    // Random turn if not set
+    if (!gameState.currentTurn) {
+        gameState.currentTurn = Math.random() > 0.5 ? 1 : 2;
+    }
     
     // Set category image
     const img = document.getElementById('question-category-img');
     img.src = question.categoryImage;
     img.alt = question.categoryName;
+    img.onerror = () => {
+        img.style.display = 'none';
+    };
     
     // Set question text
     document.getElementById('question-text').textContent = question.question;
@@ -294,17 +350,27 @@ function openQuestion(question) {
     document.getElementById('show-answer-btn').style.display = 'block';
     
     // Setup team selection buttons
-    document.getElementById('select-team1').textContent = gameState.team1.name;
-    document.getElementById('select-team2').textContent = gameState.team2.name;
+    const select1 = document.getElementById('select-team1');
+    const select2 = document.getElementById('select-team2');
+    const selectNone = document.querySelector('.team-select-btn[data-team="none"]');
     
-    // Add event listeners for team selection
-    document.querySelectorAll('.team-select-btn').forEach(btn => {
-        btn.replaceWith(btn.cloneNode(true)); // Remove old listeners
-    });
+    select1.textContent = gameState.team1.name;
+    select2.textContent = gameState.team2.name;
+    select1.style.display = 'block';
+    select2.style.display = 'block';
     
-    document.getElementById('select-team1').addEventListener('click', () => handleAnswer(1));
-    document.getElementById('select-team2').addEventListener('click', () => handleAnswer(2));
-    document.querySelector('.team-select-btn[data-team="none"]').addEventListener('click', () => handleAnswer(0));
+    // Remove old event listeners by cloning
+    const newSelect1 = select1.cloneNode(true);
+    const newSelect2 = select2.cloneNode(true);
+    const newSelectNone = selectNone.cloneNode(true);
+    
+    select1.parentNode.replaceChild(newSelect1, select1);
+    select2.parentNode.replaceChild(newSelect2, select2);
+    selectNone.parentNode.replaceChild(newSelectNone, selectNone);
+    
+    newSelect1.addEventListener('click', () => handleAnswer(1));
+    newSelect2.addEventListener('click', () => handleAnswer(2));
+    newSelectNone.addEventListener('click', () => handleAnswer(0));
     
     // Show lifelines for current turn
     renderLifelines();
@@ -351,6 +417,7 @@ function handleAnswer(teamNumber) {
 function renderLifelines() {
     const container = document.getElementById('lifelines-container');
     container.innerHTML = '';
+    container.classList.remove('hidden');
     
     const currentTeam = gameState.currentTurn === 1 ? gameState.team1 : gameState.team2;
     
@@ -377,8 +444,6 @@ function renderLifelines() {
         btn.addEventListener('click', () => useLifeline('call'));
         container.appendChild(btn);
     }
-    
-    container.classList.remove('hidden');
 }
 
 function useLifeline(type) {
@@ -387,11 +452,13 @@ function useLifeline(type) {
     
     if (type === 'double') {
         gameState.currentQuestion.points *= 2;
-        alert('تم مضاعفة النقاط! 🎉');
+        alert(`تم مضاعفة النقاط! السؤال الآن يساوي ${gameState.currentQuestion.points} نقطة 🎉`);
     } else if (type === 'block') {
         const otherTeam = gameState.currentTurn === 1 ? 2 : 1;
         const otherBtn = document.getElementById(`select-team${otherTeam}`);
-        if (otherBtn) otherBtn.style.display = 'none';
+        if (otherBtn) {
+            otherBtn.style.display = 'none';
+        }
         alert('تم منع الفريق الآخر من الإجابة! 🚫');
     } else if (type === 'call') {
         alert('وقت الاتصال بصديق! المؤقت مستمر... 📞');
@@ -403,6 +470,10 @@ function useLifeline(type) {
 function startTimer() {
     gameState.timerSeconds = 0;
     updateTimerDisplay();
+    
+    if (gameState.timerInterval) {
+        clearInterval(gameState.timerInterval);
+    }
     
     gameState.timerInterval = setInterval(() => {
         gameState.timerSeconds++;
@@ -445,13 +516,14 @@ function updateScores() {
 }
 
 function reportQuestion() {
-    const reason = prompt('سبب البلاغ:');
-    if (reason) {
+    const reason = prompt('ما هو سبب البلاغ؟');
+    if (reason && reason.trim()) {
         const report = {
             questionId: gameState.currentQuestion.id,
             question: gameState.currentQuestion.question,
             answer: gameState.currentQuestion.answer,
-            reason: reason,
+            category: gameState.currentQuestion.categoryName,
+            reason: reason.trim(),
             timestamp: new Date().toISOString(),
             username: gameState.username
         };
@@ -461,7 +533,7 @@ function reportQuestion() {
         reports.push(report);
         localStorage.setItem('zahin_reports', JSON.stringify(reports));
         
-        alert('تم إرسال البلاغ! شكراً لك 🙏');
+        alert('تم إرسال البلاغ بنجاح! شكراً لك 🙏');
     }
 }
 
@@ -477,14 +549,25 @@ function markQuestionAnswered(questionId) {
 }
 
 function loadAnsweredQuestions() {
-    const saved = localStorage.getItem(`zahin_answered_${gameState.username}`);
-    if (saved) {
-        gameState.answeredQuestions = JSON.parse(saved);
+    if (gameState.username) {
+        const saved = localStorage.getItem(`zahin_answered_${gameState.username}`);
+        if (saved) {
+            try {
+                gameState.answeredQuestions = JSON.parse(saved);
+            } catch (e) {
+                gameState.answeredQuestions = [];
+            }
+        }
     }
 }
 
 function saveAnsweredQuestions() {
-    localStorage.setItem(`zahin_answered_${gameState.username}`, JSON.stringify(gameState.answeredQuestions));
+    if (gameState.username) {
+        localStorage.setItem(
+            `zahin_answered_${gameState.username}`, 
+            JSON.stringify(gameState.answeredQuestions)
+        );
+    }
 }
 
 function isGameOver() {
@@ -496,7 +579,6 @@ function endGame() {
     const score2 = gameState.team2.score;
     
     if (score1 === score2) {
-        // Tiebreaker
         showTiebreaker();
     } else {
         showWinScreen();
@@ -524,10 +606,16 @@ function showWinScreen() {
 }
 
 function showTiebreaker() {
-    // Load a hard tiebreaker question
-    const tiebreakerQ = {
-        question: 'سؤال كسر التعادل الصعب هنا',
-        answer: 'الإجابة الصعبة هنا'
+    // Get a hard tiebreaker question (600 points from any category)
+    const tiebreakerQuestions = gameState.allQuestionsData ? 
+        Object.values(gameState.allQuestionsData)
+            .flat()
+            .filter(q => q.points === 600 && !isQuestionAnswered(q.id)) :
+        [];
+    
+    const tiebreakerQ = tiebreakerQuestions[Math.floor(Math.random() * tiebreakerQuestions.length)] || {
+        question: 'سؤال كسر التعادل: ما هي عاصمة أستراليا؟',
+        answer: 'كانبيرا'
     };
     
     document.getElementById('tiebreaker-question').textContent = tiebreakerQ.question;
@@ -535,15 +623,24 @@ function showTiebreaker() {
     document.getElementById('tiebreaker-answer').classList.add('hidden');
     document.getElementById('tiebreaker-selection').classList.add('hidden');
     
-    // Setup buttons
-    document.getElementById('show-tiebreaker-answer').addEventListener('click', () => {
+    // Setup show answer button
+    const showBtn = document.getElementById('show-tiebreaker-answer');
+    const newShowBtn = showBtn.cloneNode(true);
+    showBtn.parentNode.replaceChild(newShowBtn, showBtn);
+    
+    newShowBtn.addEventListener('click', () => {
         document.getElementById('tiebreaker-answer').classList.remove('hidden');
         document.getElementById('tiebreaker-selection').classList.remove('hidden');
     });
     
-    document.querySelectorAll('#tiebreaker-selection .team-select-btn').forEach((btn, index) => {
-        btn.textContent = index === 0 ? gameState.team1.name : gameState.team2.name;
-        btn.addEventListener('click', () => {
+    // Setup team selection
+    const buttons = document.querySelectorAll('#tiebreaker-selection .team-select-btn');
+    buttons.forEach((btn, index) => {
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+        
+        newBtn.textContent = index === 0 ? gameState.team1.name : gameState.team2.name;
+        newBtn.addEventListener('click', () => {
             if (index === 0) {
                 gameState.team1.score += 1000;
             } else {
@@ -557,7 +654,7 @@ function showTiebreaker() {
 }
 
 function newGame() {
-    // Reset game state but keep username and answered questions
+    // Reset game but keep username
     gameState.selectedCategories = [];
     gameState.team1 = { name: 'فريق 1', score: 0, lifelines: { double: true, block: true, call: true } };
     gameState.team2 = { name: 'فريق 2', score: 0, lifelines: { double: true, block: true, call: true } };
@@ -565,5 +662,21 @@ function newGame() {
     gameState.questions = [];
     gameState.currentQuestion = null;
     
+    // Reset team name inputs
+    document.getElementById('team1-name').value = 'فريق 1';
+    document.getElementById('team2-name').value = 'فريق 2';
+    
     showScreen('category-screen');
+}
+
+function resetGame() {
+    gameState.selectedCategories = [];
+    gameState.team1 = { name: 'فريق 1', score: 0, lifelines: { double: true, block: true, call: true } };
+    gameState.team2 = { name: 'فريق 2', score: 0, lifelines: { double: true, block: true, call: true } };
+    gameState.currentTurn = 1;
+    gameState.questions = [];
+    gameState.currentQuestion = null;
+    
+    document.getElementById('team1-name').value = 'فريق 1';
+    document.getElementById('team2-name').value = 'فريق 2';
 }
