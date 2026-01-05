@@ -49,7 +49,6 @@ async function loadQuestionsData() {
         console.log('Questions loaded successfully');
     } catch (error) {
         console.error('Error loading questions:', error);
-        // Create fallback data
         gameState.allQuestionsData = createFallbackQuestions();
     }
 }
@@ -159,7 +158,6 @@ function showScreen(screenId) {
     setTimeout(() => {
         document.getElementById(screenId).classList.add('active');
         
-        // Special screen initializations
         if (screenId === 'category-screen') {
             renderCategories();
         } else if (screenId === 'game-board-screen') {
@@ -177,7 +175,6 @@ function handleSignIn() {
         return;
     }
     
-    // Check if user exists (for demo purposes, we'll just store in localStorage)
     const users = JSON.parse(localStorage.getItem('zahin_users') || '{}');
     
     if (users[username] && users[username].password === password) {
@@ -211,7 +208,6 @@ function handleSignUp() {
         return;
     }
     
-    // Store user (for demo purposes)
     const users = JSON.parse(localStorage.getItem('zahin_users') || '{}');
     
     if (users[username]) {
@@ -224,7 +220,6 @@ function handleSignUp() {
     
     alert('تم إنشاء الحساب بنجاح! 🎉');
     
-    // Auto login
     gameState.username = username;
     loadAnsweredQuestions();
     showScreen('home-screen');
@@ -243,7 +238,6 @@ function handleResetPassword() {
         return;
     }
     
-    // For demo purposes
     alert('تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني 📧');
     
     document.querySelectorAll('.login-form').forEach(form => form.classList.add('hidden'));
@@ -263,7 +257,6 @@ function handleLogout() {
     gameState.username = '';
     gameState.answeredQuestions = [];
     
-    // Clear all forms
     document.getElementById('signin-username').value = '';
     document.getElementById('signin-password').value = '';
     document.getElementById('signup-fullname').value = '';
@@ -360,10 +353,7 @@ function startGame() {
         lifelines: { double: true, block: true, call: true } 
     };
     
-    // Load questions for selected categories
     loadGameQuestions();
-    
-    // Random first turn
     gameState.currentTurn = Math.random() > 0.5 ? 1 : 2;
     
     showScreen('game-board-screen');
@@ -382,12 +372,10 @@ function loadGameQuestions() {
         const catQuestions = gameState.allQuestionsData[catId] || [];
         
         if (catQuestions.length > 0) {
-            // Get questions by point value
             const q200 = catQuestions.filter(q => q.points === 200).slice(0, 2);
             const q400 = catQuestions.filter(q => q.points === 400).slice(0, 2);
             const q600 = catQuestions.filter(q => q.points === 600).slice(0, 2);
             
-            // Add category info to each question
             [...q200, ...q400, ...q600].forEach(q => {
                 q.categoryName = category.name;
                 q.categoryImage = category.image;
@@ -396,16 +384,14 @@ function loadGameQuestions() {
         }
     });
     
-    console.log(`Loaded ${gameState.questions.length} questions for the game`);
+    console.log(`Loaded ${gameState.questions.length} questions`);
 }
 
 function renderGameBoard() {
-    // Update team names and scores
     document.getElementById('team1-display').textContent = gameState.team1.name;
     document.getElementById('team2-display').textContent = gameState.team2.name;
     updateScores();
     
-    // Render board
     const board = document.getElementById('game-board');
     board.innerHTML = '';
     
@@ -415,7 +401,6 @@ function renderGameBoard() {
         column.className = 'category-column';
         column.dataset.categoryId = catId;
         
-        // Category header
         const header = document.createElement('div');
         header.className = 'category-header';
         const img = document.createElement('img');
@@ -428,15 +413,11 @@ function renderGameBoard() {
         header.appendChild(img);
         column.appendChild(header);
         
-        // Get questions for this category
         const catQuestions = gameState.questions.filter(q => q.category === catId);
-        
-        // Separate questions by points
         const q200 = catQuestions.filter(q => q.points === 200);
         const q400 = catQuestions.filter(q => q.points === 400);
         const q600 = catQuestions.filter(q => q.points === 600);
         
-        // Create cells in order: 200, 200, 400, 400, 600, 600
         const orderedQuestions = [
             q200[0], q200[1], q400[0], q400[1], q600[0], q600[1]
         ];
@@ -456,7 +437,6 @@ function renderGameBoard() {
             column.appendChild(cell);
         });
         
-        // Check if category is depleted
         const unanswered = catQuestions.filter(q => !isQuestionAnswered(q.id));
         if (unanswered.length === 0) {
             column.classList.add('depleted');
@@ -469,12 +449,10 @@ function renderGameBoard() {
 function openQuestion(question) {
     gameState.currentQuestion = { ...question, originalPoints: question.points };
     
-    // Random turn if not set
     if (!gameState.currentTurn) {
         gameState.currentTurn = Math.random() > 0.5 ? 1 : 2;
     }
     
-    // Set category image
     const img = document.getElementById('question-category-img');
     img.src = question.categoryImage;
     img.alt = question.categoryName;
@@ -482,18 +460,14 @@ function openQuestion(question) {
         img.style.display = 'none';
     };
     
-    // Set question text
     document.getElementById('question-text').textContent = question.question;
     
-    // Load related image from Wikimedia
     loadQuestionImage(question.question);
     
-    // Hide answer initially
     document.getElementById('answer-section').classList.add('hidden');
     document.getElementById('team-selection').classList.add('hidden');
     document.getElementById('show-answer-btn').style.display = 'block';
     
-    // Setup team selection buttons
     const select1 = document.getElementById('select-team1');
     const select2 = document.getElementById('select-team2');
     const selectNone = document.querySelector('.team-select-btn[data-team="none"]');
@@ -503,7 +477,6 @@ function openQuestion(question) {
     select1.style.display = 'block';
     select2.style.display = 'block';
     
-    // Remove old event listeners by cloning
     const newSelect1 = select1.cloneNode(true);
     const newSelect2 = select2.cloneNode(true);
     const newSelectNone = selectNone.cloneNode(true);
@@ -516,10 +489,7 @@ function openQuestion(question) {
     newSelect2.addEventListener('click', () => handleAnswer(2));
     newSelectNone.addEventListener('click', () => handleAnswer(0));
     
-    // Show lifelines for current turn
     renderLifelines();
-    
-    // Start timer
     startTimer();
     
     showScreen('question-screen');
@@ -529,23 +499,19 @@ async function loadQuestionImage(questionText) {
     const imageContainer = document.getElementById('question-image-container');
     const imageElement = document.getElementById('question-image');
     
-    // Hide initially
     imageContainer.style.display = 'none';
     
     try {
-        // Extract key words from question (remove question marks, common words)
         const keywords = extractKeywords(questionText);
         
         if (!keywords) {
-            return; // No keywords found
+            return;
         }
         
-        // Show loading state
         imageContainer.style.display = 'block';
         imageElement.classList.add('loading');
         imageElement.src = '';
         
-        // Search Wikimedia Commons
         const searchUrl = `https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrsearch=${encodeURIComponent(keywords)}&gsrlimit=1&prop=imageinfo&iiprop=url&iiurlwidth=400`;
         
         const response = await fetch(searchUrl);
@@ -573,16 +539,13 @@ async function loadQuestionImage(questionText) {
 }
 
 function extractKeywords(questionText) {
-    // Remove common Arabic question words and punctuation
     const commonWords = ['ما', 'من', 'هو', 'هي', 'كم', 'أين', 'متى', 'لماذا', 'كيف', 'هل', 'الذي', 'التي', 'في', 'إلى', 'على', 'عن', 'مع', 'أو', 'و', 'ف', 'ب', 'ل', 'ك'];
     
-    // Clean and split
     let words = questionText
         .replace(/[؟?!،,.]/g, '')
         .split(' ')
         .filter(word => word.length > 2 && !commonWords.includes(word));
     
-    // Take first 2-3 meaningful words
     const keywords = words.slice(0, 3).join(' ');
     
     return keywords || null;
@@ -607,13 +570,9 @@ function handleAnswer(teamNumber) {
         }
     }
     
-    // Mark question as answered
     markQuestionAnswered(gameState.currentQuestion.id);
-    
-    // Switch turn
     gameState.currentTurn = gameState.currentTurn === 1 ? 2 : 1;
     
-    // Check if game is over
     if (isGameOver()) {
         endGame();
     } else {
@@ -735,7 +694,6 @@ function reportQuestion() {
             username: gameState.username
         };
         
-        // Save to localStorage
         const reports = JSON.parse(localStorage.getItem('zahin_reports') || '[]');
         reports.push(report);
         localStorage.setItem('zahin_reports', JSON.stringify(reports));
@@ -813,7 +771,6 @@ function showWinScreen() {
 }
 
 function showTiebreaker() {
-    // Get a hard tiebreaker question (600 points from any category)
     const tiebreakerQuestions = gameState.allQuestionsData ? 
         Object.values(gameState.allQuestionsData)
             .flat()
@@ -827,63 +784,4 @@ function showTiebreaker() {
     
     document.getElementById('tiebreaker-question').textContent = tiebreakerQ.question;
     document.getElementById('tiebreaker-answer-text').textContent = tiebreakerQ.answer;
-    document.getElementById('tiebreaker-answer').classList.add('hidden');
-    document.getElementById('tiebreaker-selection').classList.add('hidden');
-    
-    // Setup show answer button
-    const showBtn = document.getElementById('show-tiebreaker-answer');
-    const newShowBtn = showBtn.cloneNode(true);
-    showBtn.parentNode.replaceChild(newShowBtn, showBtn);
-    
-    newShowBtn.addEventListener('click', () => {
-        document.getElementById('tiebreaker-answer').classList.remove('hidden');
-        document.getElementById('tiebreaker-selection').classList.remove('hidden');
-    });
-    
-    // Setup team selection
-    const buttons = document.querySelectorAll('#tiebreaker-selection .team-select-btn');
-    buttons.forEach((btn, index) => {
-        const newBtn = btn.cloneNode(true);
-        btn.parentNode.replaceChild(newBtn, btn);
-        
-        newBtn.textContent = index === 0 ? gameState.team1.name : gameState.team2.name;
-        newBtn.addEventListener('click', () => {
-            if (index === 0) {
-                gameState.team1.score += 1000;
-            } else {
-                gameState.team2.score += 1000;
-            }
-            showWinScreen();
-        });
-    });
-    
-    showScreen('tiebreaker-screen');
-}
-
-function newGame() {
-    // Reset game but keep username
-    gameState.selectedCategories = [];
-    gameState.team1 = { name: 'فريق 1', score: 0, lifelines: { double: true, block: true, call: true } };
-    gameState.team2 = { name: 'فريق 2', score: 0, lifelines: { double: true, block: true, call: true } };
-    gameState.currentTurn = 1;
-    gameState.questions = [];
-    gameState.currentQuestion = null;
-    
-    // Reset team name inputs
-    document.getElementById('team1-name').value = 'فريق 1';
-    document.getElementById('team2-name').value = 'فريق 2';
-    
-    showScreen('category-screen');
-}
-
-function resetGame() {
-    gameState.selectedCategories = [];
-    gameState.team1 = { name: 'فريق 1', score: 0, lifelines: { double: true, block: true, call: true } };
-    gameState.team2 = { name: 'فريق 2', score: 0, lifelines: { double: true, block: true, call: true } };
-    gameState.currentTurn = 1;
-    gameState.questions = [];
-    gameState.currentQuestion = null;
-    
-    document.getElementById('team1-name').value = 'فريق 1';
-    document.getElementById('team2-name').value = 'فريق 2';
-}
+    document.getElementById('tiebre
