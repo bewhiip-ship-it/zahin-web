@@ -512,26 +512,53 @@ async function loadQuestionImage(questionText) {
         imageElement.classList.add('loading');
         imageElement.src = '';
         
-        const searchUrl = `https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrsearch=${encodeURIComponent(keywords)}&gsrlimit=1&prop=imageinfo&iiprop=url&iiurlwidth=400`;
+        // Try Wikipedia API first (more reliable for general topics)
+        const wikiUrl = `https://ar.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=pageimages&piprop=thumbnail&pithumbsize=400&titles=${encodeURIComponent(keywords)}`;
         
-        const response = await fetch(searchUrl);
+        const response = await fetch(wikiUrl);
         const data = await response.json();
         
         if (data.query && data.query.pages) {
             const pages = Object.values(data.query.pages);
-            if (pages.length > 0 && pages[0].imageinfo) {
-                const imageUrl = pages[0].imageinfo[0].thumburl || pages[0].imageinfo[0].url;
-                imageElement.src = imageUrl;
+            if (pages[0] && pages[0].thumbnail) {
+                imageElement.src = pages[0].thumbnail.source;
                 imageElement.classList.remove('loading');
-                imageElement.onerror = () => {
-                    imageContainer.style.display = 'none';
-                };
-            } else {
-                imageContainer.style.display = 'none';
+                return;
             }
-        } else {
-            imageContainer.style.display = 'none';
         }
+        
+        // Fallback to Wikimedia Commons search
+        const commonsUrl = `https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&list=search&srsearch=${encodeURIComponent(keywords)}&srnamespace=6&srlimit=1&srprop=snippet`;
+        
+        const commonsResponse = await fetch(commonsUrl);
+        const commonsData = await commonsResponse.json();
+        
+        if (commonsData.query && commonsData.query.search && commonsData.query.search.length > 0) {
+            const fileName = commonsData.query.search[0].title;
+            
+            // Get image info
+            const imageInfoUrl = `https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&titles=${encodeURIComponent(fileName)}&prop=imageinfo&iiprop=url&iiurlwidth=400`;
+            
+            const imageInfoResponse = await fetch(imageInfoUrl);
+            const imageInfoData = await imageInfoResponse.json();
+            
+            if (imageInfoData.query && imageInfoData.query.pages) {
+                const imagePages = Object.values(imageInfoData.query.pages);
+                if (imagePages[0] && imagePages[0].imageinfo) {
+                    const imageUrl = imagePages[0].imageinfo[0].thumburl || imagePages[0].imageinfo[0].url;
+                    imageElement.src = imageUrl;
+                    imageElement.classList.remove('loading');
+                    imageElement.onerror = () => {
+                        imageContainer.style.display = 'none';
+                    };
+                    return;
+                }
+            }
+        }
+        
+        // If both failed, hide the container
+        imageContainer.style.display = 'none';
+        
     } catch (error) {
         console.error('Error loading image:', error);
         imageContainer.style.display = 'none';
@@ -539,16 +566,24 @@ async function loadQuestionImage(questionText) {
 }
 
 function extractKeywords(questionText) {
-    const commonWords = ['ما', 'من', 'هو', 'هي', 'كم', 'أين', 'متى', 'لماذا', 'كيف', 'هل', 'الذي', 'التي', 'في', 'إلى', 'على', 'عن', 'مع', 'أو', 'و', 'ف', 'ب', 'ل', 'ك'];
+    // Remove common Arabic question words and punctuation
+    const commonWords = ['ما', 'من', 'هو', 'هي', 'كم', 'أين', 'متى', 'لماذا', 'كيف', 'هل', 'الذي', 'التي', 'في', 'إلى', 'على', 'عن', 'مع', 'أو', 'و', 'ف', 'ب', 'ل', 'ك', 'اسم', 'يسمى', 'تسمى', 'يلقب', 'الملقب'];
     
+    // Clean and split
     let words = questionText
         .replace(/[؟?!،,.]/g, '')
         .split(' ')
         .filter(word => word.length > 2 && !commonWords.includes(word));
     
-    const keywords = words.slice(0, 3).join(' ');
+    // Get the most important word (usually the subject)
+    // Prioritize words that are longer and appear later in the question
+    if (words.length > 0) {
+        // Take the longest meaningful word
+        words.sort((a, b) => b.length - a.length);
+        return words[0];
+    }
     
-    return keywords || null;
+    return null;
 }
 
 function showAnswer() {
