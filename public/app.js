@@ -17,7 +17,7 @@ let gameState = {
 const categories = [
     { id: 'islamic', name: 'الإسلاميات', image: 'images/islamiyat.png' },
     { id: 'science', name: 'العلوم والاختراعات', image: 'images/science.png' },
-    { id: 'arabic', name: 'اللغة العربية والأدب', image: 'images/arabic.jpg' },
+    { id: 'arabic', name: 'اللغة العربية والأدب', image: 'images/arabic.png' },
     { id: 'sports', name: 'الرياضة والتاريخ الرياضي', image: 'images/sports.png' },
     { id: 'history', name: 'التاريخ والجغرافيا', image: 'images/history_geo.png' },
     { id: 'nature', name: 'الحيوان والنبات', image: 'images/nature.png' },
