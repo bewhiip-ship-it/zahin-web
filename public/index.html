@@ -21,10 +21,69 @@
     <div id="login-screen" class="screen">
         <div class="login-container">
             <h1 class="game-title">ذهين</h1>
-            <div class="login-form">
-                <input type="text" id="username-input" placeholder="أدخل اسم المستخدم" autocomplete="off">
-                <button id="login-btn" class="primary-btn">تسجيل الدخول</button>
+            <p class="login-subtitle">لعبة المسابقات الذهنية الجماعية</p>
+            
+            <div class="login-tabs">
+                <button class="login-tab active" data-tab="signin">تسجيل الدخول</button>
+                <button class="login-tab" data-tab="signup">إنشاء حساب</button>
             </div>
+            
+            <!-- Sign In Form -->
+            <form id="signin-form" class="login-form">
+                <div class="input-group">
+                    <label>البريد الإلكتروني أو اسم المستخدم</label>
+                    <input type="text" id="signin-username" placeholder="أدخل بريدك الإلكتروني" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="signin-password" placeholder="أدخل كلمة المرور">
+                </div>
+                <div class="forgot-password">
+                    <a href="#" id="forgot-password-link">نسيت كلمة المرور؟</a>
+                </div>
+                <button type="submit" id="signin-btn" class="primary-btn">دخول</button>
+            </form>
+            
+            <!-- Sign Up Form -->
+            <form id="signup-form" class="login-form hidden">
+                <div class="input-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="signup-fullname" placeholder="أدخل اسمك الكامل" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="signup-email" placeholder="أدخل بريدك الإلكتروني" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label>اسم المستخدم</label>
+                    <input type="text" id="signup-username" placeholder="اختر اسم مستخدم" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="signup-password" placeholder="أدخل كلمة مرور قوية">
+                </div>
+                <div class="input-group">
+                    <label>تأكيد كلمة المرور</label>
+                    <input type="password" id="signup-password-confirm" placeholder="أعد إدخال كلمة المرور">
+                </div>
+                <button type="submit" id="signup-btn" class="primary-btn">إنشاء حساب</button>
+            </form>
+            
+            <!-- Reset Password Form -->
+            <form id="reset-form" class="login-form hidden">
+                <div class="input-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="reset-email" placeholder="أدخل بريدك الإلكتروني" autocomplete="off">
+                </div>
+                <button type="submit" id="reset-btn" class="primary-btn">إرسال رابط إعادة التعيين</button>
+                <button type="button" id="back-to-signin" class="secondary-btn">العودة لتسجيل الدخول</button>
+            </form>
+            
+            <div class="auth-divider">
+                <span>أو</span>
+            </div>
+            
+            <button id="guest-login-btn" class="guest-login">دخول كضيف</button>
         </div>
     </div>
 
@@ -100,6 +159,7 @@
     <!-- Question Screen -->
     <div id="question-screen" class="screen">
         <div class="question-container">
+            <button id="close-question-btn" class="close-question-btn">✕</button>
             <div class="question-header">
                 <img id="question-category-img" src="" alt="" class="question-category-img">
                 <div class="question-timer" id="question-timer">00:00</div>

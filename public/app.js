@@ -72,11 +72,53 @@ function createFallbackQuestions() {
 }
 
 function setupEventListeners() {
-    // Login
-    document.getElementById('login-btn').addEventListener('click', handleLogin);
-    document.getElementById('username-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') handleLogin();
+    // Login Tabs
+    document.querySelectorAll('.login-tab').forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
+            e.target.classList.add('active');
+            
+            const tabName = e.target.dataset.tab;
+            document.querySelectorAll('.login-form').forEach(form => form.classList.add('hidden'));
+            
+            if (tabName === 'signin') {
+                document.getElementById('signin-form').classList.remove('hidden');
+            } else if (tabName === 'signup') {
+                document.getElementById('signup-form').classList.remove('hidden');
+            }
+        });
     });
+    
+    // Sign In
+    document.getElementById('signin-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleSignIn();
+    });
+    
+    // Sign Up
+    document.getElementById('signup-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleSignUp();
+    });
+    
+    // Reset Password
+    document.getElementById('forgot-password-link').addEventListener('click', (e) => {
+        e.preventDefault();
+        showResetForm();
+    });
+    
+    document.getElementById('reset-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleResetPassword();
+    });
+    
+    document.getElementById('back-to-signin').addEventListener('click', () => {
+        document.querySelectorAll('.login-form').forEach(form => form.classList.add('hidden'));
+        document.getElementById('signin-form').classList.remove('hidden');
+    });
+    
+    // Guest Login
+    document.getElementById('guest-login-btn').addEventListener('click', handleGuestLogin);
     
     // Home
     document.getElementById('start-game-btn').addEventListener('click', () => {
@@ -92,6 +134,7 @@ function setupEventListeners() {
     document.getElementById('start-playing-btn').addEventListener('click', startGame);
     
     // Question
+    document.getElementById('close-question-btn').addEventListener('click', closeQuestion);
     document.getElementById('show-answer-btn').addEventListener('click', showAnswer);
     document.getElementById('report-btn').addEventListener('click', reportQuestion);
     
@@ -125,22 +168,116 @@ function showScreen(screenId) {
     }, 50);
 }
 
-function handleLogin() {
-    const username = document.getElementById('username-input').value.trim();
-    if (username) {
+function handleSignIn() {
+    const username = document.getElementById('signin-username').value.trim();
+    const password = document.getElementById('signin-password').value;
+    
+    if (!username || !password) {
+        alert('الرجاء إدخال البريد الإلكتروني وكلمة المرور');
+        return;
+    }
+    
+    // Check if user exists (for demo purposes, we'll just store in localStorage)
+    const users = JSON.parse(localStorage.getItem('zahin_users') || '{}');
+    
+    if (users[username] && users[username].password === password) {
         gameState.username = username;
         loadAnsweredQuestions();
         showScreen('home-screen');
     } else {
-        alert('الرجاء إدخال اسم المستخدم');
+        alert('البريد الإلكتروني أو كلمة المرور غير صحيحة');
+    }
+}
+
+function handleSignUp() {
+    const fullname = document.getElementById('signup-fullname').value.trim();
+    const email = document.getElementById('signup-email').value.trim();
+    const username = document.getElementById('signup-username').value.trim();
+    const password = document.getElementById('signup-password').value;
+    const confirmPassword = document.getElementById('signup-password-confirm').value;
+    
+    if (!fullname || !email || !username || !password || !confirmPassword) {
+        alert('الرجاء ملء جميع الحقول');
+        return;
+    }
+    
+    if (password !== confirmPassword) {
+        alert('كلمتا المرور غير متطابقتين');
+        return;
+    }
+    
+    if (password.length < 6) {
+        alert('كلمة المرور يجب أن تكون 6 أحرف على الأقل');
+        return;
+    }
+    
+    // Store user (for demo purposes)
+    const users = JSON.parse(localStorage.getItem('zahin_users') || '{}');
+    
+    if (users[username]) {
+        alert('اسم المستخدم مستخدم بالفعل');
+        return;
+    }
+    
+    users[username] = { fullname, email, password };
+    localStorage.setItem('zahin_users', JSON.stringify(users));
+    
+    alert('تم إنشاء الحساب بنجاح! 🎉');
+    
+    // Auto login
+    gameState.username = username;
+    loadAnsweredQuestions();
+    showScreen('home-screen');
+}
+
+function showResetForm() {
+    document.querySelectorAll('.login-form').forEach(form => form.classList.add('hidden'));
+    document.getElementById('reset-form').classList.remove('hidden');
+}
+
+function handleResetPassword() {
+    const email = document.getElementById('reset-email').value.trim();
+    
+    if (!email) {
+        alert('الرجاء إدخال البريد الإلكتروني');
+        return;
+    }
+    
+    // For demo purposes
+    alert('تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني 📧');
+    
+    document.querySelectorAll('.login-form').forEach(form => form.classList.add('hidden'));
+    document.getElementById('signin-form').classList.remove('hidden');
+}
+
+function handleGuestLogin() {
+    const guestName = prompt('أدخل اسمك للدخول كضيف:');
+    if (guestName && guestName.trim()) {
+        gameState.username = `ضيف_${guestName.trim()}`;
+        loadAnsweredQuestions();
+        showScreen('home-screen');
     }
 }
 
 function handleLogout() {
     gameState.username = '';
     gameState.answeredQuestions = [];
-    document.getElementById('username-input').value = '';
+    
+    // Clear all forms
+    document.getElementById('signin-username').value = '';
+    document.getElementById('signin-password').value = '';
+    document.getElementById('signup-fullname').value = '';
+    document.getElementById('signup-email').value = '';
+    document.getElementById('signup-username').value = '';
+    document.getElementById('signup-password').value = '';
+    document.getElementById('signup-password-confirm').value = '';
+    
     showScreen('login-screen');
+}
+
+function closeQuestion() {
+    stopTimer();
+    showScreen('game-board-screen');
 }
 
 function renderCategories() {

@@ -52,7 +52,7 @@ body {
 
 /* Splash Screen */
 #splash-screen {
-    background: linear-gradient(135deg, var(--gold-accent) 0%, var(--dark-accent) 100%);
+    background: var(--primary-bg);
 }
 
 .splash-content {
@@ -80,10 +80,11 @@ body {
 /* Login Screen */
 .login-container {
     text-align: center;
-    padding: 50px;
+    padding: 50px 60px;
     background: var(--secondary-bg);
     border-radius: 25px;
-    min-width: 450px;
+    min-width: 500px;
+    max-width: 550px;
     box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
     border: 3px solid var(--tertiary-bg);
 }
@@ -91,16 +92,127 @@ body {
 .game-title {
     font-size: 5rem;
     font-weight: 900;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     color: var(--darkest-accent);
     text-shadow: 3px 3px 0 var(--gold-accent);
     letter-spacing: 5px;
 }
 
+.login-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+.login-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 3px solid var(--tertiary-bg);
+}
+
+.login-tab {
+    flex: 1;
+    padding: 15px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: -3px;
+}
+
+.login-tab.active {
+    color: var(--darkest-accent);
+    border-bottom-color: var(--gold-accent);
+}
+
+.login-tab:hover {
+    color: var(--darker-accent);
+}
+
 .login-form {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
+}
+
+.login-form.hidden {
+    display: none;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    text-align: right;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--darker-accent);
+    font-size: 1rem;
+}
+
+.input-group input {
+    width: 100%;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-top: -10px;
+}
+
+.forgot-password a {
+    color: var(--dark-accent);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.forgot-password a:hover {
+    color: var(--gold-accent);
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--tertiary-bg);
+}
+
+.auth-divider span {
+    padding: 0 15px;
+}
+
+.guest-login {
+    padding: 15px;
+    background: var(--tertiary-bg);
+    border: 2px solid var(--dark-accent);
+    border-radius: 12px;
+    color: var(--darkest-accent);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.guest-login:hover {
+    background: var(--dark-accent);
+    color: var(--primary-bg);
 }
 
 input[type="text"] {
@@ -467,6 +579,33 @@ input[type="text"]::placeholder {
     border-radius: 25px;
     box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
     border: 4px solid var(--tertiary-bg);
+    position: relative;
+}
+
+.close-question-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    background: var(--danger-color);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.close-question-btn:hover {
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .question-header {
