@@ -135,21 +135,22 @@
     <!-- Game Board Screen -->
     <div id="game-board-screen" class="screen">
         <div class="game-header">
+            <div class="turn-indicator" id="turn-indicator"></div>
             <div class="team-score" id="team1-score">
                 <div class="team-name" id="team1-display">فريق 1</div>
                 <div class="score" id="team1-points">0</div>
                 <div class="score-controls">
-                    <button class="score-btn" data-team="1" data-action="add">+100</button>
-                    <button class="score-btn" data-team="1" data-action="subtract">-100</button>
+                    <button class="score-btn" data-team="1" data-action="add">+</button>
+                    <button class="score-btn" data-team="1" data-action="subtract">-</button>
                 </div>
             </div>
-            <div class="turn-indicator" id="turn-indicator"></div>
+            <div class="game-logo">ذهين</div>
             <div class="team-score" id="team2-score">
                 <div class="team-name" id="team2-display">فريق 2</div>
                 <div class="score" id="team2-points">0</div>
                 <div class="score-controls">
-                    <button class="score-btn" data-team="2" data-action="add">+100</button>
-                    <button class="score-btn" data-team="2" data-action="subtract">-100</button>
+                    <button class="score-btn" data-team="2" data-action="add">+</button>
+                    <button class="score-btn" data-team="2" data-action="subtract">-</button>
                 </div>
             </div>
         </div>

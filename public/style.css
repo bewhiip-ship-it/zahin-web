@@ -64,7 +64,7 @@ body {
     justify-content: center;
 }
 
-/* Splash Screen */
+/* Splash Screen - Static & Clean */
 #splash-screen {
     background: var(--primary-bg);
 }
@@ -74,10 +74,9 @@ body {
 }
 
 .splash-logo {
-    max-width: 400px;
-    max-height: 250px;
-    animation: fadeInScale 1.5s ease;
-    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
+    max-width: 350px;
+    max-height: 200px;
+    /* No animation, no shadow - clean and simple */
 }
 
 @keyframes fadeInScale {
@@ -90,6 +89,8 @@ body {
         transform: scale(1);
     }
 }
+
+/* Remove animation - kept for compatibility */
 
 /* Login Screen */
 #login-screen {
@@ -793,8 +794,9 @@ input[type="password"]::placeholder {
 
 .lifelines-container {
     display: flex;
-    gap: 15px;
-    margin-top: 18px;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
 }
 
 .lifelines-container.hidden {
@@ -802,8 +804,8 @@ input[type="password"]::placeholder {
 }
 
 .lifeline-btn {
-    padding: 12px 25px;
-    font-size: 1rem;
+    padding: 8px 18px;
+    font-size: 0.9rem;
     font-weight: 700;
     background: var(--dark-accent);
     color: var(--primary-bg);
@@ -811,12 +813,12 @@ input[type="password"]::placeholder {
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
 }
 
 .lifeline-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     background: var(--darker-accent);
 }
 
@@ -961,93 +963,125 @@ input[type="password"]::placeholder {
 /* Responsive adjustments for landscape mobile */
 @media screen and (max-height: 600px) {
     .game-title {
-        font-size: 2.5rem;
-        margin-bottom: 8px;
+        font-size: 2.2rem;
+        margin-bottom: 6px;
     }
     
     .login-subtitle {
-        font-size: 0.85rem;
-        margin-bottom: 15px;
+        font-size: 0.8rem;
+        margin-bottom: 12px;
     }
     
     .screen-title {
-        font-size: 1.6rem;
-        margin-bottom: 15px;
+        font-size: 1.4rem;
+        margin-bottom: 12px;
     }
     
     .question-text {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
     
     .categories-grid {
-        gap: 12px;
+        gap: 10px;
     }
     
     .game-header {
-        padding: 10px 20px;
-        margin-bottom: 10px;
+        padding: 6px 12px;
+        margin-bottom: 6px;
     }
     
     .score {
-        font-size: 2.2rem;
+        font-size: 1.5rem;
     }
     
     .team-name {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
     }
     
     .question-container {
-        padding: 20px 25px;
+        padding: 18px 22px;
     }
     
     .question-category-img {
-        width: 100px;
-        height: 70px;
+        width: 90px;
+        height: 60px;
     }
     
     .login-container {
-        padding: 20px 30px;
-        max-width: 400px;
+        padding: 18px 25px;
+        max-width: 380px;
     }
     
     .input-group {
-        gap: 10px;
+        gap: 8px;
     }
     
     .login-form {
-        gap: 10px;
+        gap: 8px;
     }
     
     .question-cell {
-        font-size: 1.1rem;
-        padding: 15px 10px;
-        min-height: 45px;
+        font-size: 0.85rem;
+        padding: 10px 6px;
+        min-height: 32px;
     }
     
     .category-header {
-        height: 70px;
+        height: 55px;
     }
     
     .category-card {
         aspect-ratio: 16/11;
+    }
+    
+    .game-board {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        gap: 6px;
+    }
+    
+    .score-btn {
+        padding: 3px 8px;
+        font-size: 0.75rem;
+    }
+    
+    .game-logo {
+        font-size: 1rem;
+    }
+    
+    .turn-indicator {
+        width: 25px;
+        height: 25px;
+        top: -8px;
     }
 }
 
 /* Extra small landscape screens */
 @media screen and (max-height: 500px) {
     .game-board {
-        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+        gap: 5px;
     }
     
     .question-cell {
-        font-size: 1rem;
-        padding: 12px 8px;
-        min-height: 40px;
+        font-size: 0.8rem;
+        padding: 8px 5px;
+        min-height: 30px;
     }
     
     .category-header {
-        height: 60px;
+        height: 50px;
+    }
+    
+    .score {
+        font-size: 1.3rem;
+    }
+    
+    .team-name {
+        font-size: 0.8rem;
+    }
+    
+    .game-header {
+        padding: 5px 10px;
     }
 }
 
