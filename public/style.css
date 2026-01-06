@@ -29,6 +29,20 @@ body {
     position: fixed;
     -webkit-user-select: none;
     user-select: none;
+    /* Hide Safari UI bars */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent pull-to-refresh on iOS */
+body {
+    overscroll-behavior-y: none;
+}
+
+/* Force fullscreen on iOS */
+@supports (-webkit-touch-callout: none) {
+    body {
+        height: -webkit-fill-available;
+    }
 }
 
 /* Screen Management */
@@ -335,17 +349,23 @@ input[type="password"]::placeholder {
 }
 
 /* Category Selection */
+#category-screen {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 .category-container {
     width: 95%;
     max-width: 1100px;
-    padding: 25px;
+    padding: 20px 15px;
+    margin: 0 auto;
 }
 
 .screen-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 900;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     color: var(--darkest-accent);
     text-shadow: 2px 2px 0 var(--gold-accent);
 }
@@ -353,19 +373,19 @@ input[type="password"]::placeholder {
 .categories-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    margin-bottom: 25px;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
 .category-card {
-    aspect-ratio: 16/9;
-    border-radius: 15px;
+    aspect-ratio: 16/10;
+    border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
     border: 3px solid var(--tertiary-bg);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     background: var(--secondary-bg);
 }
 
@@ -375,44 +395,46 @@ input[type="password"]::placeholder {
     object-fit: cover;
 }
 
-.category-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+.category-card:active {
+    transform: scale(0.95);
 }
 
 .category-card.selected {
     border-color: var(--gold-accent);
-    box-shadow: 0 0 30px rgba(184, 166, 125, 0.5);
-    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(184, 166, 125, 0.5);
 }
 
 .category-card.selected::after {
     content: '✓';
     position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 40px;
-    height: 40px;
+    top: 8px;
+    right: 8px;
+    width: 35px;
+    height: 35px;
     background: var(--gold-accent);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: var(--darkest-accent);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
 }
 
 .category-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    padding: 15px 5px 10px;
+    position: sticky;
+    bottom: 0;
+    background: var(--primary-bg);
+    z-index: 10;
 }
 
 .selected-count {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 800;
     color: var(--darker-accent);
 }
@@ -939,22 +961,22 @@ input[type="password"]::placeholder {
 /* Responsive adjustments for landscape mobile */
 @media screen and (max-height: 600px) {
     .game-title {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
         margin-bottom: 8px;
     }
     
     .login-subtitle {
-        font-size: 0.9rem;
-        margin-bottom: 18px;
+        font-size: 0.85rem;
+        margin-bottom: 15px;
     }
     
     .screen-title {
-        font-size: 1.8rem;
-        margin-bottom: 20px;
+        font-size: 1.6rem;
+        margin-bottom: 15px;
     }
     
     .question-text {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
     
     .categories-grid {
@@ -962,51 +984,84 @@ input[type="password"]::placeholder {
     }
     
     .game-header {
-        padding: 12px 25px;
+        padding: 10px 20px;
+        margin-bottom: 10px;
     }
     
     .score {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
     
     .team-name {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     
     .question-container {
-        padding: 25px 30px;
+        padding: 20px 25px;
     }
     
     .question-category-img {
-        width: 120px;
-        height: 80px;
+        width: 100px;
+        height: 70px;
     }
     
     .login-container {
-        padding: 25px 35px;
-        max-width: 420px;
+        padding: 20px 30px;
+        max-width: 400px;
     }
     
     .input-group {
-        gap: 12px;
+        gap: 10px;
     }
     
     .login-form {
-        gap: 12px;
+        gap: 10px;
+    }
+    
+    .question-cell {
+        font-size: 1.1rem;
+        padding: 15px 10px;
+        min-height: 45px;
+    }
+    
+    .category-header {
+        height: 70px;
+    }
+    
+    .category-card {
+        aspect-ratio: 16/11;
+    }
+}
+
+/* Extra small landscape screens */
+@media screen and (max-height: 500px) {
+    .game-board {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 10px;
+    }
+    
+    .question-cell {
+        font-size: 1rem;
+        padding: 12px 8px;
+        min-height: 40px;
+    }
+    
+    .category-header {
+        height: 60px;
     }
 }
 
 /* Touch-friendly adjustments */
 @media (hover: none) and (pointer: coarse) {
     .category-card:active {
-        transform: scale(0.98);
+        transform: scale(0.95);
     }
     
     .primary-btn:active {
-        transform: scale(0.98);
+        transform: scale(0.97);
     }
     
     .question-cell:active {
-        transform: scale(0.95);
+        transform: scale(0.93);
     }
 }
