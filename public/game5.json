@@ -1,0 +1,64 @@
+{
+  "islamic": [
+    {"id":"g5_islamic_1","points":200,"question":"من هو خاتم الأنبياء؟","answer":"محمد صلى الله عليه وسلم"},
+    {"id":"g5_islamic_2","points":200,"question":"ما هي أقصر سورة في القرآن؟","answer":"سورة الكوثر"},
+    {"id":"g5_islamic_3","points":400,"question":"من هو الصحابي الملقب بحواري الرسول؟","answer":"الزبير بن العوام"},
+    {"id":"g5_islamic_4","points":400,"question":"من هو النبي الذي لقب بكليم الله؟","answer":"موسى عليه السلام"},
+    {"id":"g5_islamic_5","points":600,"question":"كم عدد أبواب الجنة؟","answer":"ثمانية أبواب"},
+    {"id":"g5_islamic_6","points":600,"question":"من هو الصحابي الذي لقب بترجمان القرآن؟","answer":"عبد الله بن عباس"}
+  ],
+  "science": [
+    {"id":"g5_science_1","points":200,"question":"من مخترع الطائرة؟","answer":"الأخوان رايت"},
+    {"id":"g5_science_2","points":200,"question":"كم عدد أسنان الإنسان البالغ؟","answer":"32 سناً"},
+    {"id":"g5_science_3","points":400,"question":"من مخترع الراديو؟","answer":"جوليلمو ماركوني"},
+    {"id":"g5_science_4","points":400,"question":"ما هي درجة غليان الماء بمقياس سيلسيوس؟","answer":"100 درجة مئوية"},
+    {"id":"g5_science_5","points":600,"question":"من هو مخترع التلسكوب؟","answer":"جاليليو جاليلي"},
+    {"id":"g5_science_6","points":600,"question":"ما هي المسافة بين الأرض والشمس؟","answer":"حوالي 150 مليون كيلومتر"}
+  ],
+  "arabic": [
+    {"id":"g5_arabic_1","points":200,"question":"ما معنى كلمة 'يراع'؟","answer":"القلم"},
+    {"id":"g5_arabic_2","points":200,"question":"من صاحب لقب 'شاعر القطرين'؟","answer":"خليل مطران"},
+    {"id":"g5_arabic_3","points":400,"question":"ما هو جمع كلمة 'عندليب'؟","answer":"عنادل"},
+    {"id":"g5_arabic_4","points":400,"question":"من صاحب ديوان 'سقط الزند'؟","answer":"أبو العلاء المعري"},
+    {"id":"g5_arabic_5","points":600,"question":"من مؤلف كتاب 'البيان والتبيين'؟","answer":"الجاحظ"},
+    {"id":"g5_arabic_6","points":600,"question":"من هو الشاعر الذي قتله شعره؟","answer":"المتنبي"}
+  ],
+  "sports": [
+    {"id":"g5_sports_1","points":200,"question":"كم عدد اللاعبين في فريق كرة الطائرة؟","answer":"6 لاعبين"},
+    {"id":"g5_sports_2","points":200,"question":"في أي رياضة يستخدم مضرب؟","answer":"التنس"},
+    {"id":"g5_sports_3","points":400,"question":"من فاز بكأس العالم 2014؟","answer":"ألمانيا"},
+    {"id":"g5_sports_4","points":400,"question":"كم عدد اللاعبين الاحتياط في كرة القدم؟","answer":"7 لاعبين"},
+    {"id":"g5_sports_5","points":600,"question":"من هو الملقب بـ الدون؟","answer":"كريستيانو رونالدو"},
+    {"id":"g5_sports_6","points":600,"question":"في أي عام فازت فرنسا بكأس العالم للمرة الأولى؟","answer":"1998"}
+  ],
+  "history": [
+    {"id":"g5_history_1","points":200,"question":"ما هي عاصمة الأردن؟","answer":"عمّان"},
+    {"id":"g5_history_2","points":200,"question":"في أي قارة تقع مصر؟","answer":"أفريقيا"},
+    {"id":"g5_history_3","points":400,"question":"من فتح الأندلس؟","answer":"طارق بن زياد"},
+    {"id":"g5_history_4","points":400,"question":"في أي عام سقطت الأندلس؟","answer":"1492"},
+    {"id":"g5_history_5","points":600,"question":"من هو أول خليفة عباسي؟","answer":"أبو العباس السفاح"},
+    {"id":"g5_history_6","points":600,"question":"في أي عام توفي صلاح الدين الأيوبي؟","answer":"1193"}
+  ],
+  "nature": [
+    {"id":"g5_nature_1","points":200,"question":"ما هو أكبر حيوان بري؟","answer":"الفيل الأفريقي"},
+    {"id":"g5_nature_2","points":200,"question":"كم عدد أرجل النملة؟","answer":"6 أرجل"},
+    {"id":"g5_nature_3","points":400,"question":"ما هي أكبر شجرة في العالم؟","answer":"شجرة السيكويا العملاقة"},
+    {"id":"g5_nature_4","points":400,"question":"كم عدد أسنان الأرنب؟","answer":"28 سناً"},
+    {"id":"g5_nature_5","points":600,"question":"ما هو النبات الذي يتتبع الشمس؟","answer":"دوار الشمس"},
+    {"id":"g5_nature_6","points":600,"question":"كم عدد عيون العنكبوت؟","answer":"8 عيون"}
+  ],
+  "people": [
+    {"id":"g5_people_1","points":200,"question":"من هو الملقب بـ أسد الله؟","answer":"حمزة بن عبد المطلب"},
+    {"id":"g5_people_2","points":200,"question":"من هو أول رائد فضاء في العالم؟","answer":"يوري جاجارين"},
+    {"id":"g5_people_3","points":400,"question":"من هو مخترع التلفزيون؟","answer":"جون لوجي بيرد"},
+    {"id":"g5_people_4","points":400,"question":"من هو مكتشف البنسلين؟","answer":"ألكسندر فليمنج"},
+    {"id":"g5_people_5","points":600,"question":"من هو مؤلف نظرية النسبية؟","answer":"ألبرت أينشتاين"},
+    {"id":"g5_people_6","points":600,"question":"من هو مكتشف الراديوم؟","answer":"ماري كوري"}
+  ],
+  "tiebreaker": {
+    "id":"g5_tiebreaker",
+    "points":800,
+    "question":"ما هو اسم أول حاسوب إلكتروني تم اختراعه وفي أي عام تم ذلك؟",
+    "answer":"ENIAC - عام 1946"
+  }
+}
