@@ -392,39 +392,56 @@ function loadGameQuestions() {
     
     if (!gameState.allQuestionsData) {
         console.error('Questions data not loaded');
+        alert('لم يتم تحميل الأسئلة! الرجاء تحديث الصفحة.');
         return;
     }
+    
+    console.log('Loading questions for categories:', gameState.selectedCategories);
     
     gameState.selectedCategories.forEach(catId => {
         const category = categories.find(c => c.id === catId);
         let catQuestions = gameState.allQuestionsData[catId] || [];
         
-        // Filter out already answered questions for this user
-        catQuestions = catQuestions.filter(q => !isQuestionAnswered(q.id));
+        console.log(`Category ${catId} has ${catQuestions.length} questions`);
         
-        if (catQuestions.length > 0) {
+        if (catQuestions.length === 0) {
+            console.error(`No questions found for category: ${catId}`);
+            return;
+        }
+        
+        // Filter out already answered questions for this user
+        const availableQuestions = catQuestions.filter(q => !isQuestionAnswered(q.id));
+        
+        console.log(`Category ${catId} has ${availableQuestions.length} available questions`);
+        
+        if (availableQuestions.length > 0) {
             // Shuffle questions randomly
-            catQuestions = shuffleArray(catQuestions);
+            const shuffled = shuffleArray(availableQuestions);
             
             // Get questions by point value (2 each)
-            const q200 = catQuestions.filter(q => q.points === 200).slice(0, 2);
-            const q400 = catQuestions.filter(q => q.points === 400).slice(0, 2);
-            const q600 = catQuestions.filter(q => q.points === 600).slice(0, 2);
+            const q200 = shuffled.filter(q => q.points === 200).slice(0, 2);
+            const q400 = shuffled.filter(q => q.points === 400).slice(0, 2);
+            const q600 = shuffled.filter(q => q.points === 600).slice(0, 2);
+            
+            console.log(`Category ${catId}: ${q200.length} x 200, ${q400.length} x 400, ${q600.length} x 600`);
             
             // Add category info to each question
             [...q200, ...q400, ...q600].forEach(q => {
+                q.category = catId;
                 q.categoryName = category.name;
                 q.categoryImage = category.image;
                 gameState.questions.push(q);
             });
+        } else {
+            alert(`نفذت الأسئلة في فئة ${category.name}! سيتم استخدام فئات أخرى.`);
         }
     });
     
-    console.log(`Loaded ${gameState.questions.length} questions for this game`);
+    console.log(`Total questions loaded: ${gameState.questions.length}`);
     
     // Check if we have enough questions
-    if (gameState.questions.length < gameState.selectedCategories.length * 6) {
-        alert('بعض الأسئلة قد نفذت في هذه الفئات. سيتم استخدام الأسئلة المتاحة فقط.');
+    if (gameState.questions.length === 0) {
+        alert('لا توجد أسئلة متاحة! الرجاء مسح البيانات أو استخدام حساب جديد.');
     }
 }
 
