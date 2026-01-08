@@ -44,9 +44,19 @@ async function initApp() {
 
 async function loadQuestionsData() {
     try {
-        const response = await fetch('questions.json');
-        gameState.allQuestionsData = await response.json();
-        console.log('Questions loaded successfully');
+        // Choose random game file (1-5)
+        const gameNumber = Math.floor(Math.random() * 5) + 1;
+        const gameFile = `game${gameNumber}.json`;
+        
+        console.log(`Loading ${gameFile}`);
+        
+        const response = await fetch(gameFile);
+        const data = await response.json();
+        
+        gameState.allQuestionsData = data;
+        gameState.tiebreakerQuestion = data.tiebreaker;
+        
+        console.log('Questions loaded successfully from', gameFile);
     } catch (error) {
         console.error('Error loading questions:', error);
         gameState.allQuestionsData = createFallbackQuestions();
@@ -369,13 +379,21 @@ function loadGameQuestions() {
     
     gameState.selectedCategories.forEach(catId => {
         const category = categories.find(c => c.id === catId);
-        const catQuestions = gameState.allQuestionsData[catId] || [];
+        let catQuestions = gameState.allQuestionsData[catId] || [];
+        
+        // Filter out already answered questions for this user
+        catQuestions = catQuestions.filter(q => !isQuestionAnswered(q.id));
         
         if (catQuestions.length > 0) {
+            // Shuffle questions randomly
+            catQuestions = shuffleArray(catQuestions);
+            
+            // Get questions by point value (2 each)
             const q200 = catQuestions.filter(q => q.points === 200).slice(0, 2);
             const q400 = catQuestions.filter(q => q.points === 400).slice(0, 2);
             const q600 = catQuestions.filter(q => q.points === 600).slice(0, 2);
             
+            // Add category info to each question
             [...q200, ...q400, ...q600].forEach(q => {
                 q.categoryName = category.name;
                 q.categoryImage = category.image;
@@ -384,7 +402,22 @@ function loadGameQuestions() {
         }
     });
     
-    console.log(`Loaded ${gameState.questions.length} questions`);
+    console.log(`Loaded ${gameState.questions.length} questions for this game`);
+    
+    // Check if we have enough questions
+    if (gameState.questions.length < gameState.selectedCategories.length * 6) {
+        alert('بعض الأسئلة قد نفذت في هذه الفئات. سيتم استخدام الأسئلة المتاحة فقط.');
+    }
+}
+
+// Shuffle array function
+function shuffleArray(array) {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
 }
 
 function renderGameBoard() {
@@ -806,13 +839,8 @@ function showWinScreen() {
 }
 
 function showTiebreaker() {
-    const tiebreakerQuestions = gameState.allQuestionsData ? 
-        Object.values(gameState.allQuestionsData)
-            .flat()
-            .filter(q => q.points === 600 && !isQuestionAnswered(q.id)) :
-        [];
-    
-    const tiebreakerQ = tiebreakerQuestions[Math.floor(Math.random() * tiebreakerQuestions.length)] || {
+    // Use the tiebreaker from the loaded game file
+    const tiebreakerQ = gameState.tiebreakerQuestion || {
         question: 'سؤال كسر التعادل: ما هي عاصمة أستراليا؟',
         answer: 'كانبيرا'
     };
@@ -839,9 +867,9 @@ function showTiebreaker() {
         newBtn.textContent = index === 0 ? gameState.team1.name : gameState.team2.name;
         newBtn.addEventListener('click', () => {
             if (index === 0) {
-                gameState.team1.score += 1000;
+                gameState.team1.score += 800;
             } else {
-                gameState.team2.score += 1000;
+                gameState.team2.score += 800;
             }
             showWinScreen();
         });
