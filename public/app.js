@@ -136,6 +136,15 @@ function setupEventListeners() {
     });
     document.getElementById('logout-btn').addEventListener('click', handleLogout);
     
+    // Clear data button
+    document.getElementById('clear-data-btn').addEventListener('click', () => {
+        if (confirm('هل أنت متأكد من مسح جميع البيانات؟')) {
+            gameState.answeredQuestions = [];
+            saveAnsweredQuestions();
+            alert('تم مسح البيانات بنجاح!');
+        }
+    });
+    
     // Categories
     document.getElementById('next-categories-btn').addEventListener('click', handleCategoriesNext);
     
@@ -257,8 +266,10 @@ function handleResetPassword() {
 function handleGuestLogin() {
     const guestName = prompt('أدخل اسمك للدخول كضيف:');
     if (guestName && guestName.trim()) {
-        gameState.username = `ضيف_${guestName.trim()}`;
-        loadAnsweredQuestions();
+        // Generate unique guest ID with timestamp
+        const guestId = `guest_${guestName.trim()}_${Date.now()}`;
+        gameState.username = guestId;
+        gameState.answeredQuestions = []; // Reset for new guest
         showScreen('home-screen');
     }
 }
