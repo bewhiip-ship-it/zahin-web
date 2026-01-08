@@ -51,14 +51,21 @@ async function loadQuestionsData() {
         console.log(`Loading ${gameFile}`);
         
         const response = await fetch(gameFile);
+        
+        if (!response.ok) {
+            throw new Error(`Failed to load ${gameFile}: ${response.status}`);
+        }
+        
         const data = await response.json();
         
         gameState.allQuestionsData = data;
         gameState.tiebreakerQuestion = data.tiebreaker;
         
         console.log('Questions loaded successfully from', gameFile);
+        console.log('Sample data:', Object.keys(data));
     } catch (error) {
         console.error('Error loading questions:', error);
+        alert('خطأ في تحميل الأسئلة! تأكد من وجود ملفات game1.json إلى game5.json في نفس مجلد index.html');
         gameState.allQuestionsData = createFallbackQuestions();
     }
 }
